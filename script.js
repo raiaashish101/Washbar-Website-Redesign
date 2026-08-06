@@ -29,23 +29,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const customSelectMenu = customSelect?.querySelector(".custom-select-menu");
   const customSelectValue = customSelect?.querySelector("#custom-select-value");
   const customSelectOptions = Array.from(customSelect?.querySelectorAll('[role="option"]') || []);
+  const locationTabList = document.querySelector(".location-tabs[role='tablist']");
+  const locationTabs = Array.from(locationTabList?.querySelectorAll("[role='tab']") || []);
+  const locationPanels = Array.from(document.querySelectorAll(".location-tabpanel[role='tabpanel']"));
+  const locationStatusBadges = Array.from(document.querySelectorAll(".status-live"));
+  const reviewCarousel = document.querySelector("[data-review-carousel]");
+  const reviewViewport = reviewCarousel?.querySelector("[data-review-viewport]");
+  const reviewTrack = reviewCarousel?.querySelector("[data-review-track]");
+  const reviewCards = Array.from(reviewTrack?.querySelectorAll("[data-review-card]") || []);
+  const reviewControls = document.querySelector("[data-review-controls]");
+  const reviewPreviousButton = document.querySelector("[data-review-previous]");
+  const reviewNextButton = document.querySelector("[data-review-next]");
+  const reviewStatus = reviewCarousel?.querySelector("[data-review-status]");
 
   // Set dynamic copyright year so it never needs a manual update.
   const yearEl = document.getElementById("copyright-year");
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
-
-  // Set dynamic open/closed status badges based on current local time.
-  // Wash Bar hours: 6:00 AM to 12:00 AM (midnight) every day.
-  // Bug fixed: the previous markup hardcoded "Open now" regardless of time.
-  // The ChatGPT suggestion used `hour < 0` which is always false — corrected below.
-  const hour = new Date().getHours(); // 0–23
-  const isOpenNow = hour >= 6 && hour < 24;
-  document.querySelectorAll(".status-live").forEach((badge) => {
-    badge.textContent = isOpenNow ? "Open now" : "Closed";
-    badge.classList.toggle("status-closed", !isOpenNow);
-  });
 
   // --- Helper functions ---
 
@@ -83,6 +84,207 @@ document.addEventListener("DOMContentLoaded", () => {
       behavior: prefersReducedMotion ? "auto" : "smooth",
       block:    "start",
     });
+  }
+
+  // --- Location tabs ---
+
+  // The source HTML exposes every panel as a stacked no-JavaScript fallback.
+  // Once this enhancement is ready, only the selected panel remains visible.
+  if (locationTabList && locationTabs.length && locationPanels.length) {
+    document.documentElement.classList.add("js-loaded");
+
+    function activateLocationTab(tab, shouldScroll = true) {
+      const panelId = tab.getAttribute("aria-controls");
+
+      locationTabs.forEach((locationTab) => {
+        const isActive = locationTab === tab;
+        locationTab.setAttribute("aria-selected", String(isActive));
+        locationTab.tabIndex = isActive ? 0 : -1;
+      });
+
+      locationPanels.forEach((panel) => {
+        const isActive = panel.id === panelId;
+        panel.hidden = !isActive;
+        panel.tabIndex = isActive ? 0 : -1;
+      });
+
+      if (shouldScroll) {
+        tab.scrollIntoView({ block: "nearest", inline: "nearest" });
+      }
+    }
+
+    locationTabs.forEach((tab) => {
+      tab.addEventListener("click", () => activateLocationTab(tab));
+    });
+
+    locationTabList.addEventListener("keydown", (event) => {
+      const currentIndex = locationTabs.indexOf(document.activeElement);
+      if (currentIndex === -1) {
+        return;
+      }
+
+      let nextIndex = currentIndex;
+
+      if (event.key === "ArrowRight") {
+        nextIndex = (currentIndex + 1) % locationTabs.length;
+      } else if (event.key === "ArrowLeft") {
+        nextIndex = (currentIndex - 1 + locationTabs.length) % locationTabs.length;
+      } else if (event.key === "Home") {
+        nextIndex = 0;
+      } else if (event.key === "End") {
+        nextIndex = locationTabs.length - 1;
+      } else if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        activateLocationTab(locationTabs[currentIndex]);
+        return;
+      } else {
+        return;
+      }
+
+      event.preventDefault();
+      locationTabs[nextIndex].focus();
+      locationTabs[nextIndex].scrollIntoView({ block: "nearest", inline: "nearest" });
+    });
+
+    const initialTab = locationTabs.find((tab) => tab.getAttribute("aria-selected") === "true") || locationTabs[0];
+    activateLocationTab(initialTab, false);
+  }
+
+  // --- Live location status ---
+
+  // Calculate each badge in the store's timezone, rather than the visitor's.
+  // The HTML stores opening and closing times as minutes after midnight.
+  function getMinutesInTimeZone(timeZone) {
+    const parts = new Intl.DateTimeFormat("en-AU", {
+      timeZone,
+      hour: "2-digit",
+      minute: "2-digit",
+      hourCycle: "h23",
+    }).formatToParts(new Date());
+
+    const hour = Number(parts.find((part) => part.type === "hour")?.value);
+    const minute = Number(parts.find((part) => part.type === "minute")?.value);
+
+    return (hour * 60) + minute;
+  }
+
+  function updateLocationStatuses() {
+    locationStatusBadges.forEach((badge) => {
+      const { timeZone, openMinutes, closeMinutes } = badge.dataset;
+      const opensAt = Number(openMinutes);
+      const closesAt = Number(closeMinutes);
+
+      if (!timeZone || !Number.isFinite(opensAt) || !Number.isFinite(closesAt)) {
+        return;
+      }
+
+      try {
+        const currentMinutes = getMinutesInTimeZone(timeZone);
+        const isOpen = closesAt > opensAt
+          ? currentMinutes >= opensAt && currentMinutes < closesAt
+          : currentMinutes >= opensAt || currentMinutes < closesAt;
+
+        badge.textContent = isOpen ? "Open now" : "Closed";
+        badge.classList.toggle("status-closed", !isOpen);
+      } catch {
+        // Keep the safe default text when a browser cannot resolve the timezone.
+      }
+    });
+  }
+
+  if (locationStatusBadges.length) {
+    updateLocationStatuses();
+    window.setInterval(updateLocationStatuses, 60_000);
+  }
+
+  // --- Customer review carousel ---
+
+  // Approved cards remain horizontally scrollable without JavaScript. This
+  // enhancement adds buttons, position announcements, and arrow-key navigation.
+  if (
+    reviewViewport
+    && reviewTrack
+    && reviewCards.length
+    && reviewPreviousButton
+    && reviewNextButton
+  ) {
+    let activeReviewIndex = 0;
+    let reviewScrollTimer = 0;
+    let reviewScrollUnlockTimer = 0;
+    let isProgrammaticReviewScroll = false;
+
+    reviewViewport.tabIndex = 0;
+
+    reviewCards.forEach((card, index) => {
+      card.setAttribute("role", "group");
+      card.setAttribute("aria-roledescription", "slide");
+      card.setAttribute("aria-label", `${index + 1} of ${reviewCards.length}`);
+    });
+
+    if (reviewCards.length > 1 && reviewControls) {
+      reviewControls.hidden = false;
+    }
+
+    function updateReviewCarouselState(index) {
+      activeReviewIndex = Math.min(Math.max(index, 0), reviewCards.length - 1);
+      reviewPreviousButton.disabled = activeReviewIndex === 0;
+      reviewNextButton.disabled = activeReviewIndex === reviewCards.length - 1;
+
+      if (reviewStatus) {
+        reviewStatus.textContent = `Showing review ${activeReviewIndex + 1} of ${reviewCards.length}.`;
+      }
+    }
+
+    function getNearestReviewIndex() {
+      return reviewCards.reduce((nearestIndex, card, index) => {
+        const nearestDistance = Math.abs(reviewCards[nearestIndex].offsetLeft - reviewViewport.scrollLeft);
+        const cardDistance = Math.abs(card.offsetLeft - reviewViewport.scrollLeft);
+        return cardDistance < nearestDistance ? index : nearestIndex;
+      }, 0);
+    }
+
+    function showReview(index) {
+      const targetIndex = Math.min(Math.max(index, 0), reviewCards.length - 1);
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      window.clearTimeout(reviewScrollUnlockTimer);
+      isProgrammaticReviewScroll = true;
+      reviewViewport.scrollTo({
+        left: reviewCards[targetIndex].offsetLeft,
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+      });
+      updateReviewCarouselState(targetIndex);
+      reviewScrollUnlockTimer = window.setTimeout(() => {
+        isProgrammaticReviewScroll = false;
+      }, prefersReducedMotion ? 0 : 600);
+    }
+
+    reviewPreviousButton.addEventListener("click", () => showReview(activeReviewIndex - 1));
+    reviewNextButton.addEventListener("click", () => showReview(activeReviewIndex + 1));
+
+    reviewViewport.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        showReview(activeReviewIndex - 1);
+      } else if (event.key === "ArrowRight") {
+        event.preventDefault();
+        showReview(activeReviewIndex + 1);
+      }
+    });
+
+    reviewViewport.addEventListener("scroll", () => {
+      if (isProgrammaticReviewScroll) {
+        return;
+      }
+
+      window.clearTimeout(reviewScrollTimer);
+      reviewScrollTimer = window.setTimeout(() => {
+        updateReviewCarouselState(getNearestReviewIndex());
+      }, 120);
+    }, { passive: true });
+
+    window.addEventListener("resize", () => updateReviewCarouselState(getNearestReviewIndex()));
+    updateReviewCarouselState(0);
   }
 
   // --- Mobile menu ---
@@ -145,8 +347,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const placeholders = {
     "Wash and fold":         "Tell us your preferred location, approximate load size, and when you need it.",
     "Commercial laundry":    "Tell us your business type, estimated weekly load, and preferred location.",
+    "Community collaboration": "Tell us about your collaboration idea.",
     "Franchise opportunity": "Tell us your preferred city or country and your investment timeline.",
-    "General question":      "Ask us anything about our services, locations, or pricing.",
+    "General question":      "Ask us anything about our services or locations.",
   };
 
   function closeCustomSelect() {

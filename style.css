@@ -11,6 +11,11 @@
   --color-soft: #f3f6f9;
   --color-line: #dce6f0;
   --color-success: #22c55e;
+  --color-success-ink: #166534;
+  --color-success-soft: #dcfce7;
+  --color-danger: #b91c1c;
+  --color-danger-soft: #fee2e2;
+  --color-rating: #f5a700;
   --shadow: 0 18px 42px rgba(10, 31, 57, 0.14);
   --shadow-soft: 0 10px 28px rgba(10, 31, 57, 0.08);
 
@@ -118,7 +123,6 @@
   --type-h3: var(--md-sys-typescale-title-large-size);
   --type-h2: var(--md-sys-typescale-headline-large-size);
   --type-h1: 2.65rem;
-  --type-price: 3.25rem;
   --type-button: var(--md-sys-typescale-label-large-size);
   --type-caption: var(--md-sys-typescale-body-small-size);
   --line-tight: 1.08;
@@ -130,7 +134,6 @@
   --weight-semibold: 600;
   --weight-bold: var(--md-ref-typeface-weight-bold);
   --weight-strong: 800;
-  --weight-price: 900;
 
   /* 8px spacing scale keeps layout decisions consistent across the page. */
   --space-05: 4px;
@@ -146,11 +149,18 @@
   --space-12: 96px;
   --radius-card: 8px;
   --radius-panel: 16px;
+  --review-card-inline-size: min(82vw, 21rem);
+  --review-featured-card-inline-size: min(88vw, 35rem);
 }
 
 /* Base reset: makes sizing predictable across browsers. */
 * {
   box-sizing: border-box;
+}
+
+/* Keep native hidden states authoritative when component classes set display. */
+[hidden] {
+  display: none !important;
 }
 
 /*
@@ -639,7 +649,6 @@ h1 {
             padding-top: var(--space-6);
           }
 
-              .prices-section,
               .audience-section {
                 padding-top: var(--space-7);
                 padding-bottom: var(--space-7);
@@ -777,130 +786,37 @@ h1 {
   line-height: var(--md-sys-typescale-body-small-line-height);
 }
 
-/* Pricing cards: simple scan pattern with one featured/popular option. */
-.prices-section {
-  background: var(--color-surface);
+/* Centered headings and shared lists remain reusable across Version 4 sections. */
+.center {
+  max-width: 720px;
+  margin: 0 auto var(--space-4);
+  text-align: center;
 }
 
-  .center {
-    max-width: 720px;
-    margin: 0 auto var(--space-4);
-    text-align: center;
-  }
+.center .eyebrow {
+  margin-left: auto;
+  margin-right: auto;
+}
 
-    .center .eyebrow {
-      margin-left: auto;
-      margin-right: auto;
-    }
+.section-heading.center p:not(.eyebrow) {
+  margin-left: auto;
+  margin-right: auto;
+}
 
-      .section-heading.center p:not(.eyebrow) {
-        margin-left: auto;
-        margin-right: auto;
-      }
+.icon-list,
+.footer-grid ul {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
-        .price-grid {
-          display: grid;
-          gap: var(--space-3);
-        }
-
-          .price-card {
-            position: relative;
-            padding: var(--space-3);
-            background: var(--color-surface);
-            border: 1px solid var(--color-line);
-            border-radius: var(--radius-card);
-            box-shadow: var(--shadow-soft);
-            text-align: center;
-          }
-
-            .price-card.featured {
-              border-color: var(--color-blue);
-              box-shadow: 0 16px 36px rgba(8, 125, 242, 0.18);
-            }
-
-              .price-label {
-                margin: 0 0 var(--space-1);
-                color: var(--color-muted);
-                font-size: var(--type-xs);
-                font-weight: var(--weight-bold);
-                line-height: var(--md-sys-typescale-label-medium-line-height);
-                letter-spacing: 0;
-                text-transform: uppercase;
-                  }
-
-                  .popular-label {
-                    position: absolute;
-                    top: -12px;
-                    right: var(--space-2);
-                    margin: 0;
-                    padding: var(--space-05) var(--space-1);
-                    background: var(--color-blue);
-                    color: #ffffff;
-                    border-radius: 999px;
-                    font-size: var(--type-2xs);
-                    font-weight: var(--weight-bold);
-                    line-height: var(--md-sys-typescale-label-small-line-height);
-                    letter-spacing: 0;
-                    text-transform: uppercase;
-                    }
-
-                    .price-large {
-                      display: flex;
-                      align-items: baseline;
-                      justify-content: center;
-                      gap: var(--space-1);
-                      margin: var(--space-4) 0 var(--space-3);
-                      color: var(--color-blue-dark);
-                      font-weight: var(--weight-price);
-                      line-height: 1;
-                      }
-
-                      .price-large span {
-                        font-size: var(--type-price);
-                        letter-spacing: 0;
-                      }
-
-                      .price-large small {
-                        color: var(--color-muted);
-                        font-size: var(--type-caption);
-                        font-weight: var(--weight-medium);
-                      }
-
-                      .price-card ul,
-                      .icon-list,
-                      .footer-grid ul {
-                        display: grid;
-                        gap: var(--space-1);
-                        margin: 0;
-                        padding: 0;
-                        list-style: none;
-                      }
-
-                      .price-card li,
-                      .icon-list li {
-                        color: var(--color-muted);
-                        font-size: var(--type-sm);
-                        line-height: var(--md-sys-typescale-body-medium-line-height);
-                      }
-
-                      .check-list li {
-                        position: relative;
-                        padding-left: var(--space-3);
-                        text-align: left;
-                      }
-
-                      .price-card .check-list {
-                        width: fit-content;
-                        margin: 0 auto;
-                      }
-
-                      .check-list li::before {
-                        position: absolute;
-                        left: 0;
-                        color: var(--color-blue);
-                        content: "✓";
-                        font-weight: var(--weight-bold);
-                      }
+.icon-list li {
+  color: var(--color-muted);
+  font-size: var(--type-sm);
+  line-height: var(--md-sys-typescale-body-medium-line-height);
+}
 
 /* Audience panels separate walk-in customers from commercial customers. */
     .audience-section {
@@ -1087,132 +1003,376 @@ h1 {
   overflow: hidden;
 }
 
+/* Commercial proof: categories stay scannable while unapproved client names remain unpublished. */
+.commercial-client-grid {
+  align-items: stretch;
+}
+
+.commercial-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.commercial-panel h3,
+.commercial-panel p {
+  margin: 0;
+}
+
+.commercial-panel .icon-list {
+  flex: 1;
+}
+
+.commercial-panel .button {
+  width: 100%;
+  margin-top: auto;
+}
+
+/* Founder journey: a restrained dark band gives the brand story a clear pause in the page flow. */
+.journey-section {
+  background: var(--color-navy);
+  color: var(--color-surface);
+}
+
+.journey-layout {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.journey-copy {
+  max-width: 62ch;
+}
+
+.journey-copy h2 {
+  max-width: 20ch;
+  margin: var(--space-3) 0;
+  color: var(--color-surface);
+}
+
+.journey-copy p {
+  margin: 0;
+  color: var(--color-sky);
+  line-height: var(--line-relaxed);
+}
+
+.journey-copy p + p {
+  margin-top: var(--space-2);
+}
+
+.journey-actions {
+  margin-top: var(--space-4);
+}
+
+.journey-cta:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.journey-quote {
+  margin: 0;
+  padding-left: var(--space-3);
+  border-left: 2px solid var(--color-blue);
+}
+
+.journey-quote blockquote {
+  margin: 0;
+  color: var(--color-surface);
+  font-size: var(--type-h3);
+  font-weight: var(--weight-bold);
+  line-height: var(--line-snug);
+}
+
+.journey-quote figcaption {
+  margin-top: var(--space-2);
+  color: var(--color-sky);
+  font-size: var(--type-xs);
+  line-height: var(--md-sys-typescale-label-medium-line-height);
+}
+
+.journey-quote cite {
+  font-style: normal;
+  font-weight: var(--weight-semibold);
+}
+
+/* Community: two distinct paths for creative collaboration and local impact. */
+.community-section {
+  background: var(--color-soft);
+}
+
+.community-grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.community-block {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-soft);
+}
+
+.community-block--creative {
+  background: var(--color-surface);
+}
+
+.community-block--impact {
+  background: var(--color-navy);
+  color: var(--color-surface);
+  border-color: var(--color-navy);
+}
+
+.community-block-copy {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.community-block-heading {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.community-icon {
+  position: relative;
+  display: inline-flex;
+  width: var(--space-6);
+  height: var(--space-6);
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-sky);
+  color: var(--color-blue-dark);
+  border-radius: 999px;
+  line-height: 0;
+}
+
+.community-icon svg {
+  width: var(--space-3);
+  height: var(--space-3);
+}
+
+.community-block h3,
+.community-block p {
+  margin: 0;
+}
+
+.community-block p {
+  max-width: 62ch;
+  color: var(--color-muted);
+  line-height: var(--line-relaxed);
+}
+
+.community-block--impact p {
+  color: var(--color-sky);
+}
+
+.community-block .button {
+  width: 100%;
+}
+
+.community-social-cta:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
 .light-panel .button {
   width: 100%;
   margin-top: var(--space-2);
 }
 
-/* Location cards: repeated structure makes hours, contact, and directions easy to compare. */
+/* Location selector: accessible tabs enhance a stacked no-JavaScript fallback. */
 .locations-section {
   background: var(--color-surface);
 }
 
-  .location-grid {
-    display: grid;
-    gap: var(--space-2);
-  }
-
-    .location-card {
-      position: relative;
-      padding: var(--space-3);
-      background: var(--color-surface);
-      border: 1px solid var(--color-line);
-      border-radius: var(--radius-card);
-      box-shadow: var(--shadow-soft);
-    }
-
-      .location-card p {
-        color: var(--color-muted);
-        font-size: var(--type-sm);
-        line-height: var(--md-sys-typescale-body-medium-line-height);
-      }
-
-        .location-meta {
-          display: grid;
-          gap: var(--space-1);
-          margin: var(--space-3) 0 0;
-          padding: var(--space-2) 0 0;
-          border-top: 1px solid var(--color-line);
-        }
-
-        .location-meta div {
-          display: flex;
-          justify-content: space-between;
-          gap: var(--space-2);
-        }
-
-        .location-meta dt {
-          color: var(--color-ink);
-          font-size: var(--type-xs);
-          font-weight: var(--weight-bold);
-          line-height: var(--md-sys-typescale-label-medium-line-height);
-        }
-
-        .location-meta dd {
-          margin: 0;
-          color: var(--color-muted);
-          font-size: var(--type-sm);
-          line-height: var(--md-sys-typescale-body-medium-line-height);
-          text-align: right;
-        }
-
-        .status {
-          position: absolute;
-          top: var(--space-2);
-          right: var(--space-2);
-          padding: var(--space-05) var(--space-1);
-          background: #dcfce7;
-          color: #15803d;
-          border-radius: 999px;
-          font-size: var(--type-2xs);
-          font-weight: var(--weight-bold);
-          line-height: var(--md-sys-typescale-label-small-line-height);
-          letter-spacing: 0;
-          text-transform: uppercase;
-        }
-
-        .status.expansion {
-          background: #e0ecff;
-          color: var(--color-blue-dark);
-        }
-
-/*
-  status-closed: applied by JS when the current time is outside 6 AM - midnight.
-  Distinct colour from the green "Open now" state so users immediately know.
-*/
-.status.status-closed {
-  background: #fee2e2;
-  color: #b91c1c;
+.location-tabs-wrap {
+  display: none;
+  width: 100%;
+  margin-top: var(--space-4);
+  padding-bottom: var(--space-1);
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-color: var(--color-line) transparent;
+  -webkit-overflow-scrolling: touch;
 }
 
-.location-card .directions-link {
-  display: inline-flex;
-  width: 100%;
+.location-tabs {
+  display: none;
+  width: max-content;
+  min-width: 100%;
+  gap: var(--space-1);
+}
+
+.js-loaded .location-tabs-wrap {
+  display: block;
+}
+
+.js-loaded .location-tabs {
+  display: flex;
+}
+
+.location-tab {
   min-height: var(--space-6);
-  align-items: center;
-  justify-content: center;
-  margin-top: var(--space-2);
-  background: #c8dcff;
-  color: var(--color-blue-dark);
-  border-radius: var(--radius-card);
+  padding: 0 var(--space-2);
+  color: var(--color-muted);
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  font: inherit;
   font-size: var(--type-label);
   font-weight: var(--weight-bold);
   line-height: var(--md-sys-typescale-label-large-line-height);
-  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  scroll-snap-align: start;
 }
 
-.usa-card {
+.location-tab[aria-selected="true"] {
+  color: var(--color-surface);
   background: var(--color-blue-dark);
-  color: #ffffff;
+  border-color: var(--color-blue-dark);
 }
 
-.usa-card p,
-.usa-card dt,
-.usa-card dd,
-.usa-card .location-meta dd {
-  color: #dddddd;
+.location-panels {
+  display: grid;
+  gap: var(--space-3);
 }
 
-.usa-card .location-meta dt{
-  color: #eeeeee;
+.location-tabpanel {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+  padding: var(--space-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-soft);
 }
 
-.usa-card .location-meta {
-  border-top-color: rgba(255, 255, 255, 0.24);
+.js-loaded .location-tabpanel[hidden] {
+  display: none;
 }
 
-.usa-card .directions-link {
-  background: #ffffff;
+.location-photo-placeholder {
+  display: grid;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  place-items: center;
+  color: var(--color-blue-dark);
+  background: var(--color-soft);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+}
+
+.location-photo {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+}
+
+.location-photo-placeholder svg {
+  width: var(--space-5);
+  height: var(--space-5);
+  stroke-width: 1.5;
+}
+
+.location-panel-content {
+  align-self: center;
+}
+
+.location-status {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  margin-bottom: var(--space-2);
+  padding: var(--space-05) var(--space-1);
+  color: var(--color-success-ink);
+  background: var(--color-success-soft);
+  border-radius: 999px;
+  font-size: var(--type-2xs);
+  font-weight: var(--weight-bold);
+  line-height: var(--md-sys-typescale-label-small-line-height);
+  text-transform: uppercase;
+}
+
+.location-status.status-closed {
+  color: var(--color-danger);
+  background: var(--color-danger-soft);
+}
+
+.location-area {
+  margin: 0 0 var(--space-05);
+  color: var(--color-blue-dark);
+  font-size: var(--type-xs);
+  font-weight: var(--weight-bold);
+  line-height: var(--md-sys-typescale-label-medium-line-height);
+}
+
+.location-panel-content h3 {
+  margin: 0;
+}
+
+.location-panel-content address {
+  margin-top: var(--space-1);
+  color: var(--color-muted);
+  font-size: var(--type-sm);
+  font-style: normal;
+  line-height: var(--md-sys-typescale-body-medium-line-height);
+}
+
+.location-details {
+  display: grid;
+  gap: var(--space-1);
+  margin: var(--space-3) 0 0;
+  padding: var(--space-2) 0 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.location-details div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: var(--space-2);
+}
+
+.location-details dt {
+  color: var(--color-ink);
+  font-size: var(--type-xs);
+  font-weight: var(--weight-bold);
+  line-height: var(--md-sys-typescale-label-medium-line-height);
+}
+
+.location-details dd {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: var(--type-sm);
+  line-height: var(--md-sys-typescale-body-medium-line-height);
+  text-align: right;
+}
+
+.location-details a {
+  color: var(--color-blue-dark);
+  font-weight: var(--weight-bold);
+}
+
+.location-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+}
+
+.location-actions-single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.location-actions .button {
+  width: 100%;
 }
 
 /* Franchise panel: secondary business-growth path, visually separate from local customer actions. */
@@ -1259,95 +1419,149 @@ h1 {
   color: var(--color-muted);
 }
 
-.stars {
-  margin: 0 0 var(--space-1);
-  color: #ffb703;
-  font-weight: var(--weight-bold);
-  letter-spacing: 0;
-}
-
-/* Review cards must use confirmed customer proof before the client site goes live. */
+/* Review carousel: one featured story establishes hierarchy before supporting reviews. */
 .reviews-section {
   background: var(--color-soft);
 }
 
-  .reviews-section .section-heading {
-    margin-bottom: var(--space-3);
-  }
+.reviews-heading-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
 
-    .review-grid {
-      display: grid;
-      gap: var(--space-2);
-    }
+.reviews-heading-row .section-heading {
+  margin-bottom: 0;
+}
 
-      .review-card {
-        display: grid;
-        justify-items: center;
-        padding: var(--space-3);
-        background: var(--color-surface);
-        border: 1px solid var(--color-line);
-        border-radius: var(--radius-card);
-        box-shadow: var(--shadow-soft);
-        text-align: center;
-      }
+.review-carousel-controls {
+  display: flex;
+  gap: var(--space-1);
+}
 
-        .review-card blockquote {
-          margin: 0 0 var(--space-2);
-          color: var(--color-ink);
-          font-size: var(--type-sm);
-          font-weight: var(--weight-regular);
-          line-height: var(--line-relaxed);
-        }
+.review-carousel-button {
+  display: inline-flex;
+  width: var(--space-6);
+  height: var(--space-6);
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: var(--color-surface);
+  color: var(--color-blue-dark);
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  cursor: pointer;
+}
 
-          .review-status {
-            display: inline-flex;
-            width: fit-content;
-            margin: 0 0 var(--space-2);
-            padding: var(--space-05) var(--space-1);
-            background: var(--color-sky);
-            color: var(--color-blue-dark);
-            border-radius: 999px;
-            font-size: var(--type-xs);
-            font-weight: var(--weight-bold);
-            line-height: var(--md-sys-typescale-label-medium-line-height);
-            letter-spacing: 0;
-            text-transform: uppercase;
-          }
+.review-carousel-button:hover,
+.review-carousel-button:focus-visible {
+  background: var(--color-blue-dark);
+  color: var(--color-surface);
+  border-color: var(--color-blue-dark);
+}
 
-            .review-card p:last-child {
-              margin-bottom: 0;
-              color: var(--color-blue-dark);
-              font-size: var(--type-xs);
-              font-weight: var(--weight-semibold);
-            }
+.review-carousel-button:disabled {
+  color: var(--color-muted);
+  cursor: not-allowed;
+  opacity: 0.45;
+}
 
-              .review-rating {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: var(--space-1);
-                margin: var(--space-3) 0 0;
-                color: var(--color-muted);
-                font-size: var(--type-xs);
-                font-weight: var(--weight-semibold);
-                line-height: var(--md-sys-typescale-label-medium-line-height);
-              }
+.review-carousel-button:disabled:hover {
+  background: var(--color-surface);
+  color: var(--color-muted);
+  border-color: var(--color-line);
+}
 
-                .review-verified-icon {
-                  display: inline-flex;
-                  width: var(--space-3);
-                  height: var(--space-3);
-                  align-items: center;
-                  justify-content: center;
-                  background: var(--color-sky);
-                  color: var(--color-blue-dark);
-                  border-radius: var(--radius-small);
-                }
+.review-carousel-button svg {
+  width: var(--space-3);
+  height: var(--space-3);
+}
 
-                .review-verified-icon svg {
-                  width: 16px;
-                  height: 16px;
-                }
+.review-carousel-viewport {
+  overflow-x: auto;
+  padding: var(--space-05) 0 var(--space-2);
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}
+
+.review-carousel-track {
+  display: flex;
+  width: max-content;
+  gap: var(--space-2);
+}
+
+.review-card {
+  position: relative;
+  display: grid;
+  flex: 0 0 var(--review-card-inline-size);
+  min-height: calc(var(--space-10) * 3);
+  align-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  scroll-snap-align: start;
+}
+
+.review-card--featured {
+  flex-basis: var(--review-featured-card-inline-size);
+  background: var(--color-navy);
+  color: var(--color-surface);
+  border-color: var(--color-navy);
+}
+
+.review-stars {
+  margin: 0 0 var(--space-2);
+  color: var(--color-rating);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0;
+}
+
+.review-card blockquote {
+  margin: 0;
+  color: var(--color-ink);
+  font-size: var(--type-body);
+  font-weight: var(--weight-regular);
+  line-height: var(--line-relaxed);
+}
+
+.review-card--featured blockquote {
+  color: var(--color-surface);
+  font-size: var(--type-lead);
+}
+
+.review-attribution {
+  display: grid;
+  gap: var(--space-05);
+}
+
+.review-attribution cite {
+  color: inherit;
+  font-style: normal;
+  font-weight: var(--weight-bold);
+}
+
+.review-customer-type,
+.review-source {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: var(--type-xs);
+  line-height: var(--md-sys-typescale-label-medium-line-height);
+}
+
+.review-card--featured .review-customer-type,
+.review-card--featured .review-source {
+  color: var(--color-sky);
+}
+
+.review-source a {
+  font-weight: var(--weight-semibold);
+}
 
 /* Enquiry form: captures the conversion path in the prototype without sending real data. */
 .enquiry-section {
@@ -1621,10 +1835,7 @@ h1 {
 
 /* Small tablet: repeated card grids get more breathing room in two columns. */
 @media (min-width: 560px) {
-  .task-grid,
-  .price-grid,
-  .location-grid,
-  .review-grid {
+  .task-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1663,6 +1874,16 @@ h1 {
   .franchise-panel {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .location-tabpanel {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    padding: var(--space-3);
+  }
+
+  .location-photo,
+  .location-photo-placeholder {
+    height: 100%;
+  }
   /* Audience/commercial cards share row structure so both panels feel balanced. */
   .audience-grid {
     align-items: stretch;
@@ -1697,13 +1918,38 @@ h1 {
     align-self: end;
     margin-top: 0;
   }
-                                          
+
+  .commercial-panel .button {
+    width: auto;
+    align-self: flex-start;
+  }
+
+  .journey-layout {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .community-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .community-block .button {
+    width: auto;
+    justify-self: start;
+  }
+
   .text-link {
     justify-content: flex-start;
   }
 
   .task-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .reviews-heading-row {
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
   }
 
   .section {
@@ -1714,7 +1960,6 @@ h1 {
     padding-top: var(--space-7);
   }
 
-  .prices-section,
   .audience-section {
     padding-top: var(--space-8);
     padding-bottom: var(--space-8);
@@ -1782,16 +2027,8 @@ h1 {
     gap: var(--space-6);
   }
 
-  .price-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .location-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .review-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .location-tabs {
+    justify-content: center;
   }
 
   .footer-grid {

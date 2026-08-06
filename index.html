@@ -10,7 +10,8 @@
     />
     <meta name="theme-color" content="#062242" />
     <title>Wash Bar Laundry | 1-Hour Wash & Fold, Locations & Commercial Laundry</title>
-    <link rel="stylesheet" href="style.css?v=19" />
+    <link rel="icon" href="assets/logo.png" type="image/png" />
+    <link rel="stylesheet" href="style.css?v=26" />
   </head>
   <body>
 
@@ -38,10 +39,11 @@
         </button>
 
         <ul class="nav-links" id="primary-menu" role="list">
-          <li><a href="#prices">Prices</a></li>
-          <li><a href="#wash-fold">Wash & Fold</a></li>
+          <li><a href="#services">Services</a></li>
           <li><a href="#locations">Locations</a></li>
+          <li><a href="#reviews">Reviews</a></li>
           <li><a href="#commercial">Commercial</a></li>
+          <li><a href="#journey">Our Story</a></li>
           <li><a href="#franchise">Franchise</a></li>
         </ul>
 
@@ -59,19 +61,18 @@
       <section class="hero" id="home">
         <div class="container hero-grid">
           <div class="hero-copy-block">
-            <p class="hero-badge">Open 365 Days</p>
             <h1>
               Fresh, spotless laundry.
               <span>Ready in as little as 1 hour.</span>
             </h1>
             <p class="hero-copy">
-              Self-service laundry and 1-hour wash & fold for locals, students,
-              travellers, hospital visitors, and businesses across Melbourne.
+              Self-service laundry, fast Wash &amp; Fold, and six Wash Bar locations
+              across Melbourne and the USA.
             </p>
            
             <div class="hero-actions" aria-label="Primary actions">
               <a class="button" href="#locations">Find a location</a>
-              <a class="button button-secondary" href="#prices">View prices</a>
+              <a class="button button-secondary" href="#enquiry" data-enquiry-type="Wash and fold">Ask about wash &amp; fold</a>
             </div>
           </div>
 
@@ -79,26 +80,27 @@
             <img src="assets/laundry.jpg" alt="Wash Bar laundry machines in a clean laundromat" width="640" height="640" />
             <div class="media-stat">
               <strong>1 hour</strong>
-              <span>average turnaround</span>
+              <span>Wash &amp; Fold</span>
             </div>
           </div>
         </div>
       </section>
 
+
       <!-- Task strip: quick routing cards for the most common customer goals. -->
-      <section class="task-strip" aria-label="Popular customer tasks">
+      <section class="task-strip" id="quick-actions" aria-label="Popular customer tasks">
         <div class="container task-grid">
           <a href="#locations" class="task-card">
             <span class="task-icon" aria-hidden="true"><i data-lucide="map-pin"></i></span>
             <strong>Nearest location</strong>
-            <span>Five Wash Bar sites</span>
+            <span>Six Wash Bar locations</span>
           </a>
-          <a href="#prices" class="task-card">
-            <span class="task-icon" aria-hidden="true"><i data-lucide="credit-card"></i></span>
-            <strong>Online payment</strong>
-            <span>Fast checkout</span>
+          <a href="#reviews" class="task-card">
+            <span class="task-icon" aria-hidden="true"><i data-lucide="message-square-quote"></i></span>
+            <strong>Customer reviews</strong>
+            <span>Read customer feedback</span>
           </a>
-          <a href="#wash-fold" class="task-card">
+          <a href="#services" class="task-card">
             <span class="task-icon" aria-hidden="true"><i data-lucide="shirt"></i></span>
             <strong>Wash & fold</strong>
             <span>Drop off and go</span>
@@ -111,8 +113,9 @@
         </div>
       </section>
 
-      <!-- Wash & Fold: explains the fast drop-off service and sends users to enquiry. -->
-      <section class="section split-section" id="wash-fold">
+
+      <!-- Core services: preserves the established wash-and-fold service pathway. -->
+      <section class="section split-section" id="services" aria-labelledby="services-title">
         <div class="container split-grid">
           <div class="image-card">
             <img src="assets/washer.jpg" alt="Clean Wash Bar laundry machines ready for customer use" loading="lazy" width="640" height="480" />
@@ -123,7 +126,7 @@
           </div>
           <div class="section-copy">
             <span class="eyebrow">Fast wash & fold</span>
-            <h2>Wash & Fold, done in around 1 hour.</h2>
+            <h2 id="services-title">Wash & Fold, done in around 1 hour.</h2>
             <p>
               Premium drop-off service designed for busy locals, students,
               hotel guests, hospital visitors, and families who need quality
@@ -140,273 +143,432 @@
         </div>
       </section>
 
-      <!-- Prices: simple public pricing so customers can make a fast decision. -->
-      <section class="section prices-section" id="prices">
-        <div class="container">
-          <div class="section-heading center">
-            <span class="eyebrow">Prices</span>
-            <h2>Clear, competitive pricing.</h2>
-            <p>Professional self-service laundry from $6.</p>
-          </div>
 
-          <div class="price-grid">
-            <article class="price-card">
-              <p class="price-label">Standard wash</p>
-              <h3>9.8kg capacity</h3>
-              <p class="price-large"><span>$6</span><small>/ wash</small></p>
-              <ul class="check-list" role="list">
-                <li>Perfect for weekly loads</li>
-                <li>Energy efficient</li>
-              </ul>
-            </article>
-
-            <article class="price-card featured">
-              <p class="popular-label">Popular</p>
-              <p class="price-label">Large wash</p>
-              <h3>15.8kg capacity</h3>
-              <p class="price-large"><span>$9</span><small>/ wash</small></p>
-              <ul class="check-list" role="list">
-                <li>Doonas and bedding</li>
-                <li>Heavy-duty cycle</li>
-              </ul>
-            </article>
-
-            <article class="price-card">
-              <p class="price-label">Extra-large wash</p>
-              <h3>20kg capacity</h3>
-              <p class="price-large"><span>$12</span><small>/ wash</small></p>
-              <ul class="check-list" role="list">
-                <li>Multiple family loads</li>
-                <li>High capacity power</li>
-              </ul>
-            </article>
-
-            <article class="price-card">
-              <p class="price-label">Express dryers</p>
-              <h3>Fast drying</h3>
-              <p class="price-large"><span>$1</span><small>/ 8 min</small></p>
-              <ul class="check-list" role="list">
-                <li>For 8 minutes</li>
-                <li>Recommended spend $3-$4</li>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- Audience paths: separates walk-in customers from commercial customers. -->
-      <section class="section audience-section" id="commercial">
-        <div class="container">
-          <div class="section-heading">
-            <span class="eyebrow">Built for you</span>
-            <h2>One laundry brand, two clear customer paths.</h2>
-            <p>
-              Walk-in customers need speed and convenience. Business customers
-              need reliable support, volume handling, and clear communication.
-            </p>
-          </div>
-
-          <div class="audience-grid">
-            <section class="dark-panel audience-card" aria-labelledby="walk-in-title">
-              <div class="panel-copy">
-                <p class="panel-kicker">Walk-in customers</p>
-                <h3 id="walk-in-title">The neighbourhood laundry hub.</h3>
-                <p>
-                  A clean, practical space for local residents, students, hotel
-                  guests, hospital visitors, staff, and families.
-                </p>
-              </div>
-              <ul class="tag-list" aria-label="Walk-in customer groups" role="list">
-                <li>Locals</li>
-                <li>Students</li>
-                <li>Hotel guests</li>
-                <li>Hospital visitors</li>
-              </ul>
-              <img src="assets/books.png" alt="Wash Bar waiting area with books and plants" loading="lazy" width="640" height="360" />
-            </section>
-
-            <section class="light-panel audience-card" aria-labelledby="commercial-title">
-              <div class="panel-copy">
-                <p class="panel-kicker">Commercial solutions</p>
-                <h3 id="commercial-title">Reliable laundry support for local businesses.</h3>
-                <p>
-                  Built for businesses that need consistent washing support,
-                  regular capacity, and a partner they can contact quickly.
-                </p>
-              </div>
-              <div class="proof-mini-grid" aria-label="Commercial proof points">
-                <p><span aria-hidden="true"><i data-lucide="repeat-2"></i></span>Regular support</p>
-                <p><span aria-hidden="true"><i data-lucide="messages-square"></i></span>Business enquiry</p>
-                <p><span aria-hidden="true"><i data-lucide="timer"></i></span>Reliable turnaround</p>
-              </div>
-              <ul class="icon-list" role="list">
-                <li><span aria-hidden="true"><i data-lucide="building-2"></i></span> Hotels and Airbnb hosts</li>
-                <li><span aria-hidden="true"><i data-lucide="utensils"></i></span> Restaurants and cafes</li>
-                <li><span aria-hidden="true"><i data-lucide="dumbbell"></i></span> Gyms and wellness studios</li>
-                <li><span aria-hidden="true"><i data-lucide="briefcase-medical"></i></span> Healthcare and care providers</li>
-              </ul>
-              <a class="button button-outline" href="#enquiry" data-enquiry-type="Commercial laundry">Request commercial laundry info</a>
-            </section>
-          </div>
-        </div>
-      </section>
-
-      <!-- Locations: every branch card uses the same hours and contact details for scanning. -->
-      <section class="section locations-section" id="locations">
+      <!-- Locations: progressive tabs show one store at a time when JavaScript is available. -->
+      <section class="section locations-section" id="locations" aria-labelledby="locations-title">
         <div class="container">
           <div class="section-heading center">
             <span class="eyebrow">Locations</span>
-            <h2>Visit a Wash Bar.</h2>
-            <p>Melbourne and international locations, open 365 days a year.</p>
+            <h2 id="locations-title">Wash Bar locations</h2>
           </div>
 
-          <div class="location-grid">
-            <article class="location-card">
-              <span class="status status-live" aria-live="polite">Open daily</span>
-              <h3>Peel Street</h3>
-              <p>138 Peel Street, Melbourne VIC</p>
-              <dl class="location-meta">
-                <div><dt>Hours</dt><dd>6:00 AM - 12:00 AM</dd></div>
-                <div><dt>Contact</dt><dd>0430 455 920</dd></div>
-              </dl>
-              <a class="directions-link" href="https://goo.gl/maps/hcLLNuqPysN2" target="_blank" rel="noopener noreferrer" aria-label="Get directions to Peel Street in Google Maps, opens in a new tab">Directions</a>
-            </article>
+          <div class="location-tabs-wrap">
+            <div class="location-tabs" role="tablist" aria-label="Wash Bar locations">
+              <button class="location-tab" id="location-tab-peel" type="button" role="tab" aria-selected="true" aria-controls="location-panel-peel" tabindex="0">Peel Street</button>
+              <button class="location-tab" id="location-tab-racecourse" type="button" role="tab" aria-selected="false" aria-controls="location-panel-racecourse" tabindex="-1">Racecourse Road</button>
+              <button class="location-tab" id="location-tab-spencer" type="button" role="tab" aria-selected="false" aria-controls="location-panel-spencer" tabindex="-1">Spencer Street</button>
+              <button class="location-tab" id="location-tab-brunswick" type="button" role="tab" aria-selected="false" aria-controls="location-panel-brunswick" tabindex="-1">Brunswick Street</button>
+              <button class="location-tab" id="location-tab-ascot-vale" type="button" role="tab" aria-selected="false" aria-controls="location-panel-ascot-vale" tabindex="-1">Ascot Vale Road</button>
+              <button class="location-tab" id="location-tab-east-windsor" type="button" role="tab" aria-selected="false" aria-controls="location-panel-east-windsor" tabindex="-1">East Windsor, USA</button>
+            </div>
+          </div>
 
-            <article class="location-card">
-              <span class="status status-live" aria-live="polite">Open daily</span>
-              <h3>Racecourse Road</h3>
-              <p>262 Racecourse Road, Flemington VIC 3031</p>
-              <dl class="location-meta">
-                <div><dt>Hours</dt><dd>6:00 AM - 12:00 AM</dd></div>
-                <div><dt>Contact</dt><dd>0430 455 920</dd></div>
-              </dl>
-              <a class="directions-link" href="https://www.google.com/maps/search/?api=1&query=262%20Racecourse%20Road%2C%20Flemington%20VIC%203031" target="_blank" rel="noopener noreferrer" aria-label="Get directions to Racecourse Road in Google Maps, opens in a new tab">Directions</a>
-            </article>
+          <div class="location-panels">
+            <div class="location-tabpanel" id="location-panel-peel" role="tabpanel" aria-labelledby="location-tab-peel" tabindex="0">
+              <img class="location-photo" src="assets/Peel%20St.webp" width="1040" height="780" alt="Wash Bar Peel Street storefront with laundry machines visible inside" loading="lazy" decoding="async" />
+              <div class="location-panel-content">
+                <span class="location-status status-live" data-time-zone="Australia/Melbourne" data-open-minutes="360" data-close-minutes="1440">Open daily</span>
+                <p class="location-area">North Melbourne</p>
+                <h3>Peel Street</h3>
+                <address>138 Peel Street, Melbourne</address>
+                <dl class="location-details">
+                  <div><dt>Hours</dt><dd>Open daily, 6:00 am–midnight</dd></div>
+                  <div><dt>Phone</dt><dd><a href="tel:+61430455920">0430 455 920</a></dd></div>
+                </dl>
+                <div class="location-actions">
+                  <a class="button" href="tel:+61430455920" aria-label="Call Wash Bar Peel Street at 0430 455 920">Call</a>
+                  <a class="button button-outline" href="https://www.google.com/maps/search/?api=1&amp;query=138%20Peel%20Street%2C%20Melbourne" target="_blank" rel="noopener noreferrer" aria-label="Get directions to Wash Bar Peel Street in Google Maps (opens in a new tab)">Directions</a>
+                </div>
+              </div>
+              <!-- [CLIENT TO CONFIRM: Peel Street address, hours, and phone before publication] -->
+            </div>
 
-            <article class="location-card">
-              <span class="status status-live" aria-live="polite">Open daily</span>
-              <h3>Spencer Street</h3>
-              <p>501 Spencer Street, Melbourne VIC</p>
-              <dl class="location-meta">
-                <div><dt>Hours</dt><dd>6:00 AM - 12:00 AM</dd></div>
-                <div><dt>Contact</dt><dd>0430 455 920</dd></div>
-              </dl>
-              <a class="directions-link" href="https://www.google.com/maps/search/?api=1&query=501%20Spencer%20Street%2C%20Melbourne%20VIC" target="_blank" rel="noopener noreferrer" aria-label="Get directions to Spencer Street in Google Maps, opens in a new tab">Directions</a>
-            </article>
+            <div class="location-tabpanel" id="location-panel-racecourse" role="tabpanel" aria-labelledby="location-tab-racecourse" tabindex="0">
+              <img class="location-photo" src="assets/Racecourse3.webp" width="1360" height="764" alt="Wash Bar Racecourse Road interior with laundry machines and customer seating" loading="lazy" decoding="async" />
+              <div class="location-panel-content">
+                <span class="location-status status-live" data-time-zone="Australia/Melbourne" data-open-minutes="360" data-close-minutes="1440">Open daily</span>
+                <p class="location-area">Flemington</p>
+                <h3>Racecourse Road</h3>
+                <address>262 Racecourse Road, Flemington</address>
+                <dl class="location-details">
+                  <div><dt>Hours</dt><dd>Open daily, 6:00 am–midnight</dd></div>
+                  <div><dt>Phone</dt><dd><a href="tel:+61430455920">0430 455 920</a></dd></div>
+                </dl>
+                <div class="location-actions">
+                  <a class="button" href="tel:+61430455920" aria-label="Call Wash Bar Racecourse Road at 0430 455 920">Call</a>
+                  <a class="button button-outline" href="https://www.google.com/maps/search/?api=1&amp;query=262%20Racecourse%20Road%2C%20Flemington" target="_blank" rel="noopener noreferrer" aria-label="Get directions to Wash Bar Racecourse Road in Google Maps (opens in a new tab)">Directions</a>
+                </div>
+              </div>
+              <!-- [CLIENT TO CONFIRM: Racecourse Road address, hours, and phone before publication] -->
+            </div>
 
-            <article class="location-card">
-              <span class="status status-live" aria-live="polite">Open daily</span>
-              <h3>Brunswick Street</h3>
-              <p>461 Brunswick Street, Fitzroy VIC</p>
-              <dl class="location-meta">
-                <div><dt>Hours</dt><dd>6:00 AM - 12:00 AM</dd></div>
-                <div><dt>Contact</dt><dd>0430 455 920</dd></div>
-              </dl>
-              <a class="directions-link" href="https://www.google.com/maps/search/?api=1&query=461%20Brunswick%20Street%2C%20Fitzroy%20VIC" target="_blank" rel="noopener noreferrer" aria-label="Get directions to Brunswick Street in Google Maps, opens in a new tab">Directions</a>
-            </article>
+            <div class="location-tabpanel" id="location-panel-spencer" role="tabpanel" aria-labelledby="location-tab-spencer" tabindex="0">
+              <img class="location-photo" src="assets/Spencer.webp" width="1360" height="1020" alt="Wash Bar Spencer Street interior with rows of laundry machines" loading="lazy" decoding="async" />
+              <div class="location-panel-content">
+                <span class="location-status status-live" data-time-zone="Australia/Melbourne" data-open-minutes="360" data-close-minutes="1440">Open daily</span>
+                <p class="location-area">West Melbourne</p>
+                <h3>Spencer Street</h3>
+                <address>501 Spencer Street, Melbourne</address>
+                <dl class="location-details">
+                  <div><dt>Hours</dt><dd>Open daily, 6:00 am–midnight</dd></div>
+                  <div><dt>Phone</dt><dd><a href="tel:+61430455920">0430 455 920</a></dd></div>
+                </dl>
+                <div class="location-actions">
+                  <a class="button" href="tel:+61430455920" aria-label="Call Wash Bar Spencer Street at 0430 455 920">Call</a>
+                  <a class="button button-outline" href="https://www.google.com/maps/search/?api=1&amp;query=501%20Spencer%20Street%2C%20Melbourne" target="_blank" rel="noopener noreferrer" aria-label="Get directions to Wash Bar Spencer Street in Google Maps (opens in a new tab)">Directions</a>
+                </div>
+              </div>
+              <!-- [CLIENT TO CONFIRM: Spencer Street address, hours, and phone before publication] -->
+            </div>
 
-            <article class="location-card">
-              <span class="status status-live" aria-live="polite">Open daily</span>
-              <h3>Ascot Vale Road</h3>
-              <p>142 Ascot Vale Road, Flemington VIC</p>
-              <dl class="location-meta">
-                <div><dt>Hours</dt><dd>6:00 AM - 12:00 AM</dd></div>
-                <div><dt>Contact</dt><dd>0430 455 920</dd></div>
-              </dl>
-              <a class="directions-link" href="https://www.google.com/maps/search/?api=1&query=142%20Ascot%20Vale%20Road%2C%20Flemington%20VIC" target="_blank" rel="noopener noreferrer" aria-label="Get directions to Ascot Vale Road in Google Maps, opens in a new tab">Directions</a>
-            </article>
+            <div class="location-tabpanel" id="location-panel-brunswick" role="tabpanel" aria-labelledby="location-tab-brunswick" tabindex="0">
+              <img class="location-photo" src="assets/Brunswick1.webp" width="1360" height="765" alt="Wash Bar Brunswick Street interior with stacked dryers and a payment station" loading="lazy" decoding="async" />
+              <div class="location-panel-content">
+                <span class="location-status status-live" data-time-zone="Australia/Melbourne" data-open-minutes="360" data-close-minutes="1440">Open daily</span>
+                <p class="location-area">Fitzroy</p>
+                <h3>Brunswick Street</h3>
+                <address>461 Brunswick Street, Fitzroy</address>
+                <dl class="location-details">
+                  <div><dt>Hours</dt><dd>Open daily, 6:00 am–midnight</dd></div>
+                  <div><dt>Phone</dt><dd><a href="tel:+61430455920">0430 455 920</a></dd></div>
+                </dl>
+                <div class="location-actions">
+                  <a class="button" href="tel:+61430455920" aria-label="Call Wash Bar Brunswick Street at 0430 455 920">Call</a>
+                  <a class="button button-outline" href="https://www.google.com/maps/search/?api=1&amp;query=461%20Brunswick%20Street%2C%20Fitzroy" target="_blank" rel="noopener noreferrer" aria-label="Get directions to Wash Bar Brunswick Street in Google Maps (opens in a new tab)">Directions</a>
+                </div>
+              </div>
+              <!-- [CLIENT TO CONFIRM: Brunswick Street address, hours, and phone before publication] -->
+            </div>
 
-            <article class="location-card usa-card">
-              <span class="status expansion">Now open</span>
-              <h3>Wash Bar USA</h3>
-              <p>370 US-130, East Windsor, NJ 08520, United States</p>
-              <dl class="location-meta">
-                <div><dt>Market</dt><dd>International expansion</dd></div>
-                <div><dt>Enquiries</dt><dd>Use the form below</dd></div>
-              </dl>
-              <a class="directions-link" href="https://www.google.com/maps/search/?api=1&query=370%20US-130%2C%20East%20Windsor%2C%20NJ%2008520%2C%20United%20States" target="_blank" rel="noopener noreferrer" aria-label="View Wash Bar USA location in Google Maps, opens in a new tab">View USA location</a>
-            </article>
+            <div class="location-tabpanel" id="location-panel-ascot-vale" role="tabpanel" aria-labelledby="location-tab-ascot-vale" tabindex="0">
+              <img class="location-photo" src="assets/Ascot%20Vale1.webp" width="1360" height="1020" alt="Wash Bar Ascot Vale Road interior with laundry machines and customer seating" loading="lazy" decoding="async" />
+              <div class="location-panel-content">
+                <span class="location-status status-live" data-time-zone="Australia/Melbourne" data-open-minutes="360" data-close-minutes="1440">Open daily</span>
+                <p class="location-area">Ascot Vale</p>
+                <h3>Ascot Vale Road</h3>
+                <address>142 Ascot Vale Road, Flemington</address>
+                <dl class="location-details">
+                  <div><dt>Hours</dt><dd>Open daily, 6:00 am–midnight</dd></div>
+                  <div><dt>Phone</dt><dd><a href="tel:+61430455920">0430 455 920</a></dd></div>
+                </dl>
+                <div class="location-actions">
+                  <a class="button" href="tel:+61430455920" aria-label="Call Wash Bar Ascot Vale Road at 0430 455 920">Call</a>
+                  <a class="button button-outline" href="https://www.google.com/maps/search/?api=1&amp;query=142%20Ascot%20Vale%20Road%2C%20Flemington" target="_blank" rel="noopener noreferrer" aria-label="Get directions to Wash Bar Ascot Vale Road in Google Maps (opens in a new tab)">Directions</a>
+                </div>
+              </div>
+              <!-- [CLIENT TO CONFIRM: Ascot Vale Road address, hours, and phone before publication] -->
+            </div>
+
+            <div class="location-tabpanel" id="location-panel-east-windsor" role="tabpanel" aria-labelledby="location-tab-east-windsor" tabindex="0">
+              <div class="location-photo-placeholder" aria-hidden="true"><i data-lucide="image"></i></div>
+              <div class="location-panel-content">
+                <p class="location-area">New Jersey, USA</p>
+                <h3>East Windsor</h3>
+                <address>370 US-130, East Windsor, NJ 08520, United States</address>
+                <!-- [CLIENT TO CONFIRM: East Windsor opening hours and phone number] -->
+                <div class="location-actions location-actions-single">
+                  <a class="button button-outline" href="https://www.google.com/maps/search/?api=1&amp;query=370%20US-130%2C%20East%20Windsor%2C%20NJ%2008520%2C%20United%20States" target="_blank" rel="noopener noreferrer" aria-label="Get directions to Wash Bar East Windsor in Google Maps (opens in a new tab)">Directions</a>
+                </div>
+              </div>
+              <!-- [CLIENT TO CONFIRM: East Windsor details and store photograph before publication] -->
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- Franchise: secondary pathway for high-consideration business enquiries. -->
-      <section class="section franchise-section" id="franchise">
-        <div class="container franchise-panel">
-          <div>
-            <span class="eyebrow">Franchise growth</span>
-            <h2>Franchise opportunities in Melbourne and the USA.</h2>
-            <p>
-              For investors and partners exploring new Wash Bar locations,
-              support, and brand fit across Melbourne and the USA.
-            </p>
-            <div class="proof-mini-grid proof-mini-grid-dark" aria-label="Franchise proof points">
-              <p><span aria-hidden="true"><i data-lucide="map"></i></span>Melbourne growth</p>
-              <p><span aria-hidden="true"><i data-lucide="flag"></i></span>New USA location</p>
-              <p><span aria-hidden="true"><i data-lucide="send"></i></span>Enquire about opportunities</p>
-            </div>
-            <div class="franchise-actions">
-              <a class="button" href="#enquiry" data-enquiry-type="Franchise opportunity">Franchise enquiries</a>
-              <a class="button button-secondary" href="#locations">View locations</a>
-            </div>
-          </div>
-          <div class="quote-card">
-            <p class="stars" aria-label="5 stars"><span aria-hidden="true">★★★★★</span></p>
-            <p>"A modern laundry brand with local service and international ambition."</p>
-            <strong>Wash Bar growth direction</strong>
-          </div>
-        </div>
-      </section>
 
-      <!-- Reviews: use verified Google review copy before the site goes live. -->
-      <section class="section reviews-section" aria-labelledby="reviews-title">
+      <section class="section reviews-section" id="reviews" aria-labelledby="reviews-title">
         <div class="container">
-          <div class="section-heading center">
-            <h2 id="reviews-title">Loved by our Community</h2>
+          <div class="reviews-heading-row">
+            <div class="section-heading">
+              <span class="eyebrow">Reviews</span>
+              <h2 id="reviews-title">Customer reviews</h2>
+              <p>Over 700 five-star Google reviews across our locations — here's what our community says.</p>
+            </div>
+
+            <div class="review-carousel-controls" data-review-controls aria-label="Review carousel controls" hidden>
+              <button
+                class="review-carousel-button"
+                type="button"
+                aria-label="Show previous review"
+                aria-controls="review-carousel-viewport"
+                data-review-previous
+                disabled
+              >
+                <i data-lucide="arrow-left" aria-hidden="true"></i>
+              </button>
+              <button
+                class="review-carousel-button"
+                type="button"
+                aria-label="Show next review"
+                aria-controls="review-carousel-viewport"
+                data-review-next
+                disabled
+              >
+                <i data-lucide="arrow-right" aria-hidden="true"></i>
+              </button>
+            </div>
           </div>
-          <div class="review-grid">
-            <article class="review-card">
-              <p class="stars">
-                <span aria-hidden="true">★★★★★</span>
-                <span class="sr-only">5 out of 5 stars</span>
-              </p>
-              <blockquote>
-                "Best laundromat in Melbourne. Incredibly clean, the machines
-                are fast and actually wash clothes well. The wash and fold is a
-                lifesaver."
-              </blockquote>
-              <p>Sarah M. · North Melbourne</p>
-            </article>
-            <article class="review-card">
-              <p class="stars">
-                <span aria-hidden="true">★★★★★</span>
-                <span class="sr-only">5 out of 5 stars</span>
-              </p>
-              <blockquote>
-                "Great for students. Wi-Fi is fast and the environment is safe
-                and professional. Pricing is very fair compared to others."
-              </blockquote>
-              <p>David K. · Fitzroy</p>
-            </article>
-            <article class="review-card">
-              <p class="stars">
-                <span aria-hidden="true">★★★★★</span>
-                <span class="sr-only">5 out of 5 stars</span>
-              </p>
-              <blockquote>
-                "We use Wash Bar for our Airbnb linens. Consistently reliable,
-                clean results every time. Makes managing our properties so much
-                easier."
-              </blockquote>
-              <p>Urban Stay Properties</p>
-            </article>
+
+          <div class="review-carousel" data-review-carousel>
+            <div
+              class="review-carousel-viewport"
+              id="review-carousel-viewport"
+              role="region"
+              aria-roledescription="carousel"
+              aria-labelledby="reviews-title"
+              tabindex="-1"
+              data-review-viewport
+            >
+              <div class="review-carousel-track" data-review-track>
+                <article class="review-card review-card--featured" data-review-card>
+                  <div>
+                    <p class="review-stars">
+                      <span aria-hidden="true">★★★★★</span>
+                      <span class="sr-only">5 out of 5 stars</span>
+                    </p>
+                    <blockquote>
+                      “As an Airbnb operator I use Washbar daily. The turnaround time is incredible — I drop off linen from multiple properties and everything is washed, dried and ready in under an hour. It's completely changed how I manage my business. I can flip a property the same morning without stress.”
+                    </blockquote>
+                  </div>
+                  <div class="review-attribution">
+                    <cite>David</cite>
+                    <p class="review-customer-type">Airbnb operator — daily customer</p>
+                    <p class="review-source">
+                      <a href="https://claude.ai/public/artifacts/ab3fe0ef-c2e5-4bc3-98a4-52aff19983ec" target="_blank" rel="noopener noreferrer" aria-label="Open the client-approved source for David's review in a new tab">Client-approved review</a>
+                    </p>
+                  </div>
+                </article>
+
+                <article class="review-card" data-review-card>
+                  <div>
+                    <p class="review-stars">
+                      <span aria-hidden="true">★★★★★</span>
+                      <span class="sr-only">5 out of 5 stars</span>
+                    </p>
+                    <blockquote>
+                      “I manage 6 Airbnb properties in Melbourne. Washbar is my secret weapon — quick wash and dry, everything's ironed and ready within one hour. My guests always comment on how fresh the linen is.”
+                    </blockquote>
+                  </div>
+                  <div class="review-attribution">
+                    <cite>Ali</cite>
+                    <p class="review-customer-type">6-property Airbnb host</p>
+                    <p class="review-source">
+                      <a href="https://claude.ai/public/artifacts/ab3fe0ef-c2e5-4bc3-98a4-52aff19983ec" target="_blank" rel="noopener noreferrer" aria-label="Open the client-approved source for Ali's review in a new tab">Client-approved review</a>
+                    </p>
+                  </div>
+                </article>
+
+                <article class="review-card" data-review-card>
+                  <div>
+                    <p class="review-stars">
+                      <span aria-hidden="true">★★★★★</span>
+                      <span class="sr-only">5 out of 5 stars</span>
+                    </p>
+                    <blockquote>
+                      “Been coming to the North Melbourne branch since they opened. The machines are always well-maintained, the place is spotless and the staff are genuinely lovely. Best laundromat I've ever used, by a long way.”
+                    </blockquote>
+                  </div>
+                  <div class="review-attribution">
+                    <cite>Rachel O.</cite>
+                    <p class="review-customer-type">Local resident, North Melbourne</p>
+                    <p class="review-source">
+                      <a href="https://claude.ai/public/artifacts/ab3fe0ef-c2e5-4bc3-98a4-52aff19983ec" target="_blank" rel="noopener noreferrer" aria-label="Open the client-approved source for Rachel O.'s review in a new tab">Client-approved review</a>
+                    </p>
+                  </div>
+                </article>
+
+                <article class="review-card" data-review-card>
+                  <div>
+                    <p class="review-stars">
+                      <span aria-hidden="true">★★★★★</span>
+                      <span class="sr-only">5 out of 5 stars</span>
+                    </p>
+                    <blockquote>
+                      “Super friendly place! Easy, accessible and also super clean. Been going here and it gets the job done so well! Highly recommend!”
+                    </blockquote>
+                  </div>
+                  <div class="review-attribution">
+                    <cite>Anna Nguyen</cite>
+                    <p class="review-source">
+                      <a href="https://www.google.com/maps/place/Wash%2BBar%2BCoin%2BLaundry%2B%EF%BC%81Melbourne%2BLaunderette%2B%EF%BC%81CBD%2BLaundromat%2BFree%2BWI%2BFi%EF%BC%81/data%3D%214m2%213m1%211s0x6ad65d33e8dded13%3A0x10820259b2852aa8?cid=1189515835849648808&amp;place_id=ChIJE-3d6DNd1moRqCqFslkCghA" target="_blank" rel="noopener noreferrer" aria-label="Open the Google listing containing Anna Nguyen's review in a new tab">Google Review</a>
+                    </p>
+                  </div>
+                </article>
+
+                <article class="review-card" data-review-card>
+                  <div>
+                    <p class="review-stars">
+                      <span aria-hidden="true">★★★★★</span>
+                      <span class="sr-only">5 out of 5 stars</span>
+                    </p>
+                    <blockquote>
+                      “Always love to get my laundry done here. Convenient and easy to use.”
+                    </blockquote>
+                  </div>
+                  <div class="review-attribution">
+                    <cite>Paphanh Soundala</cite>
+                    <p class="review-customer-type">Peel Street customer</p>
+                    <p class="review-source">
+                      <a href="https://www.google.com/maps/place/Wash%2BBar%2BCoin%2BLaundry%2B%EF%BC%81Melbourne%2BLaunderette%2B%EF%BC%81CBD%2BLaundromat%2BFree%2BWI%2BFi%EF%BC%81/data%3D%214m2%213m1%211s0x6ad65d33e8dded13%3A0x10820259b2852aa8?cid=1189515835849648808&amp;place_id=ChIJE-3d6DNd1moRqCqFslkCghA" target="_blank" rel="noopener noreferrer" aria-label="Open the Google listing containing Paphanh Soundala's review in a new tab">Google Review</a>
+                    </p>
+                  </div>
+                </article>
+
+                <article class="review-card" data-review-card>
+                  <div>
+                    <p class="review-stars">
+                      <span aria-hidden="true">★★★★★</span>
+                      <span class="sr-only">5 out of 5 stars</span>
+                    </p>
+                    <blockquote>
+                      “It’s so comfortable to do laundry here! There are some different size of machines and dryers. The space is so clean and the staff is so kind😊 ...”
+                    </blockquote>
+                  </div>
+
+                  <div class="review-attribution">
+                    <cite>Yupin Yu</cite>
+                    <p class="review-customer-type">Peel Street customer</p>
+                    <p class="review-source">
+                      <a href="https://www.google.com/maps/place/Wash%2BBar%2BCoin%2BLaundry%2B%EF%BC%81Melbourne%2BLaunderette%2B%EF%BC%81CBD%2BLaundromat%2BFree%2BWI%2BFi%EF%BC%81/data%3D%214m2%213m1%211s0x6ad65d33e8dded13%3A0x10820259b2852aa8?cid=1189515835849648808&amp;place_id=ChIJE-3d6DNd1moRqCqFslkCghA" target="_blank" rel="noopener noreferrer" aria-label="Open the Google listing containing Yupin Yu's review in a new tab">Google Review</a>
+                    </p>
+                  </div>
+                </article>
+              </div>
+            </div>
+            <p class="sr-only" aria-live="polite" aria-atomic="true" data-review-status></p>
           </div>
-          <p class="review-rating">
-            <span class="review-verified-icon" aria-hidden="true"><i data-lucide="badge-check"></i></span>
-            Verified 4.9/5 Rating
-          </p>
         </div>
       </section>
+
+
+      <!-- Commercial clients: named organisations remain unpublished until permission is confirmed. -->
+      <section class="section audience-section" id="commercial" aria-labelledby="commercial-title">
+        <div class="container">
+          <div class="section-heading">
+            <span class="eyebrow">Commercial</span>
+            <h2 id="commercial-title">Commercial clients</h2>
+          </div>
+
+          <div class="audience-grid commercial-client-grid">
+            <div class="light-panel commercial-panel">
+              <h3>Who we support</h3>
+              <ul class="icon-list" role="list">
+                <li><span aria-hidden="true"><i data-lucide="hotel"></i></span>Accommodation and hotels</li>
+                <li><span aria-hidden="true"><i data-lucide="house"></i></span>Airbnb and short-stay operators</li>
+                <li><span aria-hidden="true"><i data-lucide="utensils"></i></span>Restaurants and cafes</li>
+                <li><span aria-hidden="true"><i data-lucide="dumbbell"></i></span>Gyms, wellness, and pilates studios</li>
+                <li><span aria-hidden="true"><i data-lucide="heart-pulse"></i></span>Healthcare and care organisations</li>
+                <li><span aria-hidden="true"><i data-lucide="sparkles"></i></span>Hair and beauty studios</li>
+              </ul>
+            </div>
+
+            <div class="dark-panel commercial-panel">
+              <h3>Trusted by Melbourne businesses</h3>
+              <p>Supporting leading Melbourne accommodation providers, healthcare organisations, hospitality businesses, and short-stay operators.</p>
+              <!-- [CLIENT TO CONFIRM: Approved commercial client names and publication permissions] -->
+              <a class="button" href="#enquiry" data-enquiry-type="Commercial laundry">Enquire about commercial laundry</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Founder story: condensed from the client-supplied source; final client approval is still required. -->
+      <section class="section journey-section" id="journey" aria-labelledby="journey-title">
+        <div class="container journey-layout">
+          <div class="journey-copy">
+            <span class="eyebrow">Our Journey</span>
+            <h2 id="journey-title">From one suitcase to a growing international brand</h2>
+            <p>
+              When we arrived in Melbourne in 2006, we were two international students
+              carrying one 20kg suitcase, a few hundred dollars and a dream of building a
+              better life. Everything was unfamiliar, and without family here to guide us,
+              we learned to move forward one small step at a time.
+            </p>
+            <p>
+              Working part-time, attending classes and carefully managing every dollar taught
+              us resilience, humility and the value of every opportunity. Those experiences
+              shaped who we are and became the foundation of Wash Bar.
+            </p>
+            <p>
+              What began as an idea inspired by our own experiences using laundromats has
+              grown across Australia and the United States. As Wash Bar continues its journey,
+              the people we serve remain at the centre of it: students, families, migrants and
+              entrepreneurs building their own next chapter.
+            </p>
+            <div class="journey-actions">
+              <button class="button button-secondary journey-cta" type="button" disabled>Read Our Journey</button>
+              <!-- [CLIENT TO CONFIRM: Create and approve the About page before enabling this CTA] -->
+            </div>
+          </div>
+
+          <figure class="journey-quote">
+            <blockquote>“Success is not determined by where you start.”</blockquote>
+            <figcaption><cite>Dharm &amp; Deval, Founders</cite></figcaption>
+          </figure>
+        </div>
+      </section>
+
+
+      <!-- Community: publish confirmed collaboration content without exposing awaiting partnership claims. -->
+      <section class="section community-section" id="community" aria-labelledby="community-title">
+        <div class="container">
+          <div class="section-heading">
+            <span class="eyebrow">Community</span>
+            <h2 id="community-title">Supporting Our Community</h2>
+          </div>
+
+          <div class="community-grid">
+            <article class="community-block community-block--creative" aria-labelledby="creative-collaborations-title">
+              <div class="community-block-copy">
+                <div class="community-block-heading">
+                  <span class="community-icon" aria-hidden="true"><i data-lucide="palette"></i></span>
+                  <h3 id="creative-collaborations-title">Creative collaborations</h3>
+                </div>
+                <p>
+                  Wash Bar welcomes collaboration ideas from creative studios, artists,
+                  dancers, filmmakers, content creators and university project teams.
+                  Whether you are planning a creative project or community initiative,
+                  the team would love to hear your idea.
+                </p>
+              </div>
+              <a class="button" href="#enquiry" data-enquiry-type="Community collaboration">Share a collaboration idea</a>
+            </article>
+
+            <article class="community-block community-block--impact" aria-labelledby="community-impact-title">
+              <div class="community-block-copy">
+                <div class="community-block-heading">
+                  <span class="community-icon" aria-hidden="true"><i data-lucide="heart-handshake"></i></span>
+                  <h3 id="community-impact-title">Making a difference</h3>
+                </div>
+                <p>
+                  Wash Bar supports Cancer Council Victoria and Cancer Council Australia
+                  through free Wash &amp; Dry fundraising events. Proceeds from these
+                  initiatives support cancer research, prevention and services for people
+                  affected by cancer.
+                </p>
+              </div>
+              <button class="button button-secondary community-social-cta" type="button" disabled>Follow us on Instagram</button>
+              <!-- [CLIENT TO CONFIRM: Cancer Council relationship, fundraising wording, and publication permission] -->
+              <!-- [CLIENT TO CONFIRM: Official Wash Bar Instagram URL before converting the disabled control into an external link] -->
+            </article>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Franchise: the final teaser remains unpublished until its claims and wording are approved. -->
+      <section class="section franchise-section" id="franchise" aria-labelledby="franchise-title">
+        <div class="container">
+          <div class="section-heading">
+            <span class="eyebrow">Franchise</span>
+            <h2 id="franchise-title">Franchise opportunities</h2>
+          </div>
+          <!-- [CLIENT TO CONFIRM: Approved franchise teaser, opportunity details, and enquiry wording] -->
+        </div>
+      </section>
+
 
       <!-- Enquiry form: prototype conversion path for wash-and-fold, commercial, and franchise leads. -->
       <section class="section enquiry-section" id="enquiry">
@@ -415,13 +577,14 @@
             <span class="eyebrow">Enquiries</span>
             <h2>Tell Wash Bar what you need.</h2>
             <p>
-              Use this form for wash-and-fold, commercial laundry, or franchise
-              interest. This prototype captures the conversion path; a live
-              website would connect it to email or a CRM.
+              Use this form for wash-and-fold, commercial laundry, community
+              collaboration, or franchise interest. This prototype captures the
+              conversion path; a live website would connect it to email or a CRM.
             </p>
             <div class="enquiry-options" aria-label="Common enquiry paths">
               <p><strong>Wash & fold</strong><span>Ask about 1-hour turnaround</span></p>
               <p><strong>Commercial</strong><span>Request regular laundry support</span></p>
+              <p><strong>Community</strong><span>Share a collaboration idea</span></p>
               <p><strong>Franchise</strong><span>Discuss Melbourne or USA growth</span></p>
             </div>
           </div>
@@ -444,6 +607,7 @@
                   <li role="option" data-value="" aria-selected="true" tabindex="-1">Choose one</li>
                   <li role="option" data-value="Wash and fold" aria-selected="false" tabindex="-1">Wash and fold</li>
                   <li role="option" data-value="Commercial laundry" aria-selected="false" tabindex="-1">Commercial laundry</li>
+                  <li role="option" data-value="Community collaboration" aria-selected="false" tabindex="-1">Community collaboration</li>
                   <li role="option" data-value="Franchise opportunity" aria-selected="false" tabindex="-1">Franchise opportunity</li>
                   <li role="option" data-value="General question" aria-selected="false" tabindex="-1">General question</li>
                 </ul>
@@ -471,20 +635,6 @@
         </div>
       </section>
 
-      <!-- Final CTA: repeats the two quickest actions after users have seen the page content. -->
-      <section class="final-cta">
-        <div class="container final-cta-inner">
-          <h2>Visit Wash Bar today.</h2>
-          <p>
-            Ready for a cleaner laundry experience? Stop by a Melbourne
-            location or call Wash Bar today.
-          </p>
-          <div class="hero-actions">
-            <a class="button" href="tel:+61430455920">Call now</a>
-            <a class="button button-secondary" href="#locations">Find directions</a>
-          </div>
-        </div>
-      </section>
     </main>
 
     <!-- Footer: secondary navigation and contact details for users who reach the end. -->
@@ -500,8 +650,8 @@
         <div>
           <h3>Service</h3>
           <ul role="list">
-            <li><a href="#prices">Prices</a></li>
-            <li><a href="#wash-fold">Wash & Fold</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#reviews">Reviews</a></li>
             <li><a href="#commercial">Commercial</a></li>
           </ul>
         </div>
@@ -509,6 +659,8 @@
           <h3>Company</h3>
           <ul role="list">
             <li><a href="#locations">Locations</a></li>
+            <li><a href="#journey">Our Journey</a></li>
+            <li><a href="#community">Community</a></li>
             <li><a href="#franchise">Franchise</a></li>
             <li><a href="#enquiry">Contact</a></li>
           </ul>
@@ -529,7 +681,7 @@
          Call replaces Home because the user is already on the site — calling is the action. -->
     <div class="mobile-cta-bar" aria-label="Quick contact actions">
       <a href="tel:+61430455920" aria-label="Call Wash Bar">Call</a>
-      <a href="#prices">Prices</a>
+      <a href="#services">Services</a>
       <a href="#locations">Locations</a>
       <a href="#enquiry">Enquiry</a>
     </div>
@@ -541,6 +693,6 @@
       lucide.createIcons() is called inside script.js after DOMContentLoaded.
     -->
     <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
-    <script src="script.js?v=7" defer></script>
+    <script src="script.js?v=13" defer></script>
   </body>
 </html>
