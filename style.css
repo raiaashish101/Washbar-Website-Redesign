@@ -16,6 +16,12 @@
   --color-danger: #b91c1c;
   --color-danger-soft: #fee2e2;
   --color-rating: #f5a700;
+  --color-footer-text: #b9cce2;
+  --color-footer-muted: #8aa6c5;
+  --color-footer-heading: #5fb3ff;
+  --color-footer-border: rgba(255, 255, 255, 0.1);
+  --color-instagram: #e4405f;
+  --color-facebook: #1877f2;
   --shadow: 0 18px 42px rgba(10, 31, 57, 0.14);
   --shadow-soft: 0 10px 28px rgba(10, 31, 57, 0.08);
 
@@ -664,21 +670,23 @@ h1 {
 
                         .image-card {
                           position: relative;
+                          aspect-ratio: 1 / 1;
                           overflow: hidden;
-                          border-radius: var(--radius-panel);
-                          box-shadow: var(--shadow);
+                          /*border-radius: var(--radius-panel);
+                          box-shadow: var(--shadow);*/
                         }
 
                         .image-card img {
                           width: 100%;
-                          aspect-ratio: 4 / 3;
+                          height: 100%;
                           object-fit: cover;
+                          object-position: center;
                         }
 
                         .image-stat {
                           position: absolute;
-                          right: var(--space-3);
-                          bottom: var(--space-3);
+                          right: var(--space-6);
+                          bottom: var(--space-7);
                           padding: var(--space-2) var(--space-3);
                           background: var(--color-blue-dark);
                           color: #ffffff;
@@ -1752,34 +1760,56 @@ h1 {
 }
 
 .site-footer {
-  padding: var(--space-6) 0 var(--space-3);
+  padding: var(--space-7) 0 var(--space-3);
   background: var(--color-navy);
-  color: #dbeafe;
+  color: var(--color-sky);
 }
 
 .footer-grid {
   display: grid;
-  gap: var(--space-4);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--space-4);
+  row-gap: var(--space-5);
+  align-items: start;
+}
+
+.footer-brand-column,
+.footer-connect {
+  grid-column: 1 / -1;
+}
+
+.footer-brand-column {
+  max-width: 22rem;
+}
+
+.footer-summary {
+  max-width: 20rem;
+  margin: 0;
+  line-height: var(--line-relaxed);
 }
 
 .footer-grid p,
 .footer-grid a,
 .footer-grid li {
-  color: #b9cce2;
+  color: var(--color-footer-text);
+  font-size: var(--type-sm);
+  line-height: var(--md-sys-typescale-body-medium-line-height);
 }
 
 .footer-grid a {
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
 }
 
 .footer-grid a:hover,
 .footer-grid a:focus-visible {
-  color: #ffffff;
+  color: var(--color-surface);
 }
 
 .footer-grid h3 {
   margin: 0 0 var(--space-2);
-  color: #5fb3ff;
+  color: var(--color-footer-heading);
   font-size: var(--type-xs);
   font-weight: var(--weight-bold);
   line-height: var(--md-sys-typescale-label-medium-line-height);
@@ -1788,15 +1818,57 @@ h1 {
 }
 
 .footer-logo {
-  margin-bottom: var(--space-2);
-  color: #ffffff;
+  margin-bottom: var(--space-3);
+  color: var(--color-surface);
+}
+
+.footer-grid .footer-social-list {
+  display: flex;
+  gap: var(--space-1);
+  margin: 0 0 var(--space-2);
+  padding: 0;
+  list-style: none;
+}
+
+.footer-social-list .social-link {
+  display: inline-flex;
+  width: var(--space-5);
+  height: var(--space-5);
+  align-items: center;
+  justify-content: center;
+  color: var(--color-surface);
+  border-radius: var(--radius-card);
+}
+
+.footer-social-list .social-link:hover,
+.footer-social-list .social-link:focus-visible {
+  color: var(--color-surface);
+  opacity: 0.86;
+}
+
+.social-link--instagram {
+  background: var(--color-instagram);
+}
+
+.social-link--facebook {
+  background: var(--color-facebook);
+}
+
+.footer-social-list svg {
+  width: var(--space-3);
+  height: var(--space-3);
+  stroke-width: 2.25;
+}
+
+.footer-grid .footer-contact-list {
+  margin-top: var(--space-1);
 }
 
 .copyright {
   margin: var(--space-4) auto 0;
   padding-top: var(--space-3);
-  color: #8aa6c5;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--color-footer-muted);
+  border-top: 1px solid var(--color-footer-border);
   text-align: center;
   font-size: var(--type-caption);
   line-height: var(--md-sys-typescale-body-small-line-height);
@@ -2032,7 +2104,17 @@ h1 {
   }
 
   .footer-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns:
+      minmax(0, 1.5fr)
+      minmax(8rem, 0.75fr)
+      minmax(8rem, 0.85fr)
+      minmax(0, 1.15fr);
+    column-gap: var(--space-5);
+  }
+
+  .footer-brand-column,
+  .footer-connect {
+    grid-column: auto;
   }
 }
 

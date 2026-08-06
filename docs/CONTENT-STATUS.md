@@ -29,5 +29,5 @@
 | Named healthcare and clinical clients | AWAITING | Written permission is required before publishing client names or logos. |
 | Commercial industry categories and safe trust statement | CONFIRMED | Approved by the project owner for the Version 4 homepage on 29 July 2026. Named clients and logos remain unpublished. |
 | Cancer Council support and fundraising statements | AWAITING | Client supplied the wording; verify the relationship and approved public wording before publication. |
-| Facebook and Instagram links | AWAITING | Client must provide the official profile URLs. |
+| Facebook and Instagram links | CONFIRMED | Official Instagram and Facebook URLs supplied by the project owner on 6 August 2026. |
 | Nearly one million customers served | DO NOT PUBLISH | The claim appears in the founder email but requires evidence and client confirmation. |

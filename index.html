@@ -9,9 +9,9 @@
       content="Wash Bar Coin Laundry in Melbourne. Walk-in self-service laundry, 1-hour wash and fold, commercial laundry, franchise enquiries, online payment, and locations in Melbourne and the USA."
     />
     <meta name="theme-color" content="#062242" />
-    <title>Wash Bar Laundry | 1-Hour Wash & Fold, Locations & Commercial Laundry</title>
+    <title>Washbar laundromat</title>
     <link rel="icon" href="assets/logo.png" type="image/png" />
-    <link rel="stylesheet" href="style.css?v=26" />
+    <link rel="stylesheet" href="style.css?v=29" />
   </head>
   <body>
 
@@ -57,13 +57,14 @@
     </header>
 
     <main id="main-content">
+
       <!-- Hero: primary conversion area for walk-in and wash-and-fold customers. -->
       <section class="hero" id="home">
         <div class="container hero-grid">
           <div class="hero-copy-block">
             <h1>
               Fresh, spotless laundry.
-              <span>Ready in as little as 1 hour.</span>
+              <span>Ready in 1 hour.</span>
             </h1>
             <p class="hero-copy">
               Self-service laundry, fast Wash &amp; Fold, and six Wash Bar locations
@@ -114,19 +115,19 @@
       </section>
 
 
-      <!-- Core services: preserves the established wash-and-fold service pathway. -->
+      <!-- Wash&Fold: preserves the established wash-and-fold service pathway. -->
       <section class="section split-section" id="services" aria-labelledby="services-title">
         <div class="container split-grid">
           <div class="image-card">
-            <img src="assets/washer.jpg" alt="Clean Wash Bar laundry machines ready for customer use" loading="lazy" width="640" height="480" />
+            <img src="assets/wasfold.png" alt="Hands folding clean white laundry in front of washing machines" loading="lazy" width="620" height="620" />
             <div class="image-stat">
               <strong>1 hour</strong>
-              <span>average turnaround</span>
+              <span>average turn around</span>
             </div>
           </div>
           <div class="section-copy">
             <span class="eyebrow">Fast wash & fold</span>
-            <h2 id="services-title">Wash & Fold, done in around 1 hour.</h2>
+            <h2 id="services-title">Wash & Fold, done in 1 hour.</h2>
             <p>
               Premium drop-off service designed for busy locals, students,
               hotel guests, hospital visitors, and families who need quality
@@ -638,25 +639,25 @@
     </main>
 
     <!-- Footer: secondary navigation and contact details for users who reach the end. -->
-    <footer class="site-footer">
+    <footer class="site-footer" id="footer">
       <div class="container footer-grid">
-        <div>
+        <div class="footer-brand-column">
           <a class="brand footer-logo" href="#home" aria-label="Wash Bar home">
-            <img src="assets/logo.png" alt="" />
+            <img src="assets/logo.png" alt="" width="518" height="490" />
             <span>Wash Bar</span>
           </a>
-          <p>Modern laundry services for walk-in, wash-and-fold, commercial, and franchise growth.</p>
+          <p class="footer-summary">Modern laundry services for walk-in, wash-and-fold, commercial, and franchise growth.</p>
         </div>
-        <div>
-          <h3>Service</h3>
+        <nav aria-labelledby="footer-service-title">
+          <h3 id="footer-service-title">Service</h3>
           <ul role="list">
             <li><a href="#services">Services</a></li>
             <li><a href="#reviews">Reviews</a></li>
             <li><a href="#commercial">Commercial</a></li>
           </ul>
-        </div>
-        <div>
-          <h3>Company</h3>
+        </nav>
+        <nav aria-labelledby="footer-company-title">
+          <h3 id="footer-company-title">Company</h3>
           <ul role="list">
             <li><a href="#locations">Locations</a></li>
             <li><a href="#journey">Our Journey</a></li>
@@ -664,18 +665,46 @@
             <li><a href="#franchise">Franchise</a></li>
             <li><a href="#enquiry">Contact</a></li>
           </ul>
-        </div>
-        <div>
-          <h3>Contact</h3>
-          <ul role="list">
+        </nav>
+        <div class="footer-connect">
+          <h3>Connect</h3>
+          <ul class="footer-social-list" role="list" aria-label="Wash Bar social media">
+            <li>
+              <a
+                class="social-link social-link--instagram"
+                href="https://www.instagram.com/washbar_coin_laundry/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow Wash Bar Coin Laundry on Instagram, opens in a new tab"
+                title="Instagram"
+              >
+                <i data-lucide="instagram" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li>
+              <a
+                class="social-link social-link--facebook"
+                href="https://www.facebook.com/WashBarLaunderette/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow Wash Bar Launderette on Facebook, opens in a new tab"
+                title="Facebook"
+              >
+                <i data-lucide="facebook" aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul>
+          <ul class="footer-contact-list" role="list">
             <li><a href="tel:+61430455920">0430 455 920</a></li>
             <li><a href="mailto:mail@wash-bar.com.au">mail@wash-bar.com.au</a></li>
             <li>Open 365 days</li>
           </ul>
         </div>
       </div>
-      <p class="copyright">&copy; <span id="copyright-year">2026</span> Wash Bar Coin Laundry. Prototype for learning and client discussion.</p>
+      <p class="copyright">&copy; <span id="copyright-year">2026</span> Wash Bar Coin Laundry. Open 365 Days a Year.</p>
     </footer>
+
+
 
     <!-- Mobile sticky bar: highest-value actions reachable with one thumb on small screens.
          Call replaces Home because the user is already on the site — calling is the action. -->
