@@ -2,17 +2,21 @@
 
 ## Named accommodation clients
 
-- Hilton — `AWAITING` permission
-- Sofitel — `AWAITING` permission
-- Park Hyatt — `AWAITING` permission
-- Ibis — `AWAITING` permission
-- Hotel Jasper — `AWAITING` permission
+- Status: `CONFIRMED`
+- Publication permission: Confirmed by the project owner on 8 August 2026 for text-only use on the website.
+- Hilton
+- Sofitel
+- Park Hyatt
+- Ibis
+- Hotel Jasper
 
 ## Named healthcare and clinical clients
 
-- Royal Melbourne Hospital — `AWAITING` permission
-- Royal Children's Hospital — `AWAITING` permission
-- Melbourne Asthma Clinic — `AWAITING` permission
+- Status: `CONFIRMED`
+- Publication permission: Confirmed by the project owner on 8 August 2026 for text-only use on the website.
+- Royal Melbourne Hospital
+- Royal Children's Hospital
+- Melbourne Asthma Clinic
 
 ## Approved homepage category language
 

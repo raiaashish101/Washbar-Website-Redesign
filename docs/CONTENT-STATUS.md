@@ -2,32 +2,43 @@
 
 ## Status definitions
 
-- `CONFIRMED`: Supplied or explicitly approved by the client.
-- `AWAITING`: Requires client confirmation, a source link, or permission.
-- `PLACEHOLDER`: Planned content that has not been written or approved.
-- `DO NOT PUBLISH`: Must remain out of the website until its evidence and
-  permission requirements are resolved.
+- `CLIENT CONFIRMED`: Supplied or explicitly approved by the client.
+- `PROJECT APPROVED`: Approved by the project owner for prototype use only.
+  Not cleared for production without client sign-off.
+- `AWAITING`: Requires client confirmation, a source, or permission.
+- `DO NOT PUBLISH`: Must remain out of the website.
 
 ## Content register
 
 | Content item | Status | Notes |
-| --- | --- | --- |
-| Do not display public prices | CONFIRMED | Explicit direction from the client for Version 4. |
-| Founder story source email | CONFIRMED | Stored unedited in `content/founder-story.md`. Individual business claims still require verification before publication. |
-| Web-ready condensed founder story | AWAITING | Drafted in `content/founder-story.md`; requires client approval before publication. |
-| Supporting Our Community source email | CONFIRMED | Stored unedited in `content/community.md`. |
-| Edited creative collaborations copy | CONFIRMED | Uses the client-supplied invitation and audience list; approved for the Version 4 homepage by the project owner on 6 August 2026. |
-| Edited Making a difference copy | AWAITING | Shown in the local Version 4 prototype at the project owner's request; keep out of production until the Cancer Council statements are confirmed. |
-| Six location addresses | AWAITING | Reconfirm the complete address for every store. |
-| Location opening hours | AWAITING | Reconfirm hours for every store, including public-holiday variations. |
-| Location phone numbers | AWAITING | Reconfirm the appropriate phone number for every store. |
-| Store photographs | AWAITING | Client must provide or approve each image and its usage permission. |
-| Seven published individual reviews and source links | CONFIRMED | David, Ali, and Rachel O. were approved from the client-provided Claude artifact. Anna Nguyen, Paphanh Soundala, apple mango, and Yupin Yu were sourced from the public Peel Street Google listing. Exact wording is stored in `content/reviews.md`. |
-| Portia Gowrie review | DO NOT PUBLISH | The supplied Peel Street review contains price language. Preserve the source text in `content/reviews.md`, but do not publish or rewrite it while Version 4's no-price rule remains active. |
-| Over 700 five-star Google reviews across all locations | CONFIRMED | Exact homepage statement approved by the project owner on 29 July 2026. Do not publish a different count or combined rating without further confirmation. |
-| Named accommodation clients | AWAITING | Written permission is required before publishing client names or logos. |
-| Named healthcare and clinical clients | AWAITING | Written permission is required before publishing client names or logos. |
-| Commercial industry categories and safe trust statement | CONFIRMED | Approved by the project owner for the Version 4 homepage on 29 July 2026. Named clients and logos remain unpublished. |
-| Cancer Council support and fundraising statements | AWAITING | Client supplied the wording; verify the relationship and approved public wording before publication. |
-| Facebook and Instagram links | CONFIRMED | Official Instagram and Facebook URLs supplied by the project owner on 6 August 2026. |
-| Nearly one million customers served | DO NOT PUBLISH | The claim appears in the founder email but requires evidence and client confirmation. |
+|---|---|---|
+| Do not display public prices | CLIENT CONFIRMED | Explicit client direction for Version 4. |
+| Founder story source email | CLIENT CONFIRMED | Stored unedited in content/founder-story.md. |
+| Web-ready condensed founder story | PROJECT APPROVED | Drafted in content/founder-story.md. Requires final client sign-off before About page. |
+| Supporting Our Community source email | CLIENT CONFIRMED | Stored unedited in content/community.md. |
+| Creative collaborations copy | PROJECT APPROVED | Prototype only. Requires final client sign-off. |
+| Cancer Council copy | AWAITING | Client supplied wording. Verify the relationship and wording before publication. |
+| Six location addresses | CLIENT CONFIRMED | Confirmed correct 7 August 2026. |
+| Opening hours (6am–midnight all Melbourne stores) | CLIENT CONFIRMED | Confirmed correct 7 August 2026. |
+| Location phone numbers | CLIENT CONFIRMED | 0430 455 920 confirmed for all stores 7 August 2026. |
+| East Windsor hours and phone | AWAITING | Not yet provided by client. |
+| Store photographs (Melbourne) | CLIENT CONFIRMED | Images in assets/ are approved for publication. |
+| Store photograph (East Windsor) | AWAITING | Not yet provided. |
+| Payment methods (coin, card, Apple Pay, Google Pay) | CLIENT CONFIRMED | Confirmed same across all locations 7 August 2026. |
+| All seven published reviews | CLIENT CONFIRMED | All confirmed as real reviews 7 August 2026 and attributed to the public Peel Street Google listing. |
+| Review source links for David, Ali, Rachel O. | CLIENT CONFIRMED | Project owner approved attribution to the Peel Street Google listing on 8 August 2026. |
+| Over 700 five-star Google reviews | CLIENT CONFIRMED | Confirmed accurate 7 August 2026. |
+| 400,000+ customers served | CLIENT CONFIRMED | Confirmed accurate 7 August 2026. |
+| Nearly one million customers served | DO NOT PUBLISH | Appears in founder email. 400k+ is the confirmed figure. |
+| Portia Gowrie review | DO NOT PUBLISH | Contains price language. Preserve in content/reviews.md. Do not publish while no-price rule is active. |
+| Named hotel clients (Hilton, Sofitel, Park Hyatt, Ibis, Hotel Jasper) | CLIENT CONFIRMED | Client confirmed permission to name on website 7 August 2026. Text only — no logos without separate permission. |
+| Named hospital clients (Royal Melbourne Hospital, Royal Children's Hospital, Melbourne Asthma Clinic) | CLIENT CONFIRMED | Client confirmed permission to name on website 7 August 2026. Text only — no logos. |
+| Commercial industry categories and safe trust statement | CLIENT CONFIRMED | Approved. Named clients may now also be displayed as text. |
+| Instagram URL | CLIENT CONFIRMED | Supplied 6 August 2026. |
+| Facebook URL | CLIENT CONFIRMED | Supplied 6 August 2026. |
+| Business name: Wash Bar Coin Laundrette | CLIENT CONFIRMED | Correct legal trading name. Note spelling: Laundrette not Laundry. |
+| Business name: Wash Bar Laundromat | CLIENT CONFIRMED | Also a correct trading name. Use in descriptive copy where appropriate. |
+| Franchise section content | AWAITING | Franchise details, support offering, and legal review required before publication. |
+| "Primus machines" brand claim | AWAITING | Requires client confirmation before publishing the brand name. |
+| "Bulk wash discounts for 6+ properties" | AWAITING | Pricing-adjacent claim. Conflicts with no-price rule. Requires explicit client direction before use. |
+| About page / Our Journey | AWAITING | V5 scope. Requires scope and fee agreement. |
