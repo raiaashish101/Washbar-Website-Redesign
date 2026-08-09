@@ -176,3 +176,11 @@ migrants and entrepreneurs building their own next chapter.
 > “Success is not determined by where you start.”
 
 **CTA label:** Read Our Journey
+
+## Franchise teaser (approved for homepage)
+
+Wash Bar was built through lived experience, resilience and years of learning.
+As the business grew, people began asking how we had built it and whether they
+could do the same. We created the franchise programme to share the lessons,
+systems and knowledge developed along the way, and to help others take the first
+step towards building something of their own.

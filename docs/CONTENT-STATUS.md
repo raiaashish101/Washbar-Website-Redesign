@@ -15,6 +15,7 @@
 | Do not display public prices | CLIENT CONFIRMED | Explicit client direction for Version 4. |
 | Founder story source email | CLIENT CONFIRMED | Stored unedited in content/founder-story.md. |
 | Web-ready condensed founder story | PROJECT APPROVED | Drafted in content/founder-story.md. Requires final client sign-off before About page. |
+| Web-ready franchise teaser copy | CONFIRMED | Approved for V4 homepage franchise section. Derived from client-supplied founder story email. |
 | Supporting Our Community source email | CLIENT CONFIRMED | Stored unedited in content/community.md. |
 | Creative collaborations copy | PROJECT APPROVED | Prototype only. Requires final client sign-off. |
 | Cancer Council copy | AWAITING | Client supplied wording. Verify the relationship and wording before publication. |

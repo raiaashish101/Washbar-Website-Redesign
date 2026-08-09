@@ -487,8 +487,12 @@ h1 {
           display: grid;
           grid-template-columns: 1fr;
           gap: var(--space-2);
-          width: min(100%, 560px);
+          width: 100%;
           margin-top: var(--space-4);
+        }
+
+        .franchise-actions .button {
+          width: 100%;
         }
 
 /* Reusable button style used by hero, forms, cards, and CTA sections. */
@@ -546,6 +550,19 @@ h1 {
         background: var(--color-blue-dark);
         color: #ffffff;
       }
+
+/* Franchise primary CTA: the darker brand blue keeps its label at WCAG AA contrast. */
+.franchise-primary-cta,
+.franchise-primary-cta:hover,
+.franchise-primary-cta:focus-visible {
+  background: var(--color-blue-dark);
+  border-color: var(--color-blue-dark);
+}
+
+.franchise-primary-cta:hover,
+.franchise-primary-cta:focus-visible {
+  border-color: var(--color-surface);
+}
 
 /* Hero image is hidden on small screens to keep the first mobile view focused on action. */
 .hero-media {
@@ -1526,36 +1543,50 @@ h1 {
   width: 100%;
 }
 
-/* Franchise panel: secondary business-growth path, visually separate from local customer actions. */
+/* Franchise teaser: founder-led context and confirmed proof form a distinct high-consideration path. */
 .franchise-section {
-  background: var(--color-soft);
+  background-color: var(--color-navy);
+  background-image: radial-gradient(
+    circle at center,
+    var(--color-footer-border) 0,
+    transparent var(--space-05)
+  );
+  background-size: var(--space-4) var(--space-4);
+  color: var(--color-surface);
 }
 
 .franchise-panel {
   display: grid;
-  gap: var(--space-4);
-  padding: var(--space-6);
-  background: var(--color-navy);
-  color: #ffffff;
-  border-radius: var(--radius-panel);
-  box-shadow: var(--shadow);
+  gap: var(--space-5);
+  align-items: center;
 }
 
-.franchise-panel p {
-  color: #bfd2e7;
-  font-size: var(--type-lead);
+.franchise-section .journey-copy {
+  max-width: none;
+}
+
+.franchise-section .icon-list {
+  margin-top: var(--space-4);
+}
+
+.franchise-section .icon-list li {
+  color: var(--color-surface);
+}
+
+.franchise-panel > .segment-card {
+  padding: var(--space-4);
+}
+
+.franchise-panel > .segment-card h3 {
+  color: var(--color-blue);
+  font-weight: var(--weight-strong);
+}
+
+.franchise-panel > .segment-card p {
+  color: var(--color-ink);
+  font-style: normal;
+  font-weight: var(--weight-regular);
   line-height: var(--line-relaxed);
-}
-
-.franchise-panel .proof-mini-grid-dark {
-  margin-top: var(--space-3);
-}
-
-.franchise-panel .proof-mini-grid-dark p {
-  color: #ffffff;
-  font-size: var(--type-sm);
-  font-weight: var(--weight-semibold);
-  line-height: var(--line-snug);
 }
 
 .quote-card {
@@ -1572,7 +1603,7 @@ h1 {
 
 /* Review carousel: one featured story establishes hierarchy before supporting reviews. */
 .reviews-section {
-  background: var(--color-soft);
+  background: var(--color-surface);
 }
 
 .reviews-heading-row {
@@ -2058,10 +2089,6 @@ h1 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .franchise-actions {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .proof-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2089,8 +2116,7 @@ h1 {
 
   .split-grid,
   .audience-grid,
-  .enquiry-grid,
-  .franchise-panel {
+  .enquiry-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -2248,6 +2274,15 @@ h1 {
 
   .segment-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .franchise-panel {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+
+  .franchise-panel > .segment-card {
+    padding: var(--space-6);
   }
 
   .location-tabs {
