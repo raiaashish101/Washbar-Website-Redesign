@@ -9,6 +9,7 @@
   deferred scripts have run, so lucide is available here.
 */
 document.addEventListener("DOMContentLoaded", () => {
+  document.documentElement.classList.add("js-loaded");
 
   // --- Initialisation ---
 
@@ -22,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinks   = document.querySelector(".nav-links");
   const enquiryForm  = document.querySelector(".enquiry-form");
   const formMessage  = document.querySelector(".form-message");
+  const nativeEnquirySelect = document.querySelector("#enquiry-type-native");
   const enquiryTypeInput = document.querySelector("input[name='enquiryType']");
   const messageTextarea   = document.querySelector("textarea[name='message']");
   const customSelect = document.querySelector("[data-custom-select]");
@@ -41,6 +43,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const reviewPreviousButton = document.querySelector("[data-review-previous]");
   const reviewNextButton = document.querySelector("[data-review-next]");
   const reviewStatus = reviewCarousel?.querySelector("[data-review-status]");
+  const desktopNavigationMedia = window.matchMedia("(min-width: 981px)");
+
+  // Only one enquiry-type field participates in submission at a time.
+  // The native select remains active when JavaScript is unavailable.
+  if (nativeEnquirySelect && enquiryTypeInput) {
+    nativeEnquirySelect.disabled = true;
+    enquiryTypeInput.disabled = false;
+  }
 
   // Set dynamic copyright year so it never needs a manual update.
   const yearEl = document.getElementById("copyright-year");
@@ -91,8 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // The source HTML exposes every panel as a stacked no-JavaScript fallback.
   // Once this enhancement is ready, only the selected panel remains visible.
   if (locationTabList && locationTabs.length && locationPanels.length) {
-    document.documentElement.classList.add("js-loaded");
-
     function activateLocationTab(tab, shouldScroll = true) {
       const panelId = tab.getAttribute("aria-controls");
 
@@ -295,19 +303,21 @@ document.addEventListener("DOMContentLoaded", () => {
       setMenuState(!isOpen);
     });
 
-    // Close the mobile menu after a navigation link is selected.
+    // Close the mobile menu after a navigation link is selected. The global
+    // internal-link handler below remains the single owner of hash scrolling.
     navLinks.addEventListener("click", (event) => {
       const link = event.target.closest("a");
       if (!link) {
         return;
       }
 
-      const href = link.getAttribute("href");
       setMenuState(false);
+    });
 
-      // Wait one tick so the menu close animation does not race the scroll.
-      if (href && href.startsWith("#")) {
-        window.setTimeout(() => scrollToSection(href), 0);
+    // Reset mobile-only state only when the desktop breakpoint is crossed.
+    desktopNavigationMedia.addEventListener("change", (event) => {
+      if (event.matches) {
+        setMenuState(false);
       }
     });
   }
@@ -334,8 +344,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Let keyboard users close the mobile menu with Escape.
   window.addEventListener("keyup", (event) => {
-    if (event.key === "Escape") {
+    const isMenuOpen = menuToggle?.getAttribute("aria-expanded") === "true";
+    if (event.key === "Escape" && isMenuOpen) {
       setMenuState(false);
+      menuToggle.focus();
     }
   });
 
@@ -379,6 +391,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     enquiryTypeInput.value = type || "";
     customSelectValue.textContent = type || "Choose one";
+    if (type) {
+      customSelectButton?.setAttribute("aria-invalid", "false");
+      if (formMessage) {
+        formMessage.textContent = "";
+      }
+    }
     if (messageTextarea) {
       messageTextarea.placeholder = placeholders[type] || "Your message";
     }
@@ -411,7 +429,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     customSelectOptions.forEach((option) => {
       option.addEventListener("click", () => {
-        setEnquiryType(option.dataset.value || "");
+        const selectedType = option.dataset.value || "";
+        setEnquiryType(selectedType);
         closeCustomSelect();
         customSelectButton.focus();
       });
@@ -454,6 +473,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+    customSelect.addEventListener("focusout", (event) => {
+      if (!customSelect.contains(event.relatedTarget)) {
+        closeCustomSelect();
+      }
+    });
+
     document.addEventListener("click", (event) => {
       if (!customSelect?.contains(event.target)) {
         closeCustomSelect();
@@ -477,6 +502,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!enquiryTypeInput?.value) {
         formMessage.textContent = "Please choose an enquiry type.";
+        customSelectButton?.setAttribute("aria-invalid", "true");
         customSelectButton?.focus();
         return;
       }
