@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-AU">
+<html lang="en-AU" class="no-js">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +11,7 @@
     <meta name="theme-color" content="#062242" />
     <title>Wash Bar Laundromat</title>
     <link rel="icon" href="assets/logo.png" type="image/png" />
-    <link rel="stylesheet" href="style.css?v=38" />
+    <link rel="stylesheet" href="style.css?v=39" />
   </head>
   <body>
 
@@ -57,7 +57,7 @@
       </nav>
     </header>
 
-    <main id="main-content">
+    <main id="main-content" tabindex="-1">
 
       <!-- Hero: primary conversion area for walk-in and wash-and-fold customers. -->
       <section class="hero" id="home">
@@ -691,7 +691,15 @@
               <p><strong>Franchise</strong><span>Discuss Melbourne or USA growth</span></p>
             </div>
           </div>
-          <form class="enquiry-form" aria-label="Wash Bar enquiry form">
+          <noscript>
+            <div class="enquiry-form">
+              <h3>Contact Wash Bar</h3>
+              <p>Online enquiry is unavailable without JavaScript. Please call or email Wash Bar.</p>
+              <a class="button" href="tel:+61430455920" aria-label="Call Wash Bar at 0430 455 920">Call Wash Bar</a>
+              <a class="button button-outline" href="mailto:mail@wash-bar.com.au">Email Wash Bar</a>
+            </div>
+          </noscript>
+          <form class="enquiry-form" aria-label="Wash Bar enquiry form" data-js-enquiry-form hidden>
             <div class="form-field">
               <label id="enquiry-type-label" for="enquiry-type-trigger">Enquiry type</label>
               <label for="enquiry-type-native" class="sr-only">Enquiry type</label>
@@ -842,6 +850,6 @@
       lucide.createIcons() is called inside script.js after DOMContentLoaded.
     -->
     <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
-    <script src="script.js?v=13" defer></script>
+    <script src="script.js?v=14" defer></script>
   </body>
 </html>

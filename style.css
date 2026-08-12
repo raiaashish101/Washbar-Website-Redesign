@@ -1,11 +1,13 @@
 /* Design tokens: reusable colors, spacing, shadows, and radius values for the whole site. */
 :root {
   --color-ink: #10233d;
-  --color-muted: #62748a;
+  --color-muted: #607288;
   --color-navy: #062242;
   --color-navy-soft: #0b315d;
   --color-blue: #087df2;
   --color-blue-dark: #064ea7;
+  --color-eyebrow-light: #0055b3;
+  --color-eyebrow-dark: #5fb3ff;
   --color-control-blue: var(--color-blue-dark);
   --color-control-blue-hover: var(--color-navy-soft);
   --color-sky: #dbeafe;
@@ -17,7 +19,8 @@
   --color-success-soft: #dcfce7;
   --color-danger: #b91c1c;
   --color-danger-soft: #fee2e2;
-  --color-rating: #f5a700;
+  --color-star-light: #9c6200;
+  --color-star-dark: #f5a700;
   --color-footer-text: #b9cce2;
   --color-footer-muted: #8aa6c5;
   --color-footer-heading: #5fb3ff;
@@ -268,6 +271,10 @@
   backdrop-filter: blur(14px);
 }
 
+.no-js .site-header {
+  position: static;
+}
+
         .nav {
           display: grid;
           grid-template-columns: auto auto;
@@ -295,7 +302,7 @@
             }
 
               .menu-toggle {
-                display: flex;
+                display: none;
                 width: var(--space-6);
                 height: var(--space-6);
                 align-items: center;
@@ -316,21 +323,37 @@
                 }
 
                   .nav-links {
-                    position: fixed;
-                    top: 72px;
-                    left: 0;
-                    right: 0;
-                    display: none;
+                    position: static;
+                    display: flex;
+                    grid-column: 1 / -1;
                     flex-direction: column;
+                    width: 100%;
                     margin: 0;
-                    padding: var(--space-1);
-                    background: var(--color-surface);
-                    border-bottom: 1px solid var(--color-line);
-                    box-shadow: var(--shadow);
+                    padding: 0 0 var(--space-1);
+                    background: transparent;
+                    border: 0;
+                    box-shadow: none;
                     list-style: none;
                   }
 
-                      .nav-links.is-open {
+                      .js .menu-toggle {
+                        display: flex;
+                      }
+
+                      .js .nav-links {
+                        position: fixed;
+                        top: 72px;
+                        left: 0;
+                        right: 0;
+                        display: none;
+                        width: auto;
+                        padding: var(--space-1);
+                        background: var(--color-surface);
+                        border-bottom: 1px solid var(--color-line);
+                        box-shadow: var(--shadow);
+                      }
+
+                      .js .nav-links.is-open {
                         display: flex;
                       }
 
@@ -387,12 +410,17 @@
             margin: 0 0 var(--space-2);
             padding: var(--space-1) var(--space-2);
                       background: rgba(8, 125, 242, 0.14);
-            color: #5fb3ff;
+            color: var(--color-eyebrow-light);
             border: 1px solid rgba(8, 125, 242, 0.24);
             border-radius: 999px;
             font-size: var(--type-xs);
             font-weight: var(--weight-bold);
             line-height: var(--md-sys-typescale-label-medium-line-height);
+          }
+
+          #journey .eyebrow,
+          #franchise .eyebrow {
+            color: var(--color-eyebrow-dark);
           }
 
                   .hero-badge {
@@ -1701,9 +1729,13 @@ h1 {
 
 .review-stars {
   margin: 0 0 var(--space-2);
-  color: var(--color-rating);
+  color: var(--color-star-light);
   font-weight: var(--weight-bold);
   letter-spacing: 0;
+}
+
+.review-card--featured .review-stars {
+  color: var(--color-star-dark);
 }
 
 .review-card blockquote {
@@ -1837,11 +1869,11 @@ h1 {
   display: none;
 }
 
-.js-loaded .enquiry-select-native {
+.js .enquiry-select-native {
   display: none;
 }
 
-.js-loaded [data-custom-select] {
+.js [data-custom-select] {
   display: block;
 }
 
@@ -2251,19 +2283,27 @@ h1 {
     --type-h1: var(--md-sys-typescale-display-large-size);
   }
 
+  .no-js .site-header {
+    position: sticky;
+  }
+
   .nav {
     grid-template-columns: auto 1fr auto;
     min-height: var(--space-10);
   }
 
-  .menu-toggle {
+  .menu-toggle,
+  .js .menu-toggle {
     display: none;
   }
 
-  .nav-links {
+  .nav-links,
+  .js .nav-links {
     position: static;
     display: flex;
+    grid-column: auto;
     flex-direction: row;
+    width: auto;
     justify-content: end;
     gap: var(--space-4);
     padding: 0;

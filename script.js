@@ -8,8 +8,10 @@
   so every icon silently failed to render. DOMContentLoaded fires after all
   deferred scripts have run, so lucide is available here.
 */
+document.documentElement.classList.remove("no-js");
+document.documentElement.classList.add("js");
+
 document.addEventListener("DOMContentLoaded", () => {
-  document.documentElement.classList.add("js-loaded");
 
   // --- Initialisation ---
 
@@ -21,6 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Grab the interactive elements once so all handlers below can reuse them.
   const menuToggle = document.querySelector(".menu-toggle");
   const navLinks   = document.querySelector(".nav-links");
+  const skipLink = document.querySelector(".skip-link");
+  const mainContent = document.querySelector("#main-content");
   const enquiryForm  = document.querySelector(".enquiry-form");
   const formMessage  = document.querySelector(".form-message");
   const nativeEnquirySelect = document.querySelector("#enquiry-type-native");
@@ -156,6 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const initialTab = locationTabs.find((tab) => tab.getAttribute("aria-selected") === "true") || locationTabs[0];
     activateLocationTab(initialTab, false);
+    document.documentElement.classList.add("js-loaded");
   }
 
   // --- Live location status ---
@@ -322,11 +327,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Smooth-scroll all internal hash links for consistent page-wide behaviour.
+  // Transfer skip-link focus into main before performing one controlled scroll.
+  if (skipLink && mainContent) {
+    skipLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      mainContent.focus({ preventScroll: true });
+      scrollToSection("#main-content");
+    });
+  }
+
+  // Smooth-scroll all other internal hash links for consistent page-wide behaviour.
   // Bug fixed: history.pushState was removed. Pushing hash entries onto the
   // browser history stack meant the Back button navigated away from the page
   // instead of simply scrolling up, which broke expected browser behaviour.
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  document.querySelectorAll('a[href^="#"]:not(.skip-link)').forEach((link) => {
     link.addEventListener("click", (event) => {
       const href = link.getAttribute("href");
       if (!href || href === "#") {
@@ -519,6 +533,10 @@ document.addEventListener("DOMContentLoaded", () => {
         messageTextarea.placeholder = "Your message";
       }
     });
+
+    // The static baseline exposes direct call/email actions. Reveal the form
+    // only after its non-submitting prototype handler is safely attached.
+    enquiryForm.hidden = false;
   }
 
 }); // end DOMContentLoaded
