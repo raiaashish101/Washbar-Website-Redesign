@@ -23,8 +23,8 @@
 | Opening hours (6am–midnight all Melbourne stores) | CLIENT CONFIRMED | Confirmed correct 7 August 2026. |
 | Location phone numbers | CLIENT CONFIRMED | 0430 455 920 confirmed for all stores 7 August 2026. |
 | East Windsor hours and phone | AWAITING | Not yet provided by client. |
-| Store photographs (Melbourne) | CLIENT CONFIRMED | Images in assets/ are approved for publication. |
-| Store photograph (East Windsor) | AWAITING | Not yet provided. |
+| Store photographs (Melbourne) | CLIENT CONFIRMED | Client-supplied, high-confidence store mappings. Normalised production assets are in assets/locations/. |
+| Store photograph (East Windsor) | AWAITING | Seven client-supplied USA images exist, but the repository does not establish that they depict the East Windsor store. Confirm before publication. |
 | Payment methods (coin, card, Apple Pay, Google Pay) | CLIENT CONFIRMED | Confirmed same across all locations 7 August 2026. |
 | All seven published reviews | CLIENT CONFIRMED | All confirmed as real reviews 7 August 2026 and attributed to the public Peel Street Google listing. |
 | Review source links for David, Ali, Rachel O. | CLIENT CONFIRMED | Project owner approved attribution to the Peel Street Google listing on 8 August 2026. |
