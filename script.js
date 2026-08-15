@@ -47,6 +47,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const reviewPreviousButton = document.querySelector("[data-review-previous]");
   const reviewNextButton = document.querySelector("[data-review-next]");
   const reviewStatus = reviewCarousel?.querySelector("[data-review-status]");
+  const whoAccordion = document.querySelector("[data-who-accordion]");
+  const whoAccordionTriggers = Array.from(
+    whoAccordion?.querySelectorAll(".who-accordion-trigger") || [],
+  );
   const desktopNavigationMedia = window.matchMedia("(min-width: 981px)");
 
   // Only one enquiry-type field participates in submission at a time.
@@ -97,6 +101,42 @@ document.addEventListener("DOMContentLoaded", () => {
     target.scrollIntoView({
       behavior: prefersReducedMotion ? "auto" : "smooth",
       block:    "start",
+    });
+  }
+
+  // --- Mobile Who We Serve accordion ---
+
+  // Native buttons provide Enter and Space behaviour. This controller only
+  // synchronises the single-open state with each trigger's associated panel.
+  if (whoAccordion && whoAccordionTriggers.length) {
+    let expandedWhoTrigger = null;
+
+    function setWhoAccordionItem(trigger, isExpanded) {
+      const panelId = trigger.getAttribute("aria-controls");
+      const panel = panelId ? document.getElementById(panelId) : null;
+
+      if (!panel) {
+        return;
+      }
+
+      trigger.setAttribute("aria-expanded", String(isExpanded));
+      panel.hidden = !isExpanded;
+    }
+
+    whoAccordionTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const shouldOpen = expandedWhoTrigger !== trigger;
+
+        if (expandedWhoTrigger) {
+          setWhoAccordionItem(expandedWhoTrigger, false);
+          expandedWhoTrigger = null;
+        }
+
+        if (shouldOpen) {
+          setWhoAccordionItem(trigger, true);
+          expandedWhoTrigger = trigger;
+        }
+      });
     });
   }
 
@@ -352,7 +392,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (enquiryType) {
         setEnquiryType(enquiryType);
       }
-      scrollToSection(href);
+      scrollToSection(enquiryType ? "#enquiry-form" : href);
     });
   });
 

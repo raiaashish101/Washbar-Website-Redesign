@@ -40,3 +40,60 @@ The source file was inspected directly. Its dimensions and subject framing match
 final result: blocked
 
 Blocker: no connected browser was available to capture and compare the rendered implementation.
+
+---
+
+# Enquiry Paths and Commercial Client Pills Design QA
+
+## Evidence
+
+- Source visual truth: conversation-attached enquiry-option and commercial-client pill references; no filesystem path was exposed to the workspace.
+- Implementation files: `index.html`, `style.css`, and `script.js`.
+- Intended viewports: mobile, tablet, and desktop.
+- Intended states: default, hover, keyboard focus, and enquiry-type preselection.
+- Implementation screenshot: unavailable because no connected browser was available.
+
+## Comparison
+
+- Enquiry paths now use full-width white link cards with a stronger title and subordinate supporting line on the existing soft-grey section background.
+- Confirmed commercial client names now use larger outlined pills, stronger group headings, and clearer spacing within the existing navy panel.
+- The existing soft-blue circular icon badge was retained because it already matches the supplied icon treatment.
+- All visual values use existing tokens except one new commercial-pill border token in `:root`.
+
+## Interaction Review
+
+- Each enquiry path is a native anchor, so the whole card is available to pointer, touch, and keyboard users.
+- The existing `data-enquiry-type` contract is reused for all four paths.
+- With JavaScript, enquiry links preselect the matching type and scroll to the form itself.
+- Without JavaScript, each link retains the useful `#enquiry` destination.
+
+## Remaining Visual Checks
+
+- Compare card spacing, border weight, and pill density against the references at 390px, 768px, and 1440px.
+- Confirm long hospital names wrap without making the pills feel cramped.
+- Confirm hover and focus treatments remain visually distinct.
+- Confirm the form lands below the sticky header after each enquiry path is activated.
+
+final result: blocked
+
+Blocker: no connected browser was available to capture the implementation and run a same-viewport visual comparison.
+
+---
+
+# Who We Serve Desktop Grid Correction
+
+## Evidence
+
+- Source visual truth: conversation-attached desktop reference showing six cards in two rows and three columns.
+- Root cause: the JavaScript-enhanced two-column selector had higher specificity than the desktop `.segment-grid` override.
+- Corrected state: mobile accordion below `560px`, two-column cards from `560px`, and three-column cards from `900px`.
+
+## Verification
+
+- The desktop rule now targets both the fallback grid and the JavaScript-enhanced grid with equal specificity.
+- The tablet two-column rule and mobile accordion rules remain unchanged.
+- The stylesheet cache key was incremented so browsers request the corrected CSS.
+
+final result: blocked
+
+Blocker: no connected browser was available to capture a rendered desktop comparison against the supplied reference.

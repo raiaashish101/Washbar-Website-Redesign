@@ -1,0 +1,1255 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta
+      name="description"
+      content="Location Experience Concepts for comparing two ways to explore Wash Bar Fitzroy store information."
+    >
+    <meta name="theme-color" content="#062242">
+    <title>Location Experience Concepts | Wash Bar</title>
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+      .proto-body {
+        --proto-content-max: calc(var(--space-12) * 12);
+        --proto-drawer-max: calc(var(--space-12) * 8);
+        --proto-drawer-width: 52vw;
+        --proto-overlay: color-mix(in srgb, var(--color-navy) 58%, transparent);
+        min-width: 0;
+        padding-bottom: 0;
+      }
+
+      .proto-body.proto-drawer-open {
+        overflow: hidden;
+      }
+
+      .proto-header-inner {
+        display: flex;
+        min-height: var(--space-10);
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-2);
+      }
+
+      .proto-header-label {
+        color: var(--color-muted);
+        font-size: var(--type-sm);
+        font-weight: var(--weight-bold);
+        line-height: var(--md-sys-typescale-body-medium-line-height);
+        text-align: right;
+      }
+
+      .proto-main {
+        overflow: clip;
+      }
+
+      .proto-main-shell {
+        width: min(var(--proto-content-max), calc(100% - var(--space-4)));
+        margin-inline: auto;
+        padding-block: var(--space-4) var(--space-10);
+      }
+
+      .proto-notice,
+      .proto-test-task,
+      .proto-concept,
+      .proto-compare {
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius-panel);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .proto-notice {
+        padding: var(--space-3);
+        background: var(--color-navy);
+        color: var(--color-surface);
+      }
+
+      .proto-notice-label {
+        margin: 0 0 var(--space-1);
+        color: var(--color-eyebrow-dark);
+        font-size: var(--type-xs);
+        font-weight: var(--weight-bold);
+        letter-spacing: 0.06em;
+        line-height: var(--md-sys-typescale-label-medium-line-height);
+      }
+
+      .proto-page-title {
+        color: var(--color-surface);
+      }
+
+      .proto-notice-copy {
+        max-width: 62ch;
+        margin: var(--space-2) 0 0;
+        color: var(--color-sky);
+      }
+
+      .proto-test-task {
+        margin-top: var(--space-3);
+        padding: var(--space-3);
+        background: var(--color-surface);
+      }
+
+      .proto-test-task h2,
+      .proto-concept-heading h2,
+      .proto-compare h2 {
+        font-size: var(--type-h3);
+      }
+
+      .proto-test-task-copy {
+        max-width: 70ch;
+        margin: var(--space-2) 0 0;
+        color: var(--color-ink);
+        font-size: var(--type-lead);
+        line-height: var(--line-relaxed);
+      }
+
+      .proto-test-task-note {
+        max-width: 70ch;
+        margin: var(--space-2) 0 0;
+        color: var(--color-muted);
+      }
+
+      .proto-concept {
+        margin-top: var(--space-4);
+        padding: var(--space-2);
+        background: var(--color-surface);
+      }
+
+      .proto-concept-heading {
+        padding: var(--space-2);
+      }
+
+      .proto-concept-heading p {
+        max-width: 70ch;
+        margin: var(--space-2) 0 0;
+        color: var(--color-muted);
+      }
+
+      .proto-overview {
+        padding: var(--space-2);
+        background: var(--color-soft);
+        border-radius: var(--radius-card);
+      }
+
+      .proto-overview-heading {
+        font-size: var(--type-lead);
+      }
+
+      .proto-location-overview {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-2);
+        margin-top: var(--space-2);
+      }
+
+      .proto-store-card {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        min-width: 0;
+        overflow: hidden;
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius-card);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .proto-store-card-media {
+        display: grid;
+        aspect-ratio: 16 / 9;
+        margin: 0;
+        overflow: hidden;
+        place-items: center;
+        background: var(--color-navy);
+      }
+
+      .proto-store-card-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .proto-store-card-media .proto-store-card-logo {
+        width: var(--space-8);
+        height: var(--space-8);
+        object-fit: contain;
+      }
+
+      .proto-store-card-body {
+        display: flex;
+        min-width: 0;
+        flex-direction: column;
+        align-items: stretch;
+        padding: var(--space-2);
+      }
+
+      .proto-store-card-kicker {
+        margin: 0 0 var(--space-05);
+        color: var(--color-blue-dark);
+        font-size: var(--type-xs);
+        font-weight: var(--weight-bold);
+        line-height: var(--md-sys-typescale-label-medium-line-height);
+      }
+
+      .proto-store-card-title {
+        font-size: var(--type-lead);
+      }
+
+      .proto-store-card .button {
+        width: 100%;
+        margin-top: var(--space-3);
+      }
+
+      .proto-overview-status,
+      .proto-action-status {
+        min-height: var(--space-3);
+        margin: var(--space-2) 0 0;
+        color: var(--color-muted);
+        font-size: var(--type-sm);
+        font-weight: var(--weight-medium);
+      }
+
+      .proto-detail-page {
+        overflow: hidden;
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius-panel);
+        box-shadow: var(--shadow);
+      }
+
+      .proto-detail-header {
+        padding: var(--space-3);
+        background: var(--color-navy);
+        color: var(--color-surface);
+      }
+
+      .proto-back-button,
+      .proto-drawer-back,
+      .proto-drawer-close {
+        display: inline-flex;
+        min-height: var(--space-6);
+        align-items: center;
+        justify-content: center;
+        padding-inline: var(--space-2);
+        font: inherit;
+        font-size: var(--type-label);
+        font-weight: var(--weight-bold);
+        line-height: var(--md-sys-typescale-label-large-line-height);
+        cursor: pointer;
+      }
+
+      .proto-back-button {
+        color: var(--color-surface);
+        background: transparent;
+        border: 1px solid var(--color-footer-muted);
+        border-radius: var(--radius-card);
+      }
+
+      .proto-back-button:hover,
+      .proto-back-button:focus-visible {
+        background: var(--color-navy-soft);
+        border-color: var(--color-surface);
+      }
+
+      .proto-detail-kicker,
+      .proto-drawer-kicker {
+        margin: var(--space-3) 0 var(--space-05);
+        color: var(--color-eyebrow-dark);
+        font-size: var(--type-xs);
+        font-weight: var(--weight-bold);
+        line-height: var(--md-sys-typescale-label-medium-line-height);
+        text-transform: uppercase;
+      }
+
+      .proto-detail-title,
+      .proto-drawer-title {
+        font-size: var(--type-h2);
+      }
+
+      .proto-detail-subtitle,
+      .proto-drawer-subtitle {
+        margin: var(--space-1) 0 0;
+        color: var(--color-sky);
+      }
+
+      .proto-store-content {
+        min-width: 0;
+      }
+
+      .proto-store-summary {
+        display: grid;
+        gap: var(--space-3);
+        padding: var(--space-3);
+      }
+
+      .proto-primary-photo {
+        width: min(100%, calc(var(--space-12) * 4));
+        aspect-ratio: 1 / 1;
+        align-self: start;
+        justify-self: center;
+        margin: 0;
+        overflow: hidden;
+        border-radius: var(--radius-card);
+      }
+
+      .proto-primary-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .proto-store-lead {
+        align-self: center;
+      }
+
+      .proto-store-lead address {
+        color: var(--color-ink);
+        font-size: var(--type-lead);
+        font-style: normal;
+        font-weight: var(--weight-bold);
+        line-height: var(--line-snug);
+      }
+
+      .proto-opening-label {
+        margin: var(--space-3) 0 0;
+        color: var(--color-blue-dark);
+        font-size: var(--type-xs);
+        font-weight: var(--weight-bold);
+        line-height: var(--md-sys-typescale-label-medium-line-height);
+        text-transform: uppercase;
+      }
+
+      .proto-opening-value {
+        margin: var(--space-05) 0 0;
+        color: var(--color-muted);
+      }
+
+      .proto-primary-actions {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-1);
+        margin-top: var(--space-3);
+      }
+
+      .proto-primary-actions .button {
+        width: 100%;
+      }
+
+      .proto-content-section {
+        padding: var(--space-3);
+        border-top: 1px solid var(--color-line);
+      }
+
+      .proto-section-title {
+        color: var(--color-ink);
+        font-family: var(--md-sys-typescale-title-large-font);
+        font-size: var(--type-h3);
+        font-weight: var(--weight-bold);
+        line-height: var(--line-tight);
+      }
+
+      .proto-carousel-heading-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-2);
+      }
+
+      .proto-carousel-controls {
+        display: flex;
+        flex: 0 0 auto;
+        gap: var(--space-1);
+      }
+
+      .proto-carousel-button {
+        display: inline-flex;
+        width: var(--space-6);
+        height: var(--space-6);
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        color: var(--color-blue-dark);
+        background: var(--color-surface);
+        border: 1px solid var(--color-blue-dark);
+        border-radius: var(--radius-card);
+        font: inherit;
+        font-size: var(--type-lead);
+        font-weight: var(--weight-bold);
+        cursor: pointer;
+      }
+
+      .proto-carousel-button:hover,
+      .proto-carousel-button:focus-visible {
+        background: var(--color-sky);
+      }
+
+      .proto-carousel-button:disabled {
+        color: var(--color-muted);
+        background: var(--color-soft);
+        border-color: var(--color-line);
+        cursor: not-allowed;
+        opacity: 0.65;
+      }
+
+      .proto-supporting-photos {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-2);
+        margin-top: var(--space-2);
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        padding-bottom: var(--space-1);
+        scroll-snap-type: inline mandatory;
+        scrollbar-color: var(--color-line) transparent;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .proto-supporting-photo {
+        flex: 0 0 calc(50% - var(--space-1));
+        aspect-ratio: 1 / 1;
+        align-self: flex-start;
+        margin: 0;
+        overflow: hidden;
+        border-radius: var(--radius-card);
+        scroll-snap-align: start;
+      }
+
+      .proto-supporting-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .proto-carousel-status {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        white-space: nowrap;
+        border: 0;
+        clip: rect(0, 0, 0, 0);
+        clip-path: inset(50%);
+      }
+
+      .proto-info-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-2);
+        margin-top: var(--space-2);
+      }
+
+      .proto-info-card,
+      .proto-review-placeholder,
+      .proto-map-card {
+        padding: var(--space-2);
+        background: var(--color-soft);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius-card);
+      }
+
+      .proto-info-card h4,
+      .proto-review-placeholder h4,
+      .proto-map-card h4,
+      .proto-conversion h4 {
+        font-size: var(--type-lead);
+      }
+
+      .proto-info-card address,
+      .proto-info-card p,
+      .proto-review-placeholder p,
+      .proto-map-card p {
+        margin: var(--space-1) 0 0;
+        color: var(--color-muted);
+        font-style: normal;
+      }
+
+      .proto-placeholder-label {
+        color: var(--color-blue-dark);
+        font-size: var(--type-xs);
+        font-weight: var(--weight-bold);
+        line-height: var(--md-sys-typescale-label-medium-line-height);
+        text-transform: uppercase;
+      }
+
+      .proto-map-card .button {
+        width: 100%;
+        margin-top: var(--space-2);
+      }
+
+      .proto-conversion {
+        padding: var(--space-3);
+        background: var(--color-navy);
+        color: var(--color-surface);
+      }
+
+      .proto-conversion p {
+        margin: var(--space-1) 0 0;
+        color: var(--color-sky);
+      }
+
+      .proto-conversion .button {
+        width: 100%;
+        margin-top: var(--space-2);
+      }
+
+      .proto-conversion .proto-action-status {
+        color: var(--color-sky);
+      }
+
+      .proto-drawer-layer {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: grid;
+        align-items: stretch;
+        justify-items: end;
+        background: var(--proto-overlay);
+      }
+
+      .proto-drawer {
+        width: 100%;
+        height: 100dvh;
+        min-width: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        background: var(--color-surface);
+        box-shadow: var(--shadow);
+      }
+
+      .proto-drawer-toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-2);
+        padding: var(--space-1) var(--space-2);
+        background: var(--color-surface);
+        border-bottom: 1px solid var(--color-line);
+      }
+
+      .proto-drawer-back,
+      .proto-drawer-close {
+        color: var(--color-blue-dark);
+        background: transparent;
+        border: 1px solid var(--color-blue-dark);
+        border-radius: var(--radius-card);
+      }
+
+      .proto-drawer-back:hover,
+      .proto-drawer-back:focus-visible,
+      .proto-drawer-close:hover,
+      .proto-drawer-close:focus-visible {
+        background: var(--color-sky);
+      }
+
+      .proto-drawer-heading {
+        padding: var(--space-3);
+        background: var(--color-navy);
+        color: var(--color-surface);
+      }
+
+      .proto-drawer-heading .proto-drawer-kicker {
+        margin-top: 0;
+      }
+
+      .proto-compare {
+        margin-top: var(--space-4);
+        padding: var(--space-3);
+        background: var(--color-surface);
+      }
+
+      .proto-compare ol {
+        display: grid;
+        gap: var(--space-1);
+        margin: var(--space-2) 0 0;
+        padding-left: var(--space-3);
+        color: var(--color-muted);
+      }
+
+      .proto-footer {
+        padding: var(--space-4) var(--space-2);
+        background: var(--color-navy);
+        color: var(--color-footer-text);
+        text-align: center;
+      }
+
+      .proto-footer p {
+        margin: 0;
+      }
+
+      @media (min-width: 390px) {
+        .proto-primary-actions {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (min-width: 560px) {
+        .proto-location-overview {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .proto-detail-page .proto-info-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      @media (min-width: 721px) {
+        .proto-main-shell {
+          width: min(var(--proto-content-max), calc(100% - var(--space-6)));
+          padding-block: var(--space-6) var(--space-12);
+        }
+
+        .proto-notice,
+        .proto-test-task,
+        .proto-compare {
+          padding: var(--space-4);
+        }
+
+        .proto-concept {
+          padding: var(--space-3);
+        }
+
+        .proto-store-summary {
+          grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+          padding: var(--space-4);
+        }
+
+        .proto-content-section,
+        .proto-conversion {
+          padding: var(--space-4);
+        }
+
+        .proto-drawer-layer {
+          align-items: center;
+          padding: var(--space-2);
+        }
+
+        .proto-drawer {
+          width: min(var(--proto-drawer-width), var(--proto-drawer-max));
+          height: calc(100dvh - var(--space-4));
+          border: 1px solid var(--color-line);
+          border-radius: var(--radius-panel) 0 0 var(--radius-panel);
+        }
+
+        .proto-drawer .proto-store-summary {
+          grid-template-columns: minmax(0, 1fr);
+          padding: var(--space-3);
+        }
+
+        .proto-drawer .proto-content-section,
+        .proto-drawer .proto-conversion {
+          padding: var(--space-3);
+        }
+      }
+
+      @media (min-width: 981px) {
+        .proto-location-overview {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .proto-drawer,
+        .proto-drawer-layer,
+        .proto-supporting-photos {
+          scroll-behavior: auto;
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="proto-body">
+    <a class="skip-link" href="#proto-main-content" data-proto-background>Skip to prototype content</a>
+
+    <header class="site-header proto-header" data-proto-background>
+      <div class="container proto-header-inner">
+        <a class="brand" href="#proto-main-content" aria-label="Wash Bar Location Experience Concepts home">
+          <img src="assets/logo.png" alt="" width="518" height="490">
+          <span>Wash Bar</span>
+        </a>
+        <span class="proto-header-label">Location Experience Concepts</span>
+      </div>
+    </header>
+
+    <main id="proto-main-content" class="proto-main" tabindex="-1" data-proto-background>
+      <div class="proto-main-shell">
+        <section class="proto-notice" aria-labelledby="proto-page-title">
+          <p class="proto-notice-label">LOCATION EXPERIENCE PROTOTYPE</p>
+          <h1 id="proto-page-title" class="proto-page-title">Location Experience Concepts</h1>
+          <p class="proto-notice-copy">
+            For client review only.<br>
+            This page compares two ways customers could explore an individual Wash Bar store.
+          </p>
+        </section>
+
+        <section class="proto-test-task" aria-labelledby="proto-test-task-title">
+          <h2 id="proto-test-task-title">What we are testing</h2>
+          <p class="proto-test-task-copy">
+            Imagine you want to visit the Wash Bar Fitzroy store this afternoon.<br>
+            Find Fitzroy, look at the store photos, check its opening hours and find how to get there.
+          </p>
+          <p class="proto-test-task-note">
+            Try both concepts. We are comparing how the store information is accessed, not the visual style.
+          </p>
+        </section>
+
+        <section class="proto-concept" aria-labelledby="proto-concept-a-title">
+          <header class="proto-concept-heading">
+            <h2 id="proto-concept-a-title">Concept A — Dedicated Store Page</h2>
+            <p>
+              Selecting a store opens a dedicated location experience with more space for photos,
+              store information, reviews and future local content.
+            </p>
+          </header>
+
+          <div id="proto-a-overview" data-proto-overview-mount></div>
+
+          <article
+            id="proto-a-detail"
+            class="proto-detail-page"
+            aria-labelledby="proto-a-detail-title"
+            hidden
+          >
+            <header class="proto-detail-header">
+              <button class="proto-back-button" type="button" data-proto-a-back>
+                ← Back to all locations
+              </button>
+              <p class="proto-detail-kicker">Dedicated store page</p>
+              <h3 id="proto-a-detail-title" class="proto-detail-title" tabindex="-1">Fitzroy</h3>
+              <p class="proto-detail-subtitle">Brunswick Street store</p>
+            </header>
+            <div data-proto-a-content></div>
+          </article>
+        </section>
+
+        <section class="proto-concept" aria-labelledby="proto-concept-b-title">
+          <header class="proto-concept-heading">
+            <h2 id="proto-concept-b-title">Concept B — Quick Store View</h2>
+            <p>
+              Selecting a store keeps customers within the Locations experience and opens the store
+              information in a quick-view panel.
+            </p>
+          </header>
+
+          <div id="proto-b-overview" data-proto-overview-mount></div>
+        </section>
+
+        <section id="proto-client-compare" class="proto-compare" aria-labelledby="proto-compare-title">
+          <h2 id="proto-compare-title">Compare the two experiences</h2>
+          <ol>
+            <li>Which option made the Fitzroy information easier to find?</li>
+            <li>Which felt faster?</li>
+            <li>Which made the photos easier to explore?</li>
+            <li>Which would work better when comparing multiple Wash Bar stores?</li>
+            <li>Which feels more suitable as Wash Bar adds more locations?</li>
+            <li>Was there anything you expected to see that was missing?</li>
+          </ol>
+        </section>
+      </div>
+    </main>
+
+    <footer class="proto-footer" data-proto-background>
+      <p>Wash Bar Location Experience Concepts · Client review prototype</p>
+    </footer>
+
+    <div class="proto-drawer-layer" data-proto-drawer-layer hidden>
+      <section
+        id="proto-b-drawer"
+        class="proto-drawer"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="proto-b-drawer-title"
+      >
+        <div class="proto-drawer-toolbar">
+          <button class="proto-drawer-back" type="button" data-proto-b-close>← Locations</button>
+          <button class="proto-drawer-close" type="button" data-proto-b-close>Close</button>
+        </div>
+        <header class="proto-drawer-heading">
+          <p class="proto-drawer-kicker">Quick store view</p>
+          <h2 id="proto-b-drawer-title" class="proto-drawer-title" tabindex="-1">Fitzroy</h2>
+          <p class="proto-drawer-subtitle">Brunswick Street store</p>
+        </header>
+        <div data-proto-b-content></div>
+      </section>
+    </div>
+
+    <template id="proto-locations-overview-template">
+      <div class="proto-overview">
+        <h3 class="proto-overview-heading">Locations overview</h3>
+        <div class="proto-location-overview">
+          <article class="proto-store-card" data-proto-location-card="North Melbourne">
+            <figure class="proto-store-card-media">
+              <img class="proto-store-card-logo" src="assets/logo.png" alt="" width="518" height="490" loading="lazy" decoding="async">
+            </figure>
+            <div class="proto-store-card-body">
+              <p class="proto-store-card-kicker">Wash Bar location</p>
+              <h4 class="proto-store-card-title">North Melbourne</h4>
+              <button class="button button-outline" type="button" data-proto-location="North Melbourne">View North Melbourne</button>
+            </div>
+          </article>
+
+          <article class="proto-store-card" data-proto-location-card="Flemington">
+            <figure class="proto-store-card-media">
+              <img class="proto-store-card-logo" src="assets/logo.png" alt="" width="518" height="490" loading="lazy" decoding="async">
+            </figure>
+            <div class="proto-store-card-body">
+              <p class="proto-store-card-kicker">Wash Bar location</p>
+              <h4 class="proto-store-card-title">Flemington</h4>
+              <button class="button button-outline" type="button" data-proto-location="Flemington">View Flemington</button>
+            </div>
+          </article>
+
+          <article class="proto-store-card" data-proto-location-card="West Melbourne">
+            <figure class="proto-store-card-media">
+              <img class="proto-store-card-logo" src="assets/logo.png" alt="" width="518" height="490" loading="lazy" decoding="async">
+            </figure>
+            <div class="proto-store-card-body">
+              <p class="proto-store-card-kicker">Wash Bar location</p>
+              <h4 class="proto-store-card-title">West Melbourne</h4>
+              <button class="button button-outline" type="button" data-proto-location="West Melbourne">View West Melbourne</button>
+            </div>
+          </article>
+
+          <article class="proto-store-card" data-proto-location-card="Ascot Vale">
+            <figure class="proto-store-card-media">
+              <img class="proto-store-card-logo" src="assets/logo.png" alt="" width="518" height="490" loading="lazy" decoding="async">
+            </figure>
+            <div class="proto-store-card-body">
+              <p class="proto-store-card-kicker">Wash Bar location</p>
+              <h4 class="proto-store-card-title">Ascot Vale</h4>
+              <button class="button button-outline" type="button" data-proto-location="Ascot Vale">View Ascot Vale</button>
+            </div>
+          </article>
+
+          <article class="proto-store-card" data-proto-location-card="Fitzroy">
+            <figure class="proto-store-card-media">
+              <img
+                src="assets/locations/fitzroy/fitzroy-01.webp"
+                alt="Wash Bar Fitzroy interior with stacked dryers and a card payment station"
+                width="1360"
+                height="765"
+                loading="lazy"
+                decoding="async"
+              >
+            </figure>
+            <div class="proto-store-card-body">
+              <p class="proto-store-card-kicker">Wash Bar location</p>
+              <h4 class="proto-store-card-title">Fitzroy</h4>
+              <button class="button" type="button" data-proto-location="Fitzroy">View Fitzroy</button>
+            </div>
+          </article>
+
+          <article class="proto-store-card" data-proto-location-card="USA">
+            <figure class="proto-store-card-media">
+              <img class="proto-store-card-logo" src="assets/logo.png" alt="" width="518" height="490" loading="lazy" decoding="async">
+            </figure>
+            <div class="proto-store-card-body">
+              <p class="proto-store-card-kicker">Wash Bar location</p>
+              <h4 class="proto-store-card-title">USA</h4>
+              <button class="button button-outline" type="button" data-proto-location="USA">View USA</button>
+            </div>
+          </article>
+        </div>
+        <p class="proto-overview-status" role="status" aria-live="polite"></p>
+      </div>
+    </template>
+
+    <template id="proto-fitzroy-content-template">
+      <div class="proto-store-content">
+        <div class="proto-store-summary">
+          <figure class="proto-primary-photo">
+            <img
+              src="assets/locations/fitzroy/fitzroy-01.webp"
+              alt="Wash Bar Fitzroy interior with stacked dryers, folding benches and a card payment station"
+              width="1360"
+              height="765"
+              decoding="async"
+            >
+          </figure>
+          <div class="proto-store-lead">
+            <address>461 Brunswick Street, Fitzroy</address>
+            <p class="proto-opening-label">Opening hours</p>
+            <p class="proto-opening-value">Open daily, 6:00 am–midnight</p>
+            <div class="proto-primary-actions">
+              <a
+                class="button"
+                href="https://www.google.com/maps/search/?api=1&amp;query=461%20Brunswick%20Street%2C%20Fitzroy"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Get directions to Wash Bar Fitzroy in Google Maps, opens in a new tab"
+              >Get directions</a>
+              <a class="button button-outline" href="tel:+61430455920" aria-label="Call Wash Bar Fitzroy at 0430 455 920">Call</a>
+            </div>
+          </div>
+        </div>
+
+        <section class="proto-content-section" aria-label="Fitzroy store photos">
+          <div class="proto-photo-carousel" data-proto-photo-carousel>
+            <div class="proto-carousel-heading-row">
+              <div class="proto-section-title" role="heading" aria-level="3" data-proto-section-heading>Store photos</div>
+              <div class="proto-carousel-controls" aria-label="Store photo carousel controls">
+                <button
+                  class="proto-carousel-button"
+                  type="button"
+                  data-proto-photo-previous
+                  aria-label="Show previous Fitzroy store photo"
+                ><span aria-hidden="true">←</span></button>
+                <button
+                  class="proto-carousel-button"
+                  type="button"
+                  data-proto-photo-next
+                  aria-label="Show next Fitzroy store photo"
+                ><span aria-hidden="true">→</span></button>
+              </div>
+            </div>
+            <div class="proto-supporting-photos" data-proto-photo-viewport tabindex="0">
+            <figure class="proto-supporting-photo">
+              <img
+                src="assets/locations/fitzroy/fitzroy-03.webp"
+                alt="Full view through the Wash Bar Fitzroy interior with washers and dryers along both walls"
+                width="765"
+                height="1020"
+                loading="lazy"
+                decoding="async"
+              >
+            </figure>
+            <figure class="proto-supporting-photo">
+              <img
+                src="assets/locations/fitzroy/fitzroy-05.webp"
+                alt="Front-loading washers operating inside Wash Bar Fitzroy"
+                width="1360"
+                height="1020"
+                loading="lazy"
+                decoding="async"
+              >
+            </figure>
+            <figure class="proto-supporting-photo">
+              <img
+                src="assets/locations/fitzroy/fitzroy-02.webp"
+                alt="Wash Bar Fitzroy interior seating beside the Brunswick Street window"
+                width="765"
+                height="1020"
+                loading="lazy"
+                decoding="async"
+              >
+            </figure>
+            <figure class="proto-supporting-photo">
+              <img
+                src="assets/locations/fitzroy/fitzroy-14.jpg"
+                alt="Community book shelf available inside Wash Bar Fitzroy"
+                width="1521"
+                height="1141"
+                loading="lazy"
+                decoding="async"
+              >
+            </figure>
+            </div>
+            <p class="proto-carousel-status" role="status" aria-live="polite" data-proto-photo-status></p>
+          </div>
+        </section>
+
+        <section class="proto-content-section" aria-label="Fitzroy store information">
+          <div class="proto-section-title" role="heading" aria-level="3" data-proto-section-heading>Store information</div>
+          <div class="proto-info-grid">
+            <div class="proto-info-card">
+              <h4>Address</h4>
+              <address>461 Brunswick Street, Fitzroy</address>
+            </div>
+            <div class="proto-info-card">
+              <h4>Opening hours</h4>
+              <p>Open daily, 6:00 am–midnight</p>
+            </div>
+            <div class="proto-info-card">
+              <h4>Payment methods</h4>
+              <p>Coin, card, Apple Pay &amp; Google Pay</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="proto-content-section" aria-label="Customer reviews placeholder">
+          <div class="proto-review-placeholder">
+            <p class="proto-placeholder-label">Prototype-only placeholder</p>
+            <h4>Customer reviews</h4>
+            <p>Location-specific Google reviews can appear here.<br>To be confirmed with client.</p>
+          </div>
+        </section>
+
+        <section class="proto-content-section" aria-label="Fitzroy map">
+          <div class="proto-map-card">
+            <h4>Fitzroy location map</h4>
+            <p>Open the confirmed Fitzroy address in Google Maps.</p>
+            <a
+              class="button button-outline"
+              href="https://www.google.com/maps/search/?api=1&amp;query=461%20Brunswick%20Street%2C%20Fitzroy"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open Wash Bar Fitzroy in Google Maps, opens in a new tab"
+            >Open in Google Maps</a>
+          </div>
+        </section>
+
+        <section class="proto-conversion" aria-label="Wash and Fold enquiry prompt">
+          <h4>Need Wash &amp; Fold?</h4>
+          <p>Ask Wash Bar</p>
+          <button class="button" type="button" data-proto-wash-fold>Ask Wash Bar</button>
+          <p class="proto-action-status" role="status" aria-live="polite"></p>
+        </section>
+      </div>
+    </template>
+
+    <script>
+      (() => {
+        const body = document.body;
+        const overviewTemplate = document.querySelector("#proto-locations-overview-template");
+        const fitzroyContentTemplate = document.querySelector("#proto-fitzroy-content-template");
+        const conceptAOverviewMount = document.querySelector("#proto-a-overview");
+        const conceptBOverviewMount = document.querySelector("#proto-b-overview");
+        const conceptADetail = document.querySelector("#proto-a-detail");
+        const conceptADetailTitle = document.querySelector("#proto-a-detail-title");
+        const conceptABackButton = document.querySelector("[data-proto-a-back]");
+        const drawerLayer = document.querySelector("[data-proto-drawer-layer]");
+        const drawer = document.querySelector("#proto-b-drawer");
+        const drawerTitle = document.querySelector("#proto-b-drawer-title");
+        const backgroundElements = Array.from(document.querySelectorAll("[data-proto-background]"));
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+        let conceptATrigger = null;
+        let drawerTrigger = null;
+
+        const focusableSelector = [
+          "a[href]",
+          "button:not([disabled])",
+          "[tabindex]:not([tabindex='-1'])",
+        ].join(",");
+
+        function moveToView(element) {
+          element.scrollIntoView({
+            behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+            block: "start",
+          });
+        }
+
+        function getCarouselMetrics(carousel) {
+          const viewport = carousel.querySelector("[data-proto-photo-viewport]");
+          const photos = Array.from(viewport.querySelectorAll(".proto-supporting-photo"));
+          const firstPhoto = photos[0];
+          const styles = window.getComputedStyle(viewport);
+          const gap = Number.parseFloat(styles.columnGap || styles.gap) || 0;
+          const step = firstPhoto ? firstPhoto.getBoundingClientRect().width + gap : 0;
+          const maximumScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+          const visibleCount = step > 0
+            ? Math.max(1, Math.round((viewport.clientWidth + gap) / step))
+            : 1;
+
+          return { viewport, photos, step, maximumScroll, visibleCount };
+        }
+
+        function updatePhotoCarousel(carousel) {
+          const previousButton = carousel.querySelector("[data-proto-photo-previous]");
+          const nextButton = carousel.querySelector("[data-proto-photo-next]");
+          const status = carousel.querySelector("[data-proto-photo-status]");
+          const { viewport, photos, step, maximumScroll, visibleCount } = getCarouselMetrics(carousel);
+          const currentIndex = step > 0 ? Math.round(viewport.scrollLeft / step) : 0;
+          const firstVisiblePhoto = Math.min(currentIndex + 1, photos.length);
+          const lastVisiblePhoto = Math.min(currentIndex + visibleCount, photos.length);
+
+          previousButton.disabled = viewport.scrollLeft <= 1;
+          nextButton.disabled = viewport.scrollLeft >= maximumScroll - 1;
+          status.textContent = `Showing Fitzroy store photos ${firstVisiblePhoto} to ${lastVisiblePhoto} of ${photos.length}.`;
+        }
+
+        function movePhotoCarousel(carousel, direction) {
+          const { viewport, step } = getCarouselMetrics(carousel);
+          viewport.scrollBy({
+            left: direction * step,
+            behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+          });
+        }
+
+        function initialisePhotoCarousel(carousel, idPrefix) {
+          const viewport = carousel.querySelector("[data-proto-photo-viewport]");
+          const previousButton = carousel.querySelector("[data-proto-photo-previous]");
+          const nextButton = carousel.querySelector("[data-proto-photo-next]");
+
+          viewport.id = `${idPrefix}-photo-viewport`;
+          previousButton.setAttribute("aria-controls", viewport.id);
+          nextButton.setAttribute("aria-controls", viewport.id);
+
+          previousButton.addEventListener("click", () => movePhotoCarousel(carousel, -1));
+          nextButton.addEventListener("click", () => movePhotoCarousel(carousel, 1));
+
+          viewport.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+              event.preventDefault();
+              movePhotoCarousel(carousel, event.key === "ArrowLeft" ? -1 : 1);
+            }
+          });
+
+          viewport.addEventListener("scroll", () => updatePhotoCarousel(carousel), { passive: true });
+          updatePhotoCarousel(carousel);
+        }
+
+        function refreshPhotoCarousels(scope) {
+          scope.querySelectorAll("[data-proto-photo-carousel]").forEach(updatePhotoCarousel);
+        }
+
+        function mountFitzroyContent(mount, headingLevel, idPrefix) {
+          const content = fitzroyContentTemplate.content.cloneNode(true);
+          content.querySelectorAll("[data-proto-section-heading]").forEach((heading) => {
+            heading.setAttribute("aria-level", String(headingLevel));
+          });
+          mount.append(content);
+          initialisePhotoCarousel(mount.querySelector("[data-proto-photo-carousel]"), idPrefix);
+        }
+
+        function showUnavailableMessage(overview, locationName) {
+          const status = overview.querySelector(".proto-overview-status");
+          status.textContent = `This prototype currently demonstrates the Fitzroy flow only. ${locationName} details have not been opened.`;
+        }
+
+        function mountOverview(mount, prefix, openFitzroy) {
+          const overview = overviewTemplate.content.cloneNode(true);
+          mount.append(overview);
+
+          const overviewElement = mount.querySelector(".proto-overview");
+          const buttons = Array.from(overviewElement.querySelectorAll("[data-proto-location]"));
+
+          buttons.forEach((button) => {
+            const locationName = button.dataset.protoLocation;
+
+            if (locationName === "Fitzroy") {
+              button.id = `${prefix}-fitzroy-trigger`;
+              button.setAttribute("aria-expanded", "false");
+              button.setAttribute("aria-controls", prefix === "proto-a" ? "proto-a-detail" : "proto-b-drawer");
+              if (prefix === "proto-b") {
+                button.setAttribute("aria-haspopup", "dialog");
+              }
+              button.addEventListener("click", () => openFitzroy(button));
+              return;
+            }
+
+            button.addEventListener("click", () => showUnavailableMessage(overviewElement, locationName));
+          });
+        }
+
+        function openConceptADetail(trigger) {
+          conceptATrigger = trigger;
+          trigger.setAttribute("aria-expanded", "true");
+          conceptAOverviewMount.hidden = true;
+          conceptADetail.hidden = false;
+          refreshPhotoCarousels(conceptADetail);
+          conceptADetailTitle.focus({ preventScroll: true });
+          moveToView(conceptADetail);
+        }
+
+        function closeConceptADetail() {
+          conceptADetail.hidden = true;
+          conceptAOverviewMount.hidden = false;
+          conceptATrigger?.setAttribute("aria-expanded", "false");
+          conceptATrigger?.focus();
+        }
+
+        function setBackgroundInert(isInert) {
+          backgroundElements.forEach((element) => {
+            element.inert = isInert;
+          });
+        }
+
+        function openDrawer(trigger) {
+          drawerTrigger = trigger;
+          trigger.setAttribute("aria-expanded", "true");
+          drawerLayer.hidden = false;
+          body.classList.add("proto-drawer-open");
+          setBackgroundInert(true);
+          refreshPhotoCarousels(drawer);
+          drawerTitle.focus({ preventScroll: true });
+          drawer.scrollTop = 0;
+        }
+
+        function closeDrawer() {
+          if (drawerLayer.hidden) {
+            return;
+          }
+
+          drawerLayer.hidden = true;
+          body.classList.remove("proto-drawer-open");
+          setBackgroundInert(false);
+          drawerTrigger?.setAttribute("aria-expanded", "false");
+          drawerTrigger?.focus();
+        }
+
+        function trapDrawerFocus(event) {
+          if (event.key === "Escape") {
+            event.preventDefault();
+            closeDrawer();
+            return;
+          }
+
+          if (event.key !== "Tab") {
+            return;
+          }
+
+          const focusableElements = Array.from(drawer.querySelectorAll(focusableSelector));
+          const firstFocusable = focusableElements[0];
+          const lastFocusable = focusableElements[focusableElements.length - 1];
+          const activeElement = document.activeElement;
+
+          if (!firstFocusable || !lastFocusable) {
+            event.preventDefault();
+            drawerTitle.focus();
+            return;
+          }
+
+          if (!focusableElements.includes(activeElement)) {
+            event.preventDefault();
+            (event.shiftKey ? lastFocusable : firstFocusable).focus();
+            return;
+          }
+
+          if (event.shiftKey && activeElement === firstFocusable) {
+            event.preventDefault();
+            lastFocusable.focus();
+          } else if (!event.shiftKey && activeElement === lastFocusable) {
+            event.preventDefault();
+            firstFocusable.focus();
+          }
+        }
+
+        mountFitzroyContent(document.querySelector("[data-proto-a-content]"), 4, "proto-a");
+        mountFitzroyContent(document.querySelector("[data-proto-b-content]"), 3, "proto-b");
+        mountOverview(conceptAOverviewMount, "proto-a", openConceptADetail);
+        mountOverview(conceptBOverviewMount, "proto-b", openDrawer);
+
+        window.addEventListener("resize", () => refreshPhotoCarousels(document));
+
+        conceptABackButton.addEventListener("click", closeConceptADetail);
+
+        drawer.querySelectorAll("[data-proto-b-close]").forEach((button) => {
+          button.addEventListener("click", closeDrawer);
+        });
+
+        drawer.addEventListener("keydown", trapDrawerFocus);
+
+        drawerLayer.addEventListener("click", (event) => {
+          if (event.target === drawerLayer) {
+            closeDrawer();
+          }
+        });
+
+        document.querySelectorAll("[data-proto-wash-fold]").forEach((button) => {
+          button.addEventListener("click", () => {
+            const status = button.parentElement.querySelector(".proto-action-status");
+            status.textContent = "This prototype does not connect to the production enquiry form.";
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

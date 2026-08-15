@@ -1,0 +1,1198 @@
+<!doctype html>
+<html lang="en-AU" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="description" content="A client-review prototype for exploring Wash Bar location photographs." />
+    <meta name="theme-color" content="#062242" />
+    <title>Location Photo Experience Prototype | Wash Bar</title>
+    <link rel="icon" href="assets/logo.png" type="image/png" />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      :root {
+        --proto-page-max: 72.5rem;
+        --proto-dialog-max: 75rem;
+        --proto-dialog-width: 92vw;
+        --proto-dialog-height: 90vh;
+        --proto-dialog-height-max: 50rem;
+        --proto-thumb-size: 4.5rem;
+        --proto-control-size: 3rem;
+        --proto-backdrop-opacity: 72%;
+      }
+
+      body.proto-gallery-open {
+        overflow: hidden;
+      }
+
+      .proto-skip-link {
+        position: fixed;
+        z-index: 20;
+        top: var(--space-1);
+        left: var(--space-1);
+        padding: var(--space-1) var(--space-2);
+        color: var(--color-surface);
+        background: var(--color-navy);
+        border-radius: var(--radius-card);
+        transform: translateY(-200%);
+      }
+
+      .proto-skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .proto-header {
+        background: var(--color-surface);
+        border-bottom: 1px solid var(--color-line);
+      }
+
+      .proto-header-inner {
+        display: flex;
+        width: min(var(--proto-page-max), calc(100% - var(--space-4)));
+        min-height: var(--space-10);
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-2);
+        margin-inline: auto;
+      }
+
+      .proto-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-1);
+        color: var(--color-ink);
+        font-weight: var(--weight-bold);
+        text-decoration: none;
+      }
+
+      .proto-brand img {
+        width: var(--space-6);
+        height: var(--space-6);
+        object-fit: contain;
+      }
+
+      .proto-header-label {
+        color: var(--color-muted);
+        font-size: var(--type-sm);
+      }
+
+      .proto-main {
+        padding-block: var(--space-4) var(--space-8);
+      }
+
+      .proto-container {
+        width: min(var(--proto-page-max), calc(100% - var(--space-4)));
+        margin-inline: auto;
+      }
+
+      .proto-notice,
+      .proto-review-note {
+        padding: var(--space-3);
+        background: var(--color-sky);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius-panel);
+      }
+
+      .proto-notice strong {
+        display: block;
+        color: var(--color-blue-dark);
+        font-size: var(--type-xs);
+        line-height: var(--line-snug);
+        text-transform: uppercase;
+      }
+
+      .proto-notice p,
+      .proto-review-note p {
+        margin: var(--space-1) 0 0;
+        color: var(--color-ink);
+      }
+
+      .proto-review-note {
+        margin-top: var(--space-2);
+        background: var(--color-surface);
+      }
+
+      .proto-experience {
+        margin-top: var(--space-5);
+      }
+
+      .proto-experience-heading {
+        max-width: 42rem;
+        margin-inline: auto;
+        text-align: center;
+      }
+
+      .proto-experience-heading h1 {
+        margin: var(--space-1) 0 0;
+        color: var(--color-ink);
+        font-size: var(--type-h2);
+        line-height: var(--line-tight);
+      }
+
+      .proto-tabs-wrap {
+        margin-top: var(--space-4);
+        padding-bottom: var(--space-1);
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        scrollbar-color: var(--color-line) transparent;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .proto-tabs {
+        display: flex;
+        width: max-content;
+        min-width: 100%;
+        gap: var(--space-1);
+      }
+
+      .proto-tab {
+        min-height: var(--space-6);
+        padding-inline: var(--space-2);
+        color: var(--color-muted);
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius-pill);
+        font: inherit;
+        font-size: var(--type-label);
+        font-weight: var(--weight-bold);
+        white-space: nowrap;
+        cursor: pointer;
+      }
+
+      .proto-tab[aria-selected="true"] {
+        color: var(--color-surface);
+        background: var(--color-control-blue);
+        border-color: var(--color-control-blue);
+      }
+
+      .proto-tab:not([aria-selected="true"]):hover,
+      .proto-tab:not([aria-selected="true"]):focus-visible {
+        color: var(--color-blue-dark);
+        background: var(--color-sky);
+        border-color: var(--color-blue);
+      }
+
+      .proto-panel {
+        display: grid;
+        gap: var(--space-3);
+        margin-top: var(--space-3);
+        padding: var(--space-2);
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius-panel);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .proto-media-column {
+        min-width: 0;
+      }
+
+      .proto-primary-button {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        padding: 0;
+        overflow: hidden;
+        background: var(--color-soft);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius-card);
+        cursor: zoom-in;
+      }
+
+      .proto-primary-button img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .proto-photo-placeholder {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+      }
+
+      .proto-photo-placeholder {
+        display: grid;
+        place-items: center;
+        padding: var(--space-4);
+        color: var(--color-muted);
+        background: var(--color-soft);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius-card);
+        font-weight: var(--weight-bold);
+        text-align: center;
+      }
+
+      .proto-thumb-rail,
+      .proto-lightbox-thumbs {
+        display: flex;
+        gap: var(--space-1);
+        margin-top: var(--space-1);
+        padding: var(--space-05) var(--space-05) var(--space-1);
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        scrollbar-color: var(--color-line) transparent;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .proto-gallery-thumb,
+      .proto-more-button,
+      .proto-lightbox-thumb {
+        position: relative;
+        flex: 0 0 var(--proto-thumb-size);
+        width: var(--proto-thumb-size);
+        height: var(--proto-thumb-size);
+        padding: 0;
+        overflow: hidden;
+        color: var(--color-blue-dark);
+        background: var(--color-soft);
+        border: 2px solid var(--color-line);
+        border-radius: var(--radius-card);
+        cursor: pointer;
+      }
+
+      .proto-gallery-thumb img,
+      .proto-lightbox-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .proto-gallery-thumb[aria-pressed="true"],
+      .proto-lightbox-thumb[aria-pressed="true"] {
+        border-color: var(--color-blue);
+        box-shadow: 0 0 0 var(--space-05) var(--color-sky);
+      }
+
+      .proto-gallery-thumb[aria-pressed="true"]::after,
+      .proto-lightbox-thumb[aria-pressed="true"]::after {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: var(--space-05);
+        content: "Selected";
+        color: var(--color-surface);
+        background: var(--color-blue-dark);
+        font-size: var(--type-2xs);
+        font-weight: var(--weight-bold);
+        line-height: var(--line-snug);
+        text-align: center;
+      }
+
+      .proto-more-button {
+        display: grid;
+        place-items: center;
+        font: inherit;
+        font-size: var(--type-lead);
+        font-weight: var(--weight-bold);
+      }
+
+      .proto-more-button:hover,
+      .proto-more-button:focus-visible {
+        color: var(--color-surface);
+        background: var(--color-blue-dark);
+        border-color: var(--color-blue-dark);
+      }
+
+      .proto-store-content {
+        align-self: center;
+      }
+
+      .proto-status {
+        display: inline-flex;
+        margin-bottom: var(--space-2);
+        padding: var(--space-05) var(--space-1);
+        color: var(--color-success-ink);
+        background: var(--color-success-soft);
+        border-radius: var(--radius-pill);
+        font-size: var(--type-2xs);
+        font-weight: var(--weight-bold);
+        text-transform: uppercase;
+      }
+
+      .proto-status[data-closed="true"] {
+        color: var(--color-danger);
+        background: var(--color-danger-soft);
+      }
+
+      .proto-area {
+        margin: 0 0 var(--space-05);
+        color: var(--color-blue-dark);
+        font-size: var(--type-xs);
+        font-weight: var(--weight-bold);
+      }
+
+      .proto-store-content h2 {
+        margin: 0;
+        color: var(--color-ink);
+        font-size: var(--type-h3);
+      }
+
+      .proto-address {
+        margin-top: var(--space-1);
+        color: var(--color-muted);
+        font-size: var(--type-sm);
+        font-style: normal;
+      }
+
+      .proto-details {
+        display: grid;
+        gap: var(--space-1);
+        margin: var(--space-3) 0 0;
+        padding-top: var(--space-2);
+        border-top: 1px solid var(--color-line);
+      }
+
+      .proto-details div {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+        gap: var(--space-2);
+      }
+
+      .proto-details dt {
+        color: var(--color-ink);
+        font-size: var(--type-xs);
+        font-weight: var(--weight-bold);
+      }
+
+      .proto-details dd {
+        margin: 0;
+        color: var(--color-muted);
+        font-size: var(--type-sm);
+        text-align: right;
+      }
+
+      .proto-details a {
+        color: var(--color-blue-dark);
+        font-weight: var(--weight-bold);
+      }
+
+      .proto-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-1);
+        margin-top: var(--space-3);
+      }
+
+      .proto-actions.proto-actions-single {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .proto-actions .button {
+        width: 100%;
+      }
+
+      .proto-footer {
+        padding: var(--space-4) 0 calc(var(--space-4) + var(--space-10));
+        color: var(--color-footer-text);
+        background: var(--color-navy);
+        text-align: center;
+      }
+
+      .proto-footer p {
+        margin: 0;
+      }
+
+      .proto-lightbox-backdrop {
+        position: fixed;
+        z-index: 100;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        padding: var(--space-2);
+        background: color-mix(in srgb, var(--color-navy) var(--proto-backdrop-opacity), transparent);
+      }
+
+      .proto-lightbox {
+        display: grid;
+        width: min(var(--proto-dialog-max), var(--proto-dialog-width));
+        height: min(var(--proto-dialog-height-max), var(--proto-dialog-height));
+        grid-template-rows: auto minmax(0, 1fr) auto;
+        gap: var(--space-2);
+        padding: var(--space-2);
+        color: var(--color-ink);
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius-panel);
+        box-shadow: var(--shadow);
+      }
+
+      .proto-lightbox-header {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        align-items: center;
+        gap: var(--space-2);
+      }
+
+      .proto-lightbox-header h2 {
+        margin: 0;
+        overflow: hidden;
+        font-size: var(--type-lead);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .proto-lightbox-counter {
+        color: var(--color-muted);
+        font-size: var(--type-sm);
+        font-weight: var(--weight-bold);
+        white-space: nowrap;
+      }
+
+      .proto-close-button,
+      .proto-photo-nav-button {
+        display: inline-flex;
+        min-width: var(--proto-control-size);
+        min-height: var(--proto-control-size);
+        align-items: center;
+        justify-content: center;
+        padding-inline: var(--space-2);
+        color: var(--color-ink);
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius-card);
+        font: inherit;
+        font-size: var(--type-label);
+        font-weight: var(--weight-bold);
+        cursor: pointer;
+      }
+
+      .proto-close-button:hover,
+      .proto-close-button:focus-visible,
+      .proto-photo-nav-button:hover,
+      .proto-photo-nav-button:focus-visible {
+        color: var(--color-surface);
+        background: var(--color-blue-dark);
+        border-color: var(--color-blue-dark);
+      }
+
+      .proto-lightbox-stage {
+        position: relative;
+        display: grid;
+        min-height: 0;
+        place-items: center;
+        overflow: hidden;
+        background: var(--color-navy);
+        border-radius: var(--radius-card);
+      }
+
+      .proto-lightbox-stage img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .proto-photo-nav-button {
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        transform: translateY(-50%);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .proto-photo-nav-button[data-direction="previous"] {
+        left: var(--space-2);
+      }
+
+      .proto-photo-nav-button[data-direction="next"] {
+        right: var(--space-2);
+      }
+
+      .proto-lightbox-thumbs {
+        margin-top: 0;
+      }
+
+      @media (min-width: 721px) {
+        .proto-main {
+          padding-block: var(--space-6) var(--space-10);
+        }
+
+        .proto-container,
+        .proto-header-inner {
+          width: min(var(--proto-page-max), calc(100% - var(--space-6)));
+        }
+
+        .proto-panel {
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          padding: var(--space-3);
+        }
+
+        .proto-tabs {
+          justify-content: center;
+        }
+
+        .proto-footer {
+          padding-bottom: var(--space-4);
+        }
+      }
+
+      @media (max-width: 720px) {
+        .proto-header-label {
+          display: none;
+        }
+
+        .proto-lightbox-backdrop {
+          padding: 0;
+        }
+
+        .proto-lightbox {
+          width: 100vw;
+          height: 100dvh;
+          gap: var(--space-1);
+          border: 0;
+          border-radius: 0;
+        }
+
+        .proto-lightbox-header {
+          gap: var(--space-1);
+        }
+
+        .proto-lightbox-header h2 {
+          font-size: var(--type-sm);
+        }
+
+        .proto-photo-nav-button {
+          top: auto;
+          bottom: var(--space-2);
+        }
+
+        .proto-photo-nav-button[data-direction="previous"] {
+          left: var(--space-1);
+        }
+
+        .proto-photo-nav-button[data-direction="next"] {
+          right: var(--space-1);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .proto-skip-link,
+        .proto-tab,
+        .proto-gallery-thumb,
+        .proto-more-button,
+        .proto-lightbox-thumb,
+        .proto-close-button,
+        .proto-photo-nav-button {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="proto-skip-link" href="#proto-main">Skip to prototype</a>
+
+    <div class="proto-page-shell" id="proto-page-shell">
+      <header class="proto-header">
+        <div class="proto-header-inner">
+          <a class="proto-brand" href="#proto-main" aria-label="Wash Bar location photo prototype">
+            <img src="assets/logo.png" alt="" width="518" height="490" />
+            <span>Wash Bar</span>
+          </a>
+          <span class="proto-header-label">Location photo experience</span>
+        </div>
+      </header>
+
+      <main class="proto-main" id="proto-main" tabindex="-1">
+        <div class="proto-container">
+          <aside class="proto-notice" aria-label="Prototype notice">
+            <strong>Location Photo Experience Prototype</strong>
+            <p>For client review only.</p>
+          </aside>
+
+          <aside class="proto-review-note" aria-labelledby="proto-review-title">
+            <strong id="proto-review-title">How to try this prototype</strong>
+            <p>Select a location and browse the store photos.</p>
+            <p>On desktop, hover or focus a thumbnail to preview it. Tap or click thumbnails to change the main photo. Open the full gallery from the large image or +N photos.</p>
+          </aside>
+
+          <section class="proto-experience" aria-labelledby="proto-experience-title">
+            <div class="proto-experience-heading">
+              <span class="eyebrow">Locations</span>
+              <h1 id="proto-experience-title">Choose a Wash Bar location</h1>
+            </div>
+
+            <div class="proto-tabs-wrap">
+              <div class="proto-tabs" role="tablist" aria-label="Wash Bar locations">
+                <button class="proto-tab" id="proto-tab-peel" type="button" role="tab" aria-selected="true" aria-controls="proto-location-panel" tabindex="0" data-location="peel">Peel Street</button>
+                <button class="proto-tab" id="proto-tab-racecourse" type="button" role="tab" aria-selected="false" aria-controls="proto-location-panel" tabindex="-1" data-location="racecourse">Racecourse Road</button>
+                <button class="proto-tab" id="proto-tab-spencer" type="button" role="tab" aria-selected="false" aria-controls="proto-location-panel" tabindex="-1" data-location="spencer">Spencer Street</button>
+                <button class="proto-tab" id="proto-tab-brunswick" type="button" role="tab" aria-selected="false" aria-controls="proto-location-panel" tabindex="-1" data-location="brunswick">Brunswick Street</button>
+                <button class="proto-tab" id="proto-tab-ascot-vale" type="button" role="tab" aria-selected="false" aria-controls="proto-location-panel" tabindex="-1" data-location="ascotVale">Ascot Vale Road</button>
+                <button class="proto-tab" id="proto-tab-east-windsor" type="button" role="tab" aria-selected="false" aria-controls="proto-location-panel" tabindex="-1" data-location="eastWindsor">East Windsor, USA</button>
+              </div>
+            </div>
+
+            <div class="proto-panel" id="proto-location-panel" role="tabpanel" aria-labelledby="proto-tab-peel" tabindex="0">
+              <div class="proto-media-column">
+                <button class="proto-primary-button" type="button" aria-label="Open Peel Street photo gallery, currently showing photo 1 of 8">
+                  <img src="assets/locations/north-melbourne/north-melbourne-01.webp" width="1040" height="780" alt="Wash Bar Peel Street storefront with laundry machines visible inside" decoding="async" />
+                </button>
+                <div class="proto-thumb-rail" aria-label="Peel Street photo previews"></div>
+              </div>
+
+              <div class="proto-store-content">
+                <span class="proto-status">Open daily</span>
+                <p class="proto-area">North Melbourne</p>
+                <h2>Peel Street</h2>
+                <address class="proto-address">138 Peel Street, Melbourne</address>
+                <dl class="proto-details">
+                  <div><dt>Hours</dt><dd>Open daily, 6:00 am–midnight</dd></div>
+                  <div><dt>Payment</dt><dd>Coin, card, Apple Pay &amp; Google Pay</dd></div>
+                  <div><dt>Phone</dt><dd><a href="tel:+61430455920">0430 455 920</a></dd></div>
+                </dl>
+                <div class="proto-actions">
+                  <a class="button" href="tel:+61430455920" aria-label="Call Wash Bar Peel Street at 0430 455 920">Call</a>
+                  <a class="button button-outline" href="https://www.google.com/maps/search/?api=1&amp;query=138%20Peel%20Street%2C%20Melbourne" target="_blank" rel="noopener noreferrer" aria-label="Get directions to Wash Bar Peel Street in Google Maps (opens in a new tab)">Directions</a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <footer class="proto-footer">
+        <div class="proto-container">
+          <p>Wash Bar location photo experience · Client-review prototype</p>
+        </div>
+      </footer>
+    </div>
+
+    <div class="proto-lightbox-backdrop" id="proto-lightbox-backdrop" hidden>
+      <section class="proto-lightbox" role="dialog" aria-modal="true" aria-labelledby="proto-lightbox-title">
+        <header class="proto-lightbox-header">
+          <h2 id="proto-lightbox-title" tabindex="-1">Peel Street photo gallery</h2>
+          <span class="proto-lightbox-counter" id="proto-lightbox-counter" aria-live="polite">1 of 8</span>
+          <button class="proto-close-button" id="proto-lightbox-close" type="button" aria-label="Close Peel Street photo gallery">Close</button>
+        </header>
+
+        <div class="proto-lightbox-stage">
+          <img id="proto-lightbox-image" src="assets/locations/north-melbourne/north-melbourne-01.webp" width="1040" height="780" alt="Wash Bar Peel Street storefront with laundry machines visible inside" decoding="async" />
+          <button class="proto-photo-nav-button" id="proto-lightbox-previous" type="button" data-direction="previous" aria-label="Previous Peel Street photo">Previous</button>
+          <button class="proto-photo-nav-button" id="proto-lightbox-next" type="button" data-direction="next" aria-label="Next Peel Street photo">Next</button>
+        </div>
+
+        <div class="proto-lightbox-thumbs" id="proto-lightbox-thumbs" aria-label="Peel Street gallery thumbnails"></div>
+      </section>
+    </div>
+
+    <script>
+      document.documentElement.classList.remove("no-js");
+      document.documentElement.classList.add("js");
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const visibleThumbnailCount = 6;
+        const sharedPhone = {
+          display: "0430 455 920",
+          href: "tel:+61430455920",
+        };
+        const sharedHours = "Open daily, 6:00 am–midnight";
+        const sharedPayment = "Coin, card, Apple Pay & Google Pay";
+
+        const locations = {
+          peel: {
+            tabId: "proto-tab-peel",
+            area: "North Melbourne",
+            store: "Peel Street",
+            address: "138 Peel Street, Melbourne",
+            hours: sharedHours,
+            payment: sharedPayment,
+            phone: sharedPhone,
+            directions: "https://www.google.com/maps/search/?api=1&query=138%20Peel%20Street%2C%20Melbourne",
+            images: [
+              ["assets/locations/north-melbourne/north-melbourne-01.webp", 1040, 780, "Wash Bar Peel Street storefront with laundry machines visible inside"],
+              ["assets/locations/north-melbourne/north-melbourne-03.webp", 1231, 966, "Washers and customer seating inside Wash Bar Peel Street"],
+              ["assets/locations/north-melbourne/north-melbourne-04.webp", 765, 1020, "Aisle between laundry machines inside Wash Bar Peel Street"],
+              ["assets/locations/north-melbourne/north-melbourne-05.webp", 1360, 1020, "Interior view towards the entrance of Wash Bar Peel Street"],
+              ["assets/locations/north-melbourne/north-melbourne-06.webp", 1360, 612, "Book shelf detail inside Wash Bar Peel Street"],
+              ["assets/locations/north-melbourne/north-melbourne-07.webp", 1360, 1020, "Row of front-loading washers inside Wash Bar Peel Street"],
+              ["assets/locations/north-melbourne/north-melbourne-08.jpg", 1040, 780, "Customer bench inside Wash Bar Peel Street"],
+              ["assets/locations/north-melbourne/north-melbourne-17.jpg", 1216, 913, "Laundry machines and timber wall inside Wash Bar Peel Street"],
+            ],
+          },
+          racecourse: {
+            tabId: "proto-tab-racecourse",
+            area: "Flemington",
+            store: "Racecourse Road",
+            address: "262 Racecourse Road, Flemington",
+            hours: sharedHours,
+            payment: sharedPayment,
+            phone: sharedPhone,
+            directions: "https://www.google.com/maps/search/?api=1&query=262%20Racecourse%20Road%2C%20Flemington",
+            images: [
+              ["assets/locations/flemington/flemington-01.webp", 1360, 764, "Wash Bar Racecourse Road interior with laundry machines and customer seating"],
+              ["assets/locations/flemington/flemington-03.webp", 941, 941, "Coin Laundrette storefront on Racecourse Road"],
+              ["assets/locations/flemington/flemington-02.webp", 765, 1020, "Laundry machines and folding bench inside Wash Bar Racecourse Road"],
+              ["assets/locations/flemington/flemington-04.jpg", 1521, 1141, "Row of washing machines inside Wash Bar Racecourse Road"],
+              ["assets/locations/flemington/flemington-06.jpg", 1521, 1141, "Wide interior and communal table at Wash Bar Racecourse Road"],
+              ["assets/locations/flemington/flemington-07.jpg", 1024, 768, "Entrance and service signs at Wash Bar Racecourse Road"],
+              ["assets/locations/flemington/flemington-08.jpg", 1521, 1141, "Books on a folding table at Wash Bar Racecourse Road"],
+              ["assets/locations/flemington/flemington-11.jpg", 1216, 913, "Stacked dryers beside a customer table at Wash Bar Racecourse Road"],
+            ],
+          },
+          spencer: {
+            tabId: "proto-tab-spencer",
+            area: "West Melbourne",
+            store: "Spencer Street",
+            address: "501 Spencer Street, Melbourne",
+            hours: sharedHours,
+            payment: sharedPayment,
+            phone: sharedPhone,
+            directions: "https://www.google.com/maps/search/?api=1&query=501%20Spencer%20Street%2C%20Melbourne",
+            images: [
+              ["assets/locations/west-melbourne/west-melbourne-01.webp", 1360, 1020, "Wash Bar Spencer Street interior with rows of laundry machines"],
+              ["assets/locations/west-melbourne/west-melbourne-02.webp", 1360, 1020, "Laundry aisle and change machine inside Wash Bar Spencer Street"],
+              ["assets/locations/west-melbourne/west-melbourne-03.webp", 1354, 1020, "Customer seating and folding area inside Wash Bar Spencer Street"],
+              ["assets/locations/west-melbourne/west-melbourne-04.webp", 574, 1020, "Wide interior view inside Wash Bar Spencer Street"],
+              ["assets/locations/west-melbourne/west-melbourne-05.jpg", 1080, 810, "Wash Bar Spencer Street laundrette storefront"],
+              ["assets/locations/west-melbourne/west-melbourne-07.jpg", 1521, 1141, "Washer controls inside Wash Bar Spencer Street"],
+              ["assets/locations/west-melbourne/west-melbourne-08.jpg", 1521, 2028, "Payment kiosk inside Wash Bar Spencer Street"],
+              ["assets/locations/west-melbourne/west-melbourne-10.jpg", 1216, 913, "Vending and customer seating area inside Wash Bar Spencer Street"],
+            ],
+          },
+          brunswick: {
+            tabId: "proto-tab-brunswick",
+            area: "Fitzroy",
+            store: "Brunswick Street",
+            address: "461 Brunswick Street, Fitzroy",
+            hours: sharedHours,
+            payment: sharedPayment,
+            phone: sharedPhone,
+            directions: "https://www.google.com/maps/search/?api=1&query=461%20Brunswick%20Street%2C%20Fitzroy",
+            images: [
+              ["assets/locations/fitzroy/fitzroy-01.webp", 1360, 765, "Wash Bar Brunswick Street interior with stacked dryers and a payment station"],
+              ["assets/locations/fitzroy/fitzroy-02.webp", 765, 1020, "Laundry machines and front windows at Wash Bar Brunswick Street"],
+              ["assets/locations/fitzroy/fitzroy-03.webp", 765, 1020, "Long interior aisle at Wash Bar Brunswick Street"],
+              ["assets/locations/fitzroy/fitzroy-04.webp", 1360, 612, "Row of washing machines at Wash Bar Brunswick Street"],
+              ["assets/locations/fitzroy/fitzroy-05.webp", 1360, 1020, "Large-capacity washers at Wash Bar Brunswick Street"],
+              ["assets/locations/fitzroy/fitzroy-11.jpg", 1521, 684, "Store noticeboard and facility details at Wash Bar Brunswick Street"],
+              ["assets/locations/fitzroy/fitzroy-14.jpg", 1521, 1141, "Book exchange detail at Wash Bar Brunswick Street"],
+              ["assets/locations/fitzroy/fitzroy-15.jpg", 1470, 828, "Rows of stainless-steel washers at Wash Bar Brunswick Street"],
+            ],
+          },
+          ascotVale: {
+            tabId: "proto-tab-ascot-vale",
+            area: "Ascot Vale",
+            store: "Ascot Vale Road",
+            address: "142 Ascot Vale Road, Flemington",
+            hours: sharedHours,
+            payment: sharedPayment,
+            phone: sharedPhone,
+            directions: "https://www.google.com/maps/search/?api=1&query=142%20Ascot%20Vale%20Road%2C%20Flemington",
+            images: [
+              ["assets/locations/ascot-vale/ascot-vale-01.webp", 1360, 1020, "Wash Bar Ascot Vale Road interior with laundry machines and customer seating"],
+              ["assets/locations/ascot-vale/ascot-vale-02.webp", 1280, 960, "Covered exterior of Wash Bar Ascot Vale Road"],
+              ["assets/locations/ascot-vale/ascot-vale-03.webp", 1360, 1020, "Laundry machines inside Wash Bar Ascot Vale Road"],
+              ["assets/locations/ascot-vale/ascot-vale-04.jpg", 1521, 856, "Wash Bar Ascot Vale Road storefront"],
+              ["assets/locations/ascot-vale/ascot-vale-06.jpg", 1521, 1141, "Folding table and covered customer area at Wash Bar Ascot Vale Road"],
+              ["assets/locations/ascot-vale/ascot-vale-08.jpg", 1521, 1141, "Row of washing machines inside Wash Bar Ascot Vale Road"],
+              ["assets/locations/ascot-vale/ascot-vale-11.jpg", 1521, 1145, "Large-capacity machines at Wash Bar Ascot Vale Road"],
+              ["assets/locations/ascot-vale/ascot-vale-12.jpg", 1521, 1141, "Customer folding bench inside Wash Bar Ascot Vale Road"],
+            ],
+          },
+          eastWindsor: {
+            tabId: "proto-tab-east-windsor",
+            area: "New Jersey, USA",
+            store: "East Windsor",
+            address: "370 US-130, East Windsor, NJ 08520, United States",
+            directions: "https://www.google.com/maps/search/?api=1&query=370%20US-130%2C%20East%20Windsor%2C%20NJ%2008520%2C%20United%20States",
+            images: [],
+          },
+        };
+
+        const tabs = Array.from(document.querySelectorAll(".proto-tab"));
+        const tabList = document.querySelector(".proto-tabs");
+        const panel = document.querySelector("#proto-location-panel");
+        const pageShell = document.querySelector("#proto-page-shell");
+        const backdrop = document.querySelector("#proto-lightbox-backdrop");
+        const dialog = backdrop.querySelector(".proto-lightbox");
+        const dialogTitle = document.querySelector("#proto-lightbox-title");
+        const dialogCounter = document.querySelector("#proto-lightbox-counter");
+        const dialogImage = document.querySelector("#proto-lightbox-image");
+        const dialogThumbs = document.querySelector("#proto-lightbox-thumbs");
+        const closeButton = document.querySelector("#proto-lightbox-close");
+        const previousButton = document.querySelector("#proto-lightbox-previous");
+        const nextButton = document.querySelector("#proto-lightbox-next");
+        const desktopHover = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+        let activeLocationKey = "peel";
+        let activeImageIndex = 0;
+        let openingControl = null;
+
+        function createImage(imageData, isPrimary = false) {
+          const [src, width, height, alt] = imageData;
+          const image = document.createElement("img");
+          image.src = src;
+          image.width = width;
+          image.height = height;
+          image.alt = alt;
+          image.decoding = "async";
+          if (!isPrimary) {
+            image.loading = "lazy";
+          }
+          return image;
+        }
+
+        function updateStatus(statusElement) {
+          try {
+            const parts = new Intl.DateTimeFormat("en-AU", {
+              timeZone: "Australia/Melbourne",
+              hour: "2-digit",
+              minute: "2-digit",
+              hourCycle: "h23",
+            }).formatToParts(new Date());
+            const hour = Number(parts.find((part) => part.type === "hour")?.value);
+            const minute = Number(parts.find((part) => part.type === "minute")?.value);
+            const currentMinutes = (hour * 60) + minute;
+            const isOpen = currentMinutes >= 360 && currentMinutes < 1440;
+            statusElement.textContent = isOpen ? "Open now" : "Closed";
+            statusElement.dataset.closed = String(!isOpen);
+          } catch {
+            statusElement.textContent = "Open daily";
+          }
+        }
+
+        function updateInlinePhoto(index) {
+          const location = locations[activeLocationKey];
+          if (!location.images.length) {
+            return;
+          }
+
+          activeImageIndex = index;
+          const primaryButton = panel.querySelector(".proto-primary-button");
+          const primaryImage = primaryButton.querySelector("img");
+          const [src, width, height, alt] = location.images[index];
+
+          primaryImage.src = src;
+          primaryImage.width = width;
+          primaryImage.height = height;
+          primaryImage.alt = alt;
+          primaryButton.setAttribute("aria-label", `Open ${location.store} photo gallery, currently showing photo ${index + 1} of ${location.images.length}`);
+
+          panel.querySelectorAll(".proto-gallery-thumb").forEach((thumb) => {
+            thumb.setAttribute("aria-pressed", String(Number(thumb.dataset.index) === index));
+          });
+        }
+
+        function createInlineThumbnail(location, imageData, index) {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "proto-gallery-thumb";
+          button.dataset.index = String(index);
+          button.setAttribute("aria-label", `Show ${location.store} photo ${index + 1} of ${location.images.length}`);
+          button.setAttribute("aria-pressed", String(index === activeImageIndex));
+          button.append(createImage(imageData));
+
+          button.addEventListener("click", () => updateInlinePhoto(index));
+          button.addEventListener("focus", () => updateInlinePhoto(index));
+          button.addEventListener("mouseenter", () => {
+            if (desktopHover.matches) {
+              updateInlinePhoto(index);
+            }
+          });
+
+          return button;
+        }
+
+        function createDetails(location) {
+          const details = document.createElement("dl");
+          details.className = "proto-details";
+
+          [
+            ["Hours", location.hours],
+            ["Payment", location.payment],
+          ].forEach(([term, value]) => {
+            if (!value) {
+              return;
+            }
+            const row = document.createElement("div");
+            const dt = document.createElement("dt");
+            const dd = document.createElement("dd");
+            dt.textContent = term;
+            dd.textContent = value;
+            row.append(dt, dd);
+            details.append(row);
+          });
+
+          if (location.phone) {
+            const row = document.createElement("div");
+            const dt = document.createElement("dt");
+            const dd = document.createElement("dd");
+            const link = document.createElement("a");
+            dt.textContent = "Phone";
+            link.href = location.phone.href;
+            link.textContent = location.phone.display;
+            dd.append(link);
+            row.append(dt, dd);
+            details.append(row);
+          }
+
+          return details;
+        }
+
+        function createActions(location) {
+          const actions = document.createElement("div");
+          actions.className = location.phone ? "proto-actions" : "proto-actions proto-actions-single";
+
+          if (location.phone) {
+            const callLink = document.createElement("a");
+            callLink.className = "button";
+            callLink.href = location.phone.href;
+            callLink.textContent = "Call";
+            callLink.setAttribute("aria-label", `Call Wash Bar ${location.store} at ${location.phone.display}`);
+            actions.append(callLink);
+          }
+
+          const directionsLink = document.createElement("a");
+          directionsLink.className = "button button-outline";
+          directionsLink.href = location.directions;
+          directionsLink.target = "_blank";
+          directionsLink.rel = "noopener noreferrer";
+          directionsLink.textContent = "Directions";
+          directionsLink.setAttribute("aria-label", `Get directions to Wash Bar ${location.store} in Google Maps (opens in a new tab)`);
+          actions.append(directionsLink);
+
+          return actions;
+        }
+
+        function renderLocation(locationKey) {
+          const location = locations[locationKey];
+          activeLocationKey = locationKey;
+          activeImageIndex = 0;
+
+          tabs.forEach((tab) => {
+            const isActive = tab.dataset.location === locationKey;
+            tab.setAttribute("aria-selected", String(isActive));
+            tab.tabIndex = isActive ? 0 : -1;
+          });
+
+          panel.replaceChildren();
+          panel.setAttribute("aria-labelledby", location.tabId);
+
+          const mediaColumn = document.createElement("div");
+          mediaColumn.className = "proto-media-column";
+
+          if (location.images.length) {
+            const primaryButton = document.createElement("button");
+            primaryButton.type = "button";
+            primaryButton.className = "proto-primary-button";
+            primaryButton.setAttribute("aria-label", `Open ${location.store} photo gallery, currently showing photo 1 of ${location.images.length}`);
+            primaryButton.append(createImage(location.images[0], true));
+            primaryButton.addEventListener("click", () => openLightbox(primaryButton));
+
+            const thumbRail = document.createElement("div");
+            thumbRail.className = "proto-thumb-rail";
+            thumbRail.setAttribute("aria-label", `${location.store} photo previews`);
+
+            location.images.slice(0, visibleThumbnailCount).forEach((imageData, index) => {
+              thumbRail.append(createInlineThumbnail(location, imageData, index));
+            });
+
+            const hiddenCount = location.images.length - visibleThumbnailCount;
+            if (hiddenCount > 0) {
+              const moreButton = document.createElement("button");
+              moreButton.type = "button";
+              moreButton.className = "proto-more-button";
+              moreButton.textContent = `+${hiddenCount}`;
+              moreButton.setAttribute("aria-label", `View all ${location.images.length} ${location.store} photos`);
+              moreButton.addEventListener("click", () => openLightbox(moreButton));
+              thumbRail.append(moreButton);
+            }
+
+            mediaColumn.append(primaryButton, thumbRail);
+          } else {
+            const placeholder = document.createElement("div");
+            placeholder.className = "proto-photo-placeholder";
+            placeholder.textContent = "Store photos coming soon";
+            mediaColumn.append(placeholder);
+          }
+
+          const content = document.createElement("div");
+          content.className = "proto-store-content";
+
+          if (location.hours) {
+            const status = document.createElement("span");
+            status.className = "proto-status";
+            status.textContent = "Open daily";
+            updateStatus(status);
+            content.append(status);
+          }
+
+          const area = document.createElement("p");
+          area.className = "proto-area";
+          area.textContent = location.area;
+
+          const heading = document.createElement("h2");
+          heading.textContent = location.store;
+
+          const address = document.createElement("address");
+          address.className = "proto-address";
+          address.textContent = location.address;
+
+          content.append(area, heading, address);
+
+          const details = createDetails(location);
+          if (details.children.length) {
+            content.append(details);
+          }
+          content.append(createActions(location));
+
+          panel.append(mediaColumn, content);
+        }
+
+        function renderLightbox() {
+          const location = locations[activeLocationKey];
+          const [src, width, height, alt] = location.images[activeImageIndex];
+
+          dialogTitle.textContent = `${location.area} · ${location.store}`;
+          dialogCounter.textContent = `${activeImageIndex + 1} of ${location.images.length}`;
+          dialogImage.src = src;
+          dialogImage.width = width;
+          dialogImage.height = height;
+          dialogImage.alt = alt;
+          closeButton.setAttribute("aria-label", `Close ${location.store} photo gallery`);
+          previousButton.setAttribute("aria-label", `Previous ${location.store} photo`);
+          nextButton.setAttribute("aria-label", `Next ${location.store} photo`);
+          dialogThumbs.setAttribute("aria-label", `${location.store} gallery thumbnails`);
+
+          dialogThumbs.replaceChildren();
+          location.images.forEach((imageData, index) => {
+            const thumb = document.createElement("button");
+            thumb.type = "button";
+            thumb.className = "proto-lightbox-thumb";
+            thumb.dataset.index = String(index);
+            thumb.setAttribute("aria-label", `Show ${location.store} gallery photo ${index + 1} of ${location.images.length}`);
+            thumb.setAttribute("aria-pressed", String(index === activeImageIndex));
+            thumb.append(createImage(imageData));
+            thumb.addEventListener("click", () => selectLightboxPhoto(index));
+            dialogThumbs.append(thumb);
+          });
+
+          const activeThumb = dialogThumbs.querySelector('[aria-pressed="true"]');
+          activeThumb?.scrollIntoView({ block: "nearest", inline: "center" });
+        }
+
+        function selectLightboxPhoto(index) {
+          const location = locations[activeLocationKey];
+          activeImageIndex = (index + location.images.length) % location.images.length;
+          updateInlinePhoto(activeImageIndex);
+          renderLightbox();
+        }
+
+        function openLightbox(opener) {
+          const location = locations[activeLocationKey];
+          if (!location.images.length) {
+            return;
+          }
+
+          openingControl = opener;
+          renderLightbox();
+          backdrop.hidden = false;
+          pageShell.inert = true;
+          document.body.classList.add("proto-gallery-open");
+          dialogTitle.focus();
+        }
+
+        function closeLightbox() {
+          if (backdrop.hidden) {
+            return;
+          }
+
+          backdrop.hidden = true;
+          pageShell.inert = false;
+          document.body.classList.remove("proto-gallery-open");
+          openingControl?.focus();
+          openingControl = null;
+        }
+
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", () => renderLocation(tab.dataset.location));
+        });
+
+        tabList.addEventListener("keydown", (event) => {
+          const currentIndex = tabs.indexOf(document.activeElement);
+          if (currentIndex === -1) {
+            return;
+          }
+
+          let nextIndex = currentIndex;
+          if (event.key === "ArrowRight") {
+            nextIndex = (currentIndex + 1) % tabs.length;
+          } else if (event.key === "ArrowLeft") {
+            nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+          } else if (event.key === "Home") {
+            nextIndex = 0;
+          } else if (event.key === "End") {
+            nextIndex = tabs.length - 1;
+          } else {
+            return;
+          }
+
+          event.preventDefault();
+          tabs[nextIndex].focus();
+          tabs[nextIndex].scrollIntoView({ block: "nearest", inline: "nearest" });
+        });
+
+        previousButton.addEventListener("click", () => selectLightboxPhoto(activeImageIndex - 1));
+        nextButton.addEventListener("click", () => selectLightboxPhoto(activeImageIndex + 1));
+        closeButton.addEventListener("click", closeLightbox);
+        backdrop.addEventListener("click", (event) => {
+          if (event.target === backdrop) {
+            closeLightbox();
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (backdrop.hidden) {
+            return;
+          }
+
+          if (event.key === "Escape") {
+            event.preventDefault();
+            closeLightbox();
+            return;
+          }
+
+          if (event.key === "ArrowLeft") {
+            event.preventDefault();
+            selectLightboxPhoto(activeImageIndex - 1);
+            return;
+          }
+
+          if (event.key === "ArrowRight") {
+            event.preventDefault();
+            selectLightboxPhoto(activeImageIndex + 1);
+            return;
+          }
+
+          if (event.key !== "Tab") {
+            return;
+          }
+
+          const focusable = Array.from(dialog.querySelectorAll('button:not([disabled]), [href], [tabindex]:not([tabindex="-1"])'));
+          if (!focusable.length) {
+            event.preventDefault();
+            dialogTitle.focus();
+            return;
+          }
+
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (!focusable.includes(document.activeElement)) {
+            event.preventDefault();
+            (event.shiftKey ? last : first).focus();
+          } else if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        });
+
+        renderLocation(activeLocationKey);
+      });
+    </script>
+  </body>
+</html>
