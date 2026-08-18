@@ -11,7 +11,7 @@
     <meta name="theme-color" content="#062242" />
     <title>Wash Bar Laundromat</title>
     <link rel="icon" href="assets/logo.png" type="image/png" />
-    <link rel="stylesheet" href="style.css?v=40" />
+    <link rel="stylesheet" href="style.css?v=43" />
   </head>
   <body>
 
@@ -89,6 +89,7 @@
       </section>
 
 
+
       <!-- Task strip: quick routing cards for the most common customer goals. -->
       <section class="task-strip" id="quick-actions" aria-label="Popular customer tasks">
         <div class="container task-grid">
@@ -114,6 +115,7 @@
           </a>
         </div>
       </section>
+
 
 
       <!-- Wash&Fold: preserves the established wash-and-fold service pathway. -->
@@ -146,6 +148,7 @@
       </section>
 
 
+
       <!-- Who We Serve: six confirmed customer segments presented as scannable service cards. -->
       <section class="section who-we-serve-section" id="who-we-serve" aria-labelledby="who-we-serve-title">
         <div class="container">
@@ -153,8 +156,8 @@
             <span class="eyebrow">What we offer</span>
             <h2 id="who-we-serve-title">Every laundry need, covered.</h2>
             <p class="who-desktop-intro">
-              From solo travellers to Melbourne's leading hospitals — Wash Bar
-              handles it all with speed and care.
+              From everyday washing to business laundry, choose what sounds like
+              you to see how Wash Bar can help.
             </p>
             <p class="who-mobile-intro">
               From everyday washing to business laundry, choose what sounds like
@@ -165,10 +168,10 @@
           <div class="segment-grid">
             <article class="segment-card">
               <span class="segment-icon" aria-hidden="true"><i data-lucide="washing-machine"></i></span>
-              <h3>Self-service laundry</h3>
+              <h3>Everyday customers</h3>
               <p>
-                Wash and dry a full load in under one hour. Card, coin, Apple Pay,
-                and Google Pay. Open 6am–midnight every day.
+                Wash and dry everyday loads your way with easy self-service machines and easy payment
+                by coin, card, Apple Pay or Google Pay.
               </p>
             </article>
 
@@ -219,186 +222,187 @@
             </article>
           </div>
 
-          <!-- JavaScript reveals this mobile disclosure view; the card grid remains the no-JS fallback. -->
-          <div class="who-accordion" data-who-accordion>
-            <div class="who-accordion-item">
-              <h3 class="who-accordion-heading">
-                <button
-                  class="who-accordion-trigger"
-                  id="who-everyday-trigger"
-                  type="button"
-                  aria-expanded="false"
-                  aria-controls="who-everyday-panel"
-                >
-                  <span class="who-accordion-trigger-content">
-                    <span class="segment-icon" aria-hidden="true"><i data-lucide="washing-machine"></i></span>
-                    <span>Everyday laundry customers</span>
-                  </span>
-                  <i class="who-accordion-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
-                </button>
-              </h3>
-              <div
-                class="who-accordion-panel"
-                id="who-everyday-panel"
-                role="region"
-                aria-labelledby="who-everyday-trigger"
-                hidden
-              >
-                <p>
-                  Wash and dry everyday loads your way with easy self-service
-                  machines and flexible payment by coin, card, Apple Pay or Google Pay.
-                </p>
-              </div>
-            </div>
 
-            <div class="who-accordion-item">
-              <h3 class="who-accordion-heading">
-                <button
-                  class="who-accordion-trigger"
-                  id="who-airbnb-trigger"
-                  type="button"
-                  aria-expanded="false"
-                  aria-controls="who-airbnb-panel"
-                >
-                  <span class="who-accordion-trigger-content">
-                    <span class="segment-icon" aria-hidden="true"><i data-lucide="home"></i></span>
-                    <span>Airbnb and short-stay hosts</span>
-                  </span>
-                  <i class="who-accordion-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
-                </button>
-              </h3>
-              <div
-                class="who-accordion-panel"
-                id="who-airbnb-panel"
-                role="region"
-                aria-labelledby="who-airbnb-trigger"
-                hidden
-              >
-                <p>
-                  Keep guest turnovers moving with a convenient option for linen,
-                  towels and everyday property laundry.
-                </p>
-              </div>
-            </div>
+                  <!-- JavaScript reveals this mobile disclosure view; the card grid remains the no-JS fallback. -->
+                  <div class="who-accordion" data-who-accordion>
+                    <div class="who-accordion-item">
+                      <h3 class="who-accordion-heading">
+                        <button
+                          class="who-accordion-trigger"
+                          id="who-everyday-trigger"
+                          type="button"
+                          aria-expanded="false"
+                          aria-controls="who-everyday-panel"
+                        >
+                          <span class="who-accordion-trigger-content">
+                            <span class="segment-icon" aria-hidden="true"><i data-lucide="washing-machine"></i></span>
+                            <span>Everyday laundry customers</span>
+                          </span>
+                          <i class="who-accordion-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
+                        </button>
+                      </h3>
+                      <div
+                        class="who-accordion-panel"
+                        id="who-everyday-panel"
+                        role="region"
+                        aria-labelledby="who-everyday-trigger"
+                        hidden
+                      >
+                        <p>
+                          Wash and dry everyday loads your way with easy self-service
+                          machines and flexible payment by coin, card, Apple Pay or Google Pay.
+                        </p>
+                      </div>
+                    </div>
 
-            <div class="who-accordion-item">
-              <h3 class="who-accordion-heading">
-                <button
-                  class="who-accordion-trigger"
-                  id="who-hotels-trigger"
-                  type="button"
-                  aria-expanded="false"
-                  aria-controls="who-hotels-panel"
-                >
-                  <span class="who-accordion-trigger-content">
-                    <span class="segment-icon" aria-hidden="true"><i data-lucide="building"></i></span>
-                    <span>Hotels and accommodation</span>
-                  </span>
-                  <i class="who-accordion-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
-                </button>
-              </h3>
-              <div
-                class="who-accordion-panel"
-                id="who-hotels-panel"
-                role="region"
-                aria-labelledby="who-hotels-trigger"
-                hidden
-              >
-                <p>
-                  Keep guest linen, towels and regular laundry moving with a
-                  flexible local laundry option.
-                </p>
-              </div>
-            </div>
+                    <div class="who-accordion-item">
+                      <h3 class="who-accordion-heading">
+                        <button
+                          class="who-accordion-trigger"
+                          id="who-airbnb-trigger"
+                          type="button"
+                          aria-expanded="false"
+                          aria-controls="who-airbnb-panel"
+                        >
+                          <span class="who-accordion-trigger-content">
+                            <span class="segment-icon" aria-hidden="true"><i data-lucide="home"></i></span>
+                            <span>Airbnb and short-stay hosts</span>
+                          </span>
+                          <i class="who-accordion-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
+                        </button>
+                      </h3>
+                      <div
+                        class="who-accordion-panel"
+                        id="who-airbnb-panel"
+                        role="region"
+                        aria-labelledby="who-airbnb-trigger"
+                        hidden
+                      >
+                        <p>
+                          Keep guest turnovers moving with a convenient option for linen,
+                          towels and everyday property laundry.
+                        </p>
+                      </div>
+                    </div>
 
-            <div class="who-accordion-item">
-              <h3 class="who-accordion-heading">
-                <button
-                  class="who-accordion-trigger"
-                  id="who-medical-trigger"
-                  type="button"
-                  aria-expanded="false"
-                  aria-controls="who-medical-panel"
-                >
-                  <span class="who-accordion-trigger-content">
-                    <span class="segment-icon" aria-hidden="true"><i data-lucide="heart-pulse"></i></span>
-                    <span>Medical and clinical</span>
-                  </span>
-                  <i class="who-accordion-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
-                </button>
-              </h3>
-              <div
-                class="who-accordion-panel"
-                id="who-medical-panel"
-                role="region"
-                aria-labelledby="who-medical-trigger"
-                hidden
-              >
-                <p>
-                  A convenient option for the regular laundry needs of clinics,
-                  practices and care environments.
-                </p>
-              </div>
-            </div>
+                    <div class="who-accordion-item">
+                      <h3 class="who-accordion-heading">
+                        <button
+                          class="who-accordion-trigger"
+                          id="who-hotels-trigger"
+                          type="button"
+                          aria-expanded="false"
+                          aria-controls="who-hotels-panel"
+                        >
+                          <span class="who-accordion-trigger-content">
+                            <span class="segment-icon" aria-hidden="true"><i data-lucide="building"></i></span>
+                            <span>Hotels and accommodation</span>
+                          </span>
+                          <i class="who-accordion-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
+                        </button>
+                      </h3>
+                      <div
+                        class="who-accordion-panel"
+                        id="who-hotels-panel"
+                        role="region"
+                        aria-labelledby="who-hotels-trigger"
+                        hidden
+                      >
+                        <p>
+                          Keep guest linen, towels and regular laundry moving with a
+                          flexible local laundry option.
+                        </p>
+                      </div>
+                    </div>
 
-            <div class="who-accordion-item">
-              <h3 class="who-accordion-heading">
-                <button
-                  class="who-accordion-trigger"
-                  id="who-wellness-trigger"
-                  type="button"
-                  aria-expanded="false"
-                  aria-controls="who-wellness-panel"
-                >
-                  <span class="who-accordion-trigger-content">
-                    <span class="segment-icon" aria-hidden="true"><i data-lucide="sparkles"></i></span>
-                    <span>Hair, beauty and wellness</span>
-                  </span>
-                  <i class="who-accordion-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
-                </button>
-              </h3>
-              <div
-                class="who-accordion-panel"
-                id="who-wellness-panel"
-                role="region"
-                aria-labelledby="who-wellness-trigger"
-                hidden
-              >
-                <p>
-                  Keep towels, robes and everyday business laundry ready for the
-                  next customer.
-                </p>
-              </div>
-            </div>
+                    <div class="who-accordion-item">
+                      <h3 class="who-accordion-heading">
+                        <button
+                          class="who-accordion-trigger"
+                          id="who-medical-trigger"
+                          type="button"
+                          aria-expanded="false"
+                          aria-controls="who-medical-panel"
+                        >
+                          <span class="who-accordion-trigger-content">
+                            <span class="segment-icon" aria-hidden="true"><i data-lucide="heart-pulse"></i></span>
+                            <span>Medical and clinical</span>
+                          </span>
+                          <i class="who-accordion-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
+                        </button>
+                      </h3>
+                      <div
+                        class="who-accordion-panel"
+                        id="who-medical-panel"
+                        role="region"
+                        aria-labelledby="who-medical-trigger"
+                        hidden
+                      >
+                        <p>
+                          A convenient option for the regular laundry needs of clinics,
+                          practices and care environments.
+                        </p>
+                      </div>
+                    </div>
 
-            <div class="who-accordion-item">
-              <h3 class="who-accordion-heading">
-                <button
-                  class="who-accordion-trigger"
-                  id="who-travel-trigger"
-                  type="button"
-                  aria-expanded="false"
-                  aria-controls="who-travel-panel"
-                >
-                  <span class="who-accordion-trigger-content">
-                    <span class="segment-icon" aria-hidden="true"><i data-lucide="luggage"></i></span>
-                    <span>Tourists and backpackers</span>
-                  </span>
-                  <i class="who-accordion-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
-                </button>
-              </h3>
-              <div
-                class="who-accordion-panel"
-                id="who-travel-panel"
-                role="region"
-                aria-labelledby="who-travel-trigger"
-                hidden
-              >
-                <p>
-                  Take care of your travel laundry quickly and get back to enjoying
-                  Melbourne.
-                </p>
-              </div>
+                    <div class="who-accordion-item">
+                      <h3 class="who-accordion-heading">
+                        <button
+                          class="who-accordion-trigger"
+                          id="who-wellness-trigger"
+                          type="button"
+                          aria-expanded="false"
+                          aria-controls="who-wellness-panel"
+                        >
+                          <span class="who-accordion-trigger-content">
+                            <span class="segment-icon" aria-hidden="true"><i data-lucide="sparkles"></i></span>
+                            <span>Hair, beauty and wellness</span>
+                          </span>
+                          <i class="who-accordion-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
+                        </button>
+                      </h3>
+                      <div
+                        class="who-accordion-panel"
+                        id="who-wellness-panel"
+                        role="region"
+                        aria-labelledby="who-wellness-trigger"
+                        hidden
+                      >
+                        <p>
+                          Keep towels, robes and everyday business laundry ready for the
+                          next customer.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="who-accordion-item">
+                      <h3 class="who-accordion-heading">
+                        <button
+                          class="who-accordion-trigger"
+                          id="who-travel-trigger"
+                          type="button"
+                          aria-expanded="false"
+                          aria-controls="who-travel-panel"
+                        >
+                          <span class="who-accordion-trigger-content">
+                            <span class="segment-icon" aria-hidden="true"><i data-lucide="luggage"></i></span>
+                            <span>Tourists and backpackers</span>
+                          </span>
+                          <i class="who-accordion-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
+                        </button>
+                      </h3>
+                      <div
+                        class="who-accordion-panel"
+                        id="who-travel-panel"
+                        role="region"
+                        aria-labelledby="who-travel-trigger"
+                        hidden
+                      >
+                        <p>
+                          Take care of your travel laundry quickly and get back to enjoying
+                          Melbourne.
+                        </p>
+                      </div>
             </div>
           </div>
         </div>

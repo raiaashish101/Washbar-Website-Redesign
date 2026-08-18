@@ -97,3 +97,24 @@ Blocker: no connected browser was available to capture the implementation and ru
 final result: blocked
 
 Blocker: no connected browser was available to capture a rendered desktop comparison against the supplied reference.
+
+---
+
+# Commercial Panel Typography Balance
+
+## Evidence
+
+- Source visual truth: conversation-attached Commercial clients reference.
+- Scope: typography hierarchy inside the existing dark commercial panel only.
+- Implementation screenshot: unavailable because neither the in-app browser nor connected Chrome was available.
+
+## Comparison
+
+- Removed the dark-panel-only H3 enlargement so both panel headings use the same shared H3 typography.
+- Reduced the two client-group headings by one type step so they remain subordinate to the panel heading.
+- Matched client-name pill typography to the industry-list typography on the light panel.
+- Preserved the panel layout, confirmed client names, pill treatment, CTA, spacing, and responsive behavior.
+
+final result: blocked
+
+Blocker: no connected browser was available for a same-viewport rendered comparison against the supplied reference.

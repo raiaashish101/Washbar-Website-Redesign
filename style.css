@@ -1189,6 +1189,9 @@ h1 {
   border: 1px solid var(--color-line);
 }
 
+
+
+
 /* Compact proof chips give business users reassurance before asking them to enquire. */
 .proof-mini-grid {
   display: grid;
@@ -1274,10 +1277,19 @@ h1 {
   overflow: hidden;
 }
 
+
+
+
+
+
 /* Commercial proof: industry categories and confirmed client groups stay scannable. */
 .commercial-client-grid {
   grid-template-columns: minmax(0, 1fr);
   align-items: stretch;
+}
+
+.commercial-client-grid .dark-panel {
+  padding-block-end: var(--space-5);
 }
 
 .commercial-panel {
@@ -1298,7 +1310,7 @@ h1 {
 
 .commercial-client-groups {
   display: grid;
-  gap: var(--space-5);
+  gap: var(--space-4);
 }
 
 .commercial-client-group {
@@ -1307,15 +1319,9 @@ h1 {
   min-width: 0;
 }
 
-.commercial-client-grid .dark-panel > h3 {
-  font-size: var(--md-sys-typescale-headline-medium-size);
-  font-weight: var(--weight-bold);
-  line-height: var(--md-sys-typescale-headline-medium-line-height);
-}
-
 .commercial-client-group h4 {
   margin: 0;
-  font-size: var(--type-h3);
+  font-size: var(--type-body);
   font-weight: var(--weight-bold);
   line-height: var(--line-snug);
 }
@@ -1332,17 +1338,25 @@ h1 {
   color: var(--color-sky);
   border-color: var(--color-commercial-pill-border);
   border-radius: var(--radius-pill);
-  font-size: var(--type-body);
+  font-size: var(--type-sm);
   font-weight: var(--weight-semibold);
-  line-height: var(--line-snug);
+  line-height: var(--md-sys-typescale-body-medium-line-height);
   text-align: center;
   white-space: normal;
 }
 
 .commercial-panel .button {
   width: 100%;
-  margin-top: auto;
 }
+
+.commercial-client-grid .dark-panel > .button {
+  margin-top: var(--space-5);
+}
+
+
+
+
+
 
 /* Founder journey: a restrained dark band gives the brand story a clear pause in the page flow. */
 .journey-section {
@@ -1409,6 +1423,10 @@ h1 {
   font-style: normal;
   font-weight: var(--weight-semibold);
 }
+
+
+
+
 
 /* Community: two distinct paths for creative collaboration and local impact. */
 .community-section {
@@ -1498,6 +1516,9 @@ h1 {
   width: 100%;
   margin-top: var(--space-2);
 }
+
+
+
 
 /* Location selector: accessible tabs enhance a stacked no-JavaScript fallback. */
 .locations-section {
@@ -1724,27 +1745,29 @@ h1 {
   width: 100%;
 }
 
+
+
 /* Franchise teaser: founder-led context and confirmed proof form a distinct high-consideration path. */
 .franchise-section {
   background-color: var(--color-navy);
   background-image: radial-gradient(
     circle at center,
     var(--color-footer-border) 0,
-    transparent var(--space-05)
+    transparent var(--space-08)
   );
   background-size: var(--space-4) var(--space-4);
   color: var(--color-surface);
 }
 
-.franchise-panel {
-  display: grid;
-  gap: var(--space-5);
-  align-items: center;
-}
+    .franchise-panel {
+      display: grid;
+      gap: var(--space-5);
+      align-items: center;
+    }
 
-.franchise-section .journey-copy {
-  max-width: none;
-}
+    .franchise-section .journey-copy {
+      max-width: none;
+    }
 
 .franchise-section .icon-list {
   margin-top: var(--space-4);
@@ -1781,6 +1804,7 @@ h1 {
 .quote-card p {
   color: var(--color-muted);
 }
+
 
 /* Review carousel: one featured story establishes hierarchy before supporting reviews. */
 .reviews-section {
@@ -2474,7 +2498,7 @@ h1 {
   }
 }
 
-/* Compact desktop: six audience cards form the approved two-row, three-column grid. */
+/* Compact desktop: six audience cards form two rows of three. */
 @media (min-width: 900px) {
   .segment-grid,
   .js .who-we-serve-section .segment-grid {
