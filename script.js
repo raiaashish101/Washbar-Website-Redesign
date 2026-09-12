@@ -35,9 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const customSelectMenu = customSelect?.querySelector(".custom-select-menu");
   const customSelectValue = customSelect?.querySelector("#custom-select-value");
   const customSelectOptions = Array.from(customSelect?.querySelectorAll('[role="option"]') || []);
-  const locationTabList = document.querySelector(".location-tabs[role='tablist']");
-  const locationTabs = Array.from(locationTabList?.querySelectorAll("[role='tab']") || []);
-  const locationPanels = Array.from(document.querySelectorAll(".location-tabpanel[role='tabpanel']"));
   const locationStatusBadges = Array.from(document.querySelectorAll(".status-live"));
   const reviewCarousel = document.querySelector("[data-review-carousel]");
   const reviewViewport = reviewCarousel?.querySelector("[data-review-viewport]");
@@ -51,7 +48,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const whoAccordionTriggers = Array.from(
     whoAccordion?.querySelectorAll(".who-accordion-trigger") || [],
   );
+  const storyReveals = Array.from(document.querySelectorAll(".story-reveal"));
   const desktopNavigationMedia = window.matchMedia("(min-width: 981px)");
+
+  if (storyReveals.length) {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+      storyReveals.forEach((section) => section.classList.add("is-visible"));
+    } else {
+      const storyObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      storyReveals.forEach((section) => storyObserver.observe(section));
+    }
+  }
 
   // Only one enquiry-type field participates in submission at a time.
   // The native select remains active when JavaScript is unavailable.
@@ -140,69 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- Location tabs ---
-
-  // The source HTML exposes every panel as a stacked no-JavaScript fallback.
-  // Once this enhancement is ready, only the selected panel remains visible.
-  if (locationTabList && locationTabs.length && locationPanels.length) {
-    function activateLocationTab(tab, shouldScroll = true) {
-      const panelId = tab.getAttribute("aria-controls");
-
-      locationTabs.forEach((locationTab) => {
-        const isActive = locationTab === tab;
-        locationTab.setAttribute("aria-selected", String(isActive));
-        locationTab.tabIndex = isActive ? 0 : -1;
-      });
-
-      locationPanels.forEach((panel) => {
-        const isActive = panel.id === panelId;
-        panel.hidden = !isActive;
-        panel.tabIndex = isActive ? 0 : -1;
-      });
-
-      if (shouldScroll) {
-        tab.scrollIntoView({ block: "nearest", inline: "nearest" });
-      }
-    }
-
-    locationTabs.forEach((tab) => {
-      tab.addEventListener("click", () => activateLocationTab(tab));
-    });
-
-    locationTabList.addEventListener("keydown", (event) => {
-      const currentIndex = locationTabs.indexOf(document.activeElement);
-      if (currentIndex === -1) {
-        return;
-      }
-
-      let nextIndex = currentIndex;
-
-      if (event.key === "ArrowRight") {
-        nextIndex = (currentIndex + 1) % locationTabs.length;
-      } else if (event.key === "ArrowLeft") {
-        nextIndex = (currentIndex - 1 + locationTabs.length) % locationTabs.length;
-      } else if (event.key === "Home") {
-        nextIndex = 0;
-      } else if (event.key === "End") {
-        nextIndex = locationTabs.length - 1;
-      } else if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        activateLocationTab(locationTabs[currentIndex]);
-        return;
-      } else {
-        return;
-      }
-
-      event.preventDefault();
-      locationTabs[nextIndex].focus();
-      locationTabs[nextIndex].scrollIntoView({ block: "nearest", inline: "nearest" });
-    });
-
-    const initialTab = locationTabs.find((tab) => tab.getAttribute("aria-selected") === "true") || locationTabs[0];
-    activateLocationTab(initialTab, false);
-    document.documentElement.classList.add("js-loaded");
-  }
-
   // --- Live location status ---
 
   // Calculate each badge in the store's timezone, rather than the visitor's.
@@ -251,6 +203,179 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --- Customer review carousel ---
+
+  // Store photos are ordinary image links until the native dialog is available.
+  document.querySelectorAll("[data-store-gallery]").forEach((gallery, galleryIndex) => {
+    const mainLink = gallery.querySelector("[data-gallery-main]");
+    const photoList = gallery.querySelector("[data-gallery-photos]");
+    const photoLinks = Array.from(photoList?.querySelectorAll("a") || []);
+    const dialog = document.createElement("dialog");
+    if (!mainLink || !photoLinks.length || typeof dialog.showModal !== "function") {
+      return;
+    }
+
+    const photos = photoLinks.map((link) => {
+      const image = link.querySelector("img");
+      return { src: link.href, alt: image.alt, width: image.width, height: image.height };
+    });
+    const name = gallery.dataset.galleryName;
+    const dialogId = `store-gallery-dialog-${galleryIndex}`;
+    let activeIndex = 0;
+    let opener = null;
+    let dialogThumbnails = [];
+    let pointerStartedOutside = false;
+
+    dialog.id = dialogId;
+    dialog.className = "gallery-dialog";
+    dialog.setAttribute("aria-labelledby", `${dialogId}-title`);
+    dialog.innerHTML = `
+      <div class="gallery-toolbar">
+        <h2 id="${dialogId}-title"></h2>
+        <div class="gallery-toolbar-controls">
+          <button class="gallery-icon-button" type="button" data-photo-previous aria-label="Previous photo" title="Previous photo"><i data-lucide="chevron-left" aria-hidden="true"></i></button>
+          <span class="gallery-counter" role="status" aria-live="polite" aria-atomic="true"></span>
+          <button class="gallery-icon-button" type="button" data-photo-next aria-label="Next photo" title="Next photo"><i data-lucide="chevron-right" aria-hidden="true"></i></button>
+          <button class="gallery-icon-button" type="button" data-photo-close aria-label="Close photo gallery" title="Close photo gallery"><i data-lucide="x" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <div class="gallery-stage"><img alt="" decoding="async" /></div>
+      <div class="gallery-thumbnails" aria-label="Photo previews"></div>`;
+    dialog.querySelector("h2").textContent = `${name} photos`;
+    const dialogImage = dialog.querySelector(".gallery-stage img");
+    const counter = dialog.querySelector(".gallery-counter");
+    const closeButton = dialog.querySelector("[data-photo-close]");
+    const dialogRail = dialog.querySelector(".gallery-thumbnails");
+    document.body.append(dialog);
+
+    const mainButton = document.createElement("button");
+    mainButton.type = "button";
+    mainButton.className = mainLink.className;
+    mainButton.setAttribute("aria-haspopup", "dialog");
+    mainButton.setAttribute("aria-controls", dialogId);
+    mainButton.append(mainLink.querySelector("img"));
+    mainLink.replaceWith(mainButton);
+    const mainImage = mainButton.querySelector("img");
+
+    function applyPhoto(image, photo) {
+      image.src = photo.src;
+      image.alt = photo.alt;
+      image.width = photo.width;
+      image.height = photo.height;
+    }
+
+    function selectPhoto(index) {
+      activeIndex = (index + photos.length) % photos.length;
+      applyPhoto(mainImage, photos[activeIndex]);
+      mainButton.setAttribute("aria-label", `Open ${name} photo gallery, photo ${activeIndex + 1} of ${photos.length}`);
+      previewButtons.forEach((button, i) => button.setAttribute("aria-pressed", String(i === activeIndex)));
+      dialogThumbnails.forEach((button, i) => button.setAttribute("aria-pressed", String(i === activeIndex)));
+      if (dialog.open) {
+        applyPhoto(dialogImage, photos[activeIndex]);
+        counter.textContent = `${activeIndex + 1} of ${photos.length}`;
+        dialogThumbnails[activeIndex]?.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "auto" });
+      }
+    }
+
+    function makeThumbnail(photo, index) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "gallery-thumbnail";
+      button.setAttribute("aria-label", `Photo ${index + 1}: ${photo.alt}`);
+      button.setAttribute("aria-pressed", "false");
+      const image = document.createElement("img");
+      applyPhoto(image, photo);
+      image.alt = "";
+      image.loading = "lazy";
+      button.append(image);
+      button.addEventListener("click", () => selectPhoto(index));
+      button.addEventListener("focus", () => selectPhoto(index));
+      button.addEventListener("pointerenter", (event) => {
+        if (event.pointerType === "mouse") {
+          selectPhoto(index);
+        }
+      });
+      return button;
+    }
+
+    const previewButtons = photoLinks.map((link, index) => {
+      const button = makeThumbnail(photos[index], index);
+      link.replaceWith(button);
+      if (index >= 4) {
+        button.parentElement.hidden = true;
+      }
+      return button;
+    });
+
+    function openGallery(source) {
+      opener = source;
+      if (!dialogThumbnails.length) {
+        dialogThumbnails = photos.map(makeThumbnail);
+        dialogRail.append(...dialogThumbnails);
+      }
+      document.body.classList.add("gallery-open");
+      dialog.showModal();
+      selectPhoto(activeIndex);
+      closeButton.focus({ preventScroll: true });
+    }
+
+    mainButton.addEventListener("click", () => openGallery(mainButton));
+    if (photos.length > 4) {
+      const moreItem = document.createElement("li");
+      const moreButton = document.createElement("button");
+      moreButton.type = "button";
+      moreButton.className = "gallery-thumbnail";
+      moreButton.textContent = `+${photos.length - 4}`;
+      moreButton.setAttribute("aria-label", `View all ${photos.length} ${name} photos`);
+      moreButton.setAttribute("aria-haspopup", "dialog");
+      moreButton.setAttribute("aria-controls", dialogId);
+      moreButton.addEventListener("click", () => openGallery(moreButton));
+      moreItem.append(moreButton);
+      photoList.append(moreItem);
+    }
+
+    closeButton.addEventListener("click", () => dialog.close());
+    dialog.querySelector("[data-photo-previous]").addEventListener("click", () => selectPhoto(activeIndex - 1));
+    dialog.querySelector("[data-photo-next]").addEventListener("click", () => selectPhoto(activeIndex + 1));
+    dialog.addEventListener("close", () => {
+      document.body.classList.remove("gallery-open");
+      opener?.focus({ preventScroll: true });
+    });
+
+    function isOutsideDialog(event) {
+      const rect = dialog.getBoundingClientRect();
+      return event.clientX < rect.left || event.clientX > rect.right
+        || event.clientY < rect.top || event.clientY > rect.bottom;
+    }
+    dialog.addEventListener("pointerdown", (event) => {
+      pointerStartedOutside = event.target === dialog && isOutsideDialog(event);
+    });
+    dialog.addEventListener("click", (event) => {
+      if (pointerStartedOutside && event.target === dialog && isOutsideDialog(event)) {
+        dialog.close();
+      }
+      pointerStartedOutside = false;
+    });
+    dialog.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+        event.preventDefault();
+        selectPhoto(activeIndex + (event.key === "ArrowRight" ? 1 : -1));
+      }
+      if (event.key === "Tab") {
+        const buttons = Array.from(dialog.querySelectorAll("button"));
+        const first = buttons[0];
+        const last = buttons[buttons.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    });
+    selectPhoto(0);
+    window.lucide?.createIcons();
+  });
 
   // Approved cards remain horizontally scrollable without JavaScript. This
   // enhancement adds buttons, position announcements, and arrow-key navigation.
@@ -411,7 +536,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // placeholder so they know what information is useful to include.
   // This removes the friction of arriving at a blank message box with no guidance.
   const placeholders = {
-    "Wash and fold":         "Tell us your preferred location, approximate load size, and when you need it.",
+    "Wash and fold":         "Ask a Wash & Fold question. To book, call your chosen store before dropping off your laundry.",
     "Commercial laundry":    "Tell us your business type, estimated weekly load, and preferred location.",
     "Community collaboration": "Tell us about your collaboration idea.",
     "Franchise opportunity": "Tell us your preferred city or country and your investment timeline.",

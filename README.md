@@ -15,7 +15,7 @@ professional experience. Face-to-face client discovery showed that the website
 also needed to support several different customer and business goals:
 
 - Help walk-in customers find a suitable Wash Bar location quickly.
-- Promote fast Wash & Fold enquiries.
+- Explain the phone-booked Wash & Fold workflow and route customers to a store.
 - Create a clearer pathway for commercial laundry enquiries.
 - Communicate the founders' journey and community involvement.
 - Support franchise interest across Melbourne and the United States.
@@ -47,7 +47,7 @@ journey.
 - Present walk-in, Wash & Fold, commercial, and franchise pathways clearly.
 - Remove all public pricing content in line with the client's direction.
 - Use only confirmed reviews, claims, locations, and client-approved content.
-- Introduce the founder and community stories without blocking practical tasks.
+- Give the founder story its own visual narrative page while keeping practical homepage tasks clear.
 - Provide an accessible, mobile-first experience using progressive enhancement.
 - Create a maintainable static website without frameworks or build tooling.
 
@@ -67,12 +67,12 @@ The approved Version 4 homepage order is:
 2. Hero
 3. Quick actions
 4. Core services
-5. Locations
+5. Who We Serve
 6. Real reviews
 7. Commercial clients
-8. Founder-story teaser
-9. Supporting Our Community
-10. Franchise teaser
+8. Supporting Our Community
+9. Franchise teaser
+10. Location discovery
 11. Enquiry form
 12. Footer
 
@@ -90,16 +90,16 @@ mobile action, and footer link following explicit client feedback.
 The replacement hierarchy focuses on services, locations, reviews, commercial
 support, and relevant enquiry paths.
 
-### Accessible six-location selector
+### Visual location discovery and dedicated store pages
 
-The location experience uses an ARIA tabs pattern with six location controls
-and one active detail panel. It supports:
+The homepage uses six image-led cards with area-first naming. Each whole card
+is one ordinary link to a dedicated location page. Store pages provide:
 
-- Mouse, touch, and keyboard input.
-- Arrow, Home, End, Enter, and Space keyboard behaviour.
-- Horizontally scrollable location controls on smaller screens.
-- Store image, address, hours, phone, call, and directions information.
-- A stacked no-JavaScript fallback.
+- Confirmed address, hours, payment, phone, Call, and Directions information.
+- A phone-booked Wash & Fold pathway where a store phone is confirmed.
+- A keyboard-accessible photo gallery over ordinary image-link fallbacks.
+- A truthful reduced-information East Windsor page while phone, hours, and
+  photography remain awaiting confirmation.
 - Timezone-aware live status only where the required hours are available.
 
 Location details remain subject to the confirmation status recorded in
@@ -120,12 +120,13 @@ permission. Community collaboration links pre-select the relevant enquiry type.
 Unconfirmed partnership statements and social links remain unavailable until
 approved.
 
-### Progressive founder storytelling
+### Dedicated founder storytelling
 
-The homepage introduces the founders' story through a concise teaser rather
-than reproducing the complete source email. The story connects the founders'
-experiences as international students to the values behind Wash Bar. Claims
-that still require evidence remain excluded from publication.
+The standalone `/our-story/` page connects the founders' experiences as
+international students to the values behind Wash Bar through short chapters,
+confirmed store imagery, and restrained scroll reveals. The homepage does not
+duplicate the founder-story teaser, and reduced-motion users receive the full
+story without reveal transitions.
 
 ### Context-aware enquiry form
 
@@ -154,7 +155,7 @@ Version 4 targets WCAG 2.1 AA and includes:
 - A keyboard-accessible navigation menu.
 - Visible `:focus-visible` states.
 - Native controls and ARIA only where needed.
-- Keyboard-operable location tabs and review controls.
+- Keyboard-operable location cards, store galleries, and review controls.
 - Properly labelled form fields and enquiry options.
 - Meaningful image alternatives and explicit image dimensions.
 - Safe external links with descriptive accessible names.
@@ -189,6 +190,8 @@ Washbar website Redesign/
 |   `-- V4-IA.md             # Approved homepage section order
 |-- AGENTS.md                # Permanent repository rules
 |-- index.html
+|-- locations/                # Six dedicated static store routes
+|-- our-story/                # Dedicated Version 4 founder-story route
 |-- style.css
 |-- script.js
 `-- README.md
@@ -229,7 +232,7 @@ notes use non-visible `CLIENT TO CONFIRM` comments as defined in `AGENTS.md`.
 Version 4 has not yet been measured against live business outcomes. Suitable
 future measures include:
 
-- Location-tab engagement and directions clicks.
+- Location-card engagement and store-page directions clicks.
 - Phone-call clicks.
 - Wash & Fold enquiry starts and submissions.
 - Commercial and franchise enquiry submissions.
@@ -243,7 +246,7 @@ These are proposed measures, not claims of achieved results.
 The current build is a working Version 4 prototype. Before production launch:
 
 1. Complete the design-validation gate for remaining or revised sections.
-2. Confirm every location address, phone number, opening schedule, and image.
+2. Confirm East Windsor's phone number and opening schedule.
 3. Obtain approval for outstanding community, commercial, and social content.
 4. Replace disabled development actions with confirmed destinations.
 5. Connect the enquiry form to an approved delivery service or backend.

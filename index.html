@@ -6,12 +6,12 @@
     <meta name="format-detection" content="telephone=no" />
     <meta
       name="description"
-      content="Wash Bar Laundromat in Melbourne. Walk-in self-service laundry, 1-hour wash and fold, commercial laundry, coin, card and mobile payment, and locations in Melbourne and the USA."
+      content="Wash Bar Laundromat. Self-service laundry, phone-booked Wash and Fold, commercial laundry, and six locations in Melbourne and the USA."
     />
     <meta name="theme-color" content="#062242" />
     <title>Wash Bar Laundromat</title>
     <link rel="icon" href="assets/logo.png" type="image/png" />
-    <link rel="stylesheet" href="style.css?v=43" />
+    <link rel="stylesheet" href="style.css?v=44" />
   </head>
   <body>
 
@@ -20,7 +20,7 @@
 
     <!-- Sticky site header keeps the most important actions visible while customers browse. -->
     <header class="site-header">
-      <nav class="nav container" aria-label="Main navigation">
+      <nav class="nav container" aria-label="Primary">
         <a class="brand" href="#home" aria-label="Wash Bar home">
           <img src="assets/logo.png" alt="" width="518" height="490" />
           <span>Wash Bar</span>
@@ -40,20 +40,18 @@
 
         <ul class="nav-links" id="primary-menu" role="list">
           <li><a href="#services">Services</a></li>
-          <!--<li><a href="#who-we-serve">Who We Serve</a></li>-->
           <li><a href="#reviews">Reviews</a></li>
           <li><a href="#commercial">Commercial</a></li>
-          <li><a href="#journey">Our Story</a></li>
+          <li><a href="our-story/index.html">Our Story</a></li>
           <li><a href="#franchise">Franchise</a></li>
           <li><a href="#locations">Locations</a></li>
-        </ul>
-
-        <a class="nav-call" href="tel:+61430455920" aria-label="Call Wash Bar at 0430 455 920">
+          <li><a class="nav-call" href="#enquiry">
           <svg class="nav-call-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="M6.6 2.8c.5-.2 1.1 0 1.3.5l2 4.6c.2.4.1.9-.3 1.2l-2.1 2.1c1.2 2.4 3.1 4.3 5.4 5.4l2.1-2.1c.3-.3.8-.5 1.2-.3l4.6 2c.5.2.8.8.5 1.3l-.9 3.2c-.2.5-.6.8-1.1.8C10.1 21.5 2.5 13.9 2.5 4.7c0-.5.3-1 .8-1.1l3.3-.8Z" />
           </svg>
           <span>Contact</span>
-        </a>
+          </a></li>
+        </ul>
       </nav>
     </header>
 
@@ -65,16 +63,16 @@
           <div class="hero-copy-block">
             <h1>
               Fresh, spotless laundry.
-              <span>Ready in 1 hour.</span>
+              <span>Six places to find us.</span>
             </h1>
             <p class="hero-copy">
-              Self-service laundry, fast Wash &amp; Fold, and six Wash Bar locations
+              Self-service laundry, phone-booked Wash &amp; Fold, and six Wash Bar locations
               across Melbourne and the USA.
             </p>
            
             <div class="hero-actions" aria-label="Primary actions">
               <a class="button" href="#locations">Find a location</a>
-              <a class="button button-secondary" href="#enquiry" data-enquiry-type="Wash and fold">Ask about Wash &amp; Fold</a>
+              <a class="button button-secondary" href="#locations">Wash &amp; Fold booking</a>
             </div>
           </div>
 
@@ -106,7 +104,7 @@
           <a href="#services" class="task-card">
             <span class="task-icon" aria-hidden="true"><i data-lucide="shirt"></i></span>
             <strong>Wash & fold</strong>
-            <span>Drop off and go</span>
+            <span>Call ahead to book</span>
           </a>
           <a href="#commercial" class="task-card">
             <span class="task-icon" aria-hidden="true"><i data-lucide="building-2"></i></span>
@@ -118,31 +116,23 @@
 
 
 
-      <!-- Wash&Fold: preserves the established wash-and-fold service pathway. -->
+      <!-- Wash & Fold is booked by phone with the customer's selected store. -->
       <section class="section split-section" id="services" aria-labelledby="services-title">
         <div class="container split-grid">
           <div class="image-card">
             <img src="assets/wasfold.png" alt="Hands folding clean white laundry in front of washing machines" loading="lazy" width="620" height="620" />
-            <div class="image-stat">
-              <strong>1 hour</strong>
-              <span>average turn around</span>
-            </div>
           </div>
           <div class="section-copy">
-            <span class="eyebrow">Fast wash & fold</span>
-            <h2 id="services-title">Wash & Fold, done in 1 hour.</h2>
-            <p>
-              Premium drop-off service designed for busy locals, students,
-              hotel guests, hospital visitors, and families who need quality
-              results without the wait.
-            </p>
-            <div class="proof-grid">
-              <p><span class="proof-icon" aria-hidden="true"><i data-lucide="clock-3"></i></span><strong>Fast service</strong><span>1-hour turnaround</span></p>
-              <p><span class="proof-icon" aria-hidden="true"><i data-lucide="badge-check"></i></span><strong>Professional</strong><span>Washed, dried, and folded</span></p>
-              <p><span class="proof-icon" aria-hidden="true"><i data-lucide="credit-card"></i></span><strong>Easy payment</strong><span>Coin, card, Apple Pay &amp; Google Pay</span></p>
-              <p><span class="proof-icon" aria-hidden="true"><i data-lucide="plane"></i></span><strong>Travel ready</strong><span>Great for short-stay visitors</span></p>
-            </div>
-            <a class="button" href="#enquiry" data-enquiry-type="Wash and fold">Ask about wash &amp; fold</a>
+            <span class="eyebrow">Wash &amp; Fold</span>
+            <h2 id="services-title">Book ahead. We wash, dry &amp; fold.</h2>
+            <p>Available at all Wash Bar stores. Call your chosen store before dropping off your laundry. Turnaround depends on booking and load.</p>
+          <ol class="wash-fold-steps">
+            <li><strong>Call ahead</strong><span>Book with your chosen Wash Bar store. Turnaround depends on booking and load.</span></li>
+            <li><strong>Drop off &amp; pay upfront</strong><span>Bring your laundry to the store and pay before the service.</span></li>
+            <li><strong>We wash, dry &amp; fold</strong><span>Wash Bar takes care of your laundry.</span></li>
+            <li><strong>Collect</strong><span>Return at the agreed collection time.</span></li>
+          </ol>
+            <a class="button" href="#locations">Find a location to book</a>
           </div>
         </div>
       </section>
@@ -179,8 +169,8 @@
               <span class="segment-icon" aria-hidden="true"><i data-lucide="home"></i></span>
               <h3>Airbnb and short-stay hosts</h3>
               <p>
-                Manage multiple properties with ease. Same-day turnaround on linen,
-                towels, and guest items.
+                Keep guest turnovers moving with a convenient option for linen,
+                towels and everyday property laundry.
               </p>
             </article>
 
@@ -627,30 +617,6 @@
       </section>
 
 
-      <!-- Founder story: condensed from the client-supplied source; final client approval is still required. -->
-      <section class="section journey-section" id="journey" aria-labelledby="journey-title">
-        <div class="container journey-layout">
-          <div class="journey-copy">
-            <span class="eyebrow">Our Journey</span>
-            <h2 id="journey-title">From one suitcase to a growing international brand</h2>
-            <p>
-              What began as an idea inspired by our own experiences using laundromats has
-              grown across Australia and the United States. As Wash Bar continues its journey,
-              the people we serve remain at the centre of it: students, families, migrants and
-              entrepreneurs building their own next chapter.
-            </p>
-            <div class="journey-actions">
-              <button class="button button-secondary journey-cta" type="button" disabled>Read Our Journey</button>
-              <!-- [CLIENT TO CONFIRM: Create and approve the About page before enabling this CTA] -->
-            </div>
-          </div>
-
-          <figure class="journey-quote">
-            <blockquote>“Success is not determined by where you start.”</blockquote>
-            <figcaption><cite>Dharm &amp; Deval, Founders</cite></figcaption>
-          </figure>
-        </div>
-      </section>
 
 
       <!-- Community: publish confirmed collaboration content without exposing awaiting partnership claims. -->
@@ -733,141 +699,63 @@
             </p>
             <div class="franchise-actions">
               <a class="button franchise-primary-cta" href="#enquiry" data-enquiry-type="Franchise opportunity">Franchise enquiry</a>
-              <a class="button button-outline" href="#journey">Read Our Journey</a>
+              <a class="button button-outline" href="our-story/index.html">Read Our Journey</a>
             </div>
           </div>
         </div>
       </section>
 
 
-      <!-- Locations: progressive tabs show one store at a time when JavaScript is available. -->
+      <!-- Location discovery: each card is one ordinary link, including without JavaScript. -->
       <section class="section locations-section" id="locations" aria-labelledby="locations-title">
         <div class="container">
           <div class="section-heading center">
             <span class="eyebrow">Locations</span>
             <h2 id="locations-title">Wash Bar locations</h2>
           </div>
-
-          <div class="location-tabs-wrap">
-            <div class="location-tabs" role="tablist" aria-label="Wash Bar locations">
-              <button class="location-tab" id="location-tab-peel" type="button" role="tab" aria-selected="true" aria-controls="location-panel-peel" tabindex="0">Peel Street</button>
-              <button class="location-tab" id="location-tab-racecourse" type="button" role="tab" aria-selected="false" aria-controls="location-panel-racecourse" tabindex="-1">Racecourse Road</button>
-              <button class="location-tab" id="location-tab-spencer" type="button" role="tab" aria-selected="false" aria-controls="location-panel-spencer" tabindex="-1">Spencer Street</button>
-              <button class="location-tab" id="location-tab-brunswick" type="button" role="tab" aria-selected="false" aria-controls="location-panel-brunswick" tabindex="-1">Brunswick Street</button>
-              <button class="location-tab" id="location-tab-ascot-vale" type="button" role="tab" aria-selected="false" aria-controls="location-panel-ascot-vale" tabindex="-1">Ascot Vale Road</button>
-              <button class="location-tab" id="location-tab-east-windsor" type="button" role="tab" aria-selected="false" aria-controls="location-panel-east-windsor" tabindex="-1">East Windsor, USA</button>
-            </div>
-          </div>
-
-          <div class="location-panels">
-            <div class="location-tabpanel" id="location-panel-peel" role="tabpanel" aria-labelledby="location-tab-peel" tabindex="0">
-              <img class="location-photo" src="assets/locations/north-melbourne/north-melbourne-01.webp" width="1040" height="780" alt="Wash Bar Peel Street storefront with laundry machines visible inside" loading="lazy" decoding="async" />
-              <div class="location-panel-content">
-                <span class="location-status status-live" data-time-zone="Australia/Melbourne" data-open-minutes="360" data-close-minutes="1440">Open daily</span>
-                <p class="location-area">North Melbourne</p>
-                <h3>Peel Street</h3>
-                <address>138 Peel Street, Melbourne</address>
-                <dl class="location-details">
-                  <div><dt>Hours</dt><dd>Open daily, 6:00 am–midnight</dd></div>
-                  <div><dt>Payment</dt><dd>Coin, card, Apple Pay & Google Pay</dd></div>
-                  <div><dt>Phone</dt><dd><a href="tel:+61430455920">0430 455 920</a></dd></div>
-                </dl>
-                <div class="location-actions">
-                  <a class="button" href="tel:+61430455920" aria-label="Call Wash Bar Peel Street at 0430 455 920">Call</a>
-                  <a class="button button-outline" href="https://www.google.com/maps/search/?api=1&amp;query=138%20Peel%20Street%2C%20Melbourne" target="_blank" rel="noopener noreferrer" aria-label="Get directions to Wash Bar Peel Street in Google Maps (opens in a new tab)">Directions</a>
-                </div>
+          <div class="location-discovery-grid">
+            <a class="location-discovery-card" href="locations/north-melbourne/index.html">
+              <img src="assets/locations/north-melbourne/north-melbourne-01.webp" width="1040" height="780" alt="" decoding="async" loading="lazy" />
+              <div class="location-discovery-copy">
+                <h3>North Melbourne</h3>
+                <span>Peel Street</span>
               </div>
-            </div>
-
-            <div class="location-tabpanel" id="location-panel-racecourse" role="tabpanel" aria-labelledby="location-tab-racecourse" tabindex="0">
-              <img class="location-photo" src="assets/locations/flemington/flemington-01.webp" width="1360" height="764" alt="Wash Bar Racecourse Road interior with laundry machines and customer seating" loading="lazy" decoding="async" />
-              <div class="location-panel-content">
-                <span class="location-status status-live" data-time-zone="Australia/Melbourne" data-open-minutes="360" data-close-minutes="1440">Open daily</span>
-                <p class="location-area">Flemington</p>
-                <h3>Racecourse Road</h3>
-                <address>262 Racecourse Road, Flemington</address>
-                <dl class="location-details">
-                  <div><dt>Hours</dt><dd>Open daily, 6:00 am–midnight</dd></div>
-                  <div><dt>Payment</dt><dd>Coin, card, Apple Pay & Google Pay</dd></div>
-                  <div><dt>Phone</dt><dd><a href="tel:+61430455920">0430 455 920</a></dd></div>
-                </dl>
-                <div class="location-actions">
-                  <a class="button" href="tel:+61430455920" aria-label="Call Wash Bar Racecourse Road at 0430 455 920">Call</a>
-                  <a class="button button-outline" href="https://www.google.com/maps/search/?api=1&amp;query=262%20Racecourse%20Road%2C%20Flemington" target="_blank" rel="noopener noreferrer" aria-label="Get directions to Wash Bar Racecourse Road in Google Maps (opens in a new tab)">Directions</a>
-                </div>
+            </a>
+            <a class="location-discovery-card" href="locations/flemington/index.html">
+              <img src="assets/locations/flemington/flemington-01.webp" width="1360" height="764" alt="" decoding="async" loading="lazy" />
+              <div class="location-discovery-copy">
+                <h3>Flemington</h3>
+                <span>Racecourse Road</span>
               </div>
-            </div>
-
-            <div class="location-tabpanel" id="location-panel-spencer" role="tabpanel" aria-labelledby="location-tab-spencer" tabindex="0">
-              <img class="location-photo" src="assets/locations/west-melbourne/west-melbourne-01.webp" width="1360" height="1020" alt="Wash Bar Spencer Street interior with rows of laundry machines" loading="lazy" decoding="async" />
-              <div class="location-panel-content">
-                <span class="location-status status-live" data-time-zone="Australia/Melbourne" data-open-minutes="360" data-close-minutes="1440">Open daily</span>
-                <p class="location-area">West Melbourne</p>
-                <h3>Spencer Street</h3>
-                <address>501 Spencer Street, Melbourne</address>
-                <dl class="location-details">
-                  <div><dt>Hours</dt><dd>Open daily, 6:00 am–midnight</dd></div>
-                  <div><dt>Payment</dt><dd>Coin, card, Apple Pay & Google Pay</dd></div>
-                  <div><dt>Phone</dt><dd><a href="tel:+61430455920">0430 455 920</a></dd></div>
-                </dl>
-                <div class="location-actions">
-                  <a class="button" href="tel:+61430455920" aria-label="Call Wash Bar Spencer Street at 0430 455 920">Call</a>
-                  <a class="button button-outline" href="https://www.google.com/maps/search/?api=1&amp;query=501%20Spencer%20Street%2C%20Melbourne" target="_blank" rel="noopener noreferrer" aria-label="Get directions to Wash Bar Spencer Street in Google Maps (opens in a new tab)">Directions</a>
-                </div>
+            </a>
+            <a class="location-discovery-card" href="locations/west-melbourne/index.html">
+              <img src="assets/locations/west-melbourne/west-melbourne-01.webp" width="1360" height="1020" alt="" decoding="async" loading="lazy" />
+              <div class="location-discovery-copy">
+                <h3>West Melbourne</h3>
+                <span>Spencer Street</span>
               </div>
-            </div>
-
-            <div class="location-tabpanel" id="location-panel-brunswick" role="tabpanel" aria-labelledby="location-tab-brunswick" tabindex="0">
-              <img class="location-photo" src="assets/locations/fitzroy/fitzroy-01.webp" width="1360" height="765" alt="Wash Bar Brunswick Street interior with stacked dryers and a payment station" loading="lazy" decoding="async" />
-              <div class="location-panel-content">
-                <span class="location-status status-live" data-time-zone="Australia/Melbourne" data-open-minutes="360" data-close-minutes="1440">Open daily</span>
-                <p class="location-area">Fitzroy</p>
-                <h3>Brunswick Street</h3>
-                <address>461 Brunswick Street, Fitzroy</address>
-                <dl class="location-details">
-                  <div><dt>Hours</dt><dd>Open daily, 6:00 am–midnight</dd></div>
-                  <div><dt>Payment</dt><dd>Coin, card, Apple Pay & Google Pay</dd></div>
-                  <div><dt>Phone</dt><dd><a href="tel:+61430455920">0430 455 920</a></dd></div>
-                </dl>
-                <div class="location-actions">
-                  <a class="button" href="tel:+61430455920" aria-label="Call Wash Bar Brunswick Street at 0430 455 920">Call</a>
-                  <a class="button button-outline" href="https://www.google.com/maps/search/?api=1&amp;query=461%20Brunswick%20Street%2C%20Fitzroy" target="_blank" rel="noopener noreferrer" aria-label="Get directions to Wash Bar Brunswick Street in Google Maps (opens in a new tab)">Directions</a>
-                </div>
+            </a>
+            <a class="location-discovery-card" href="locations/fitzroy/index.html">
+              <img src="assets/locations/fitzroy/fitzroy-01.webp" width="1360" height="765" alt="" decoding="async" loading="lazy" />
+              <div class="location-discovery-copy">
+                <h3>Fitzroy</h3>
+                <span>Brunswick Street</span>
               </div>
-            </div>
-
-            <div class="location-tabpanel" id="location-panel-ascot-vale" role="tabpanel" aria-labelledby="location-tab-ascot-vale" tabindex="0">
-              <img class="location-photo" src="assets/locations/ascot-vale/ascot-vale-01.webp" width="1360" height="1020" alt="Wash Bar Ascot Vale Road interior with laundry machines and customer seating" loading="lazy" decoding="async" />
-              <div class="location-panel-content">
-                <span class="location-status status-live" data-time-zone="Australia/Melbourne" data-open-minutes="360" data-close-minutes="1440">Open daily</span>
-                <p class="location-area">Ascot Vale</p>
-                <h3>Ascot Vale Road</h3>
-                <address>142 Ascot Vale Road, Flemington</address>
-                <dl class="location-details">
-                  <div><dt>Hours</dt><dd>Open daily, 6:00 am–midnight</dd></div>
-                  <div><dt>Payment</dt><dd>Coin, card, Apple Pay & Google Pay</dd></div>
-                  <div><dt>Phone</dt><dd><a href="tel:+61430455920">0430 455 920</a></dd></div>
-                </dl>
-                <div class="location-actions">
-                  <a class="button" href="tel:+61430455920" aria-label="Call Wash Bar Ascot Vale Road at 0430 455 920">Call</a>
-                  <a class="button button-outline" href="https://www.google.com/maps/search/?api=1&amp;query=142%20Ascot%20Vale%20Road%2C%20Flemington" target="_blank" rel="noopener noreferrer" aria-label="Get directions to Wash Bar Ascot Vale Road in Google Maps (opens in a new tab)">Directions</a>
-                </div>
+            </a>
+            <a class="location-discovery-card" href="locations/ascot-vale/index.html">
+              <img src="assets/locations/ascot-vale/ascot-vale-01.webp" width="1360" height="1020" alt="" decoding="async" loading="lazy" />
+              <div class="location-discovery-copy">
+                <h3>Ascot Vale</h3>
+                <span>Ascot Vale Road</span>
               </div>
-            </div>
-
-            <div class="location-tabpanel" id="location-panel-east-windsor" role="tabpanel" aria-labelledby="location-tab-east-windsor" tabindex="0">
-              <div class="location-photo-placeholder" aria-hidden="true"><i data-lucide="image"></i></div>
-              <div class="location-panel-content">
-                <p class="location-area">New Jersey, USA</p>
+            </a>
+            <a class="location-discovery-card" href="locations/east-windsor/index.html">
+              <img src="assets/East%20Windsor%203.webp" width="1360" height="1020" alt="" decoding="async" loading="lazy" />
+              <div class="location-discovery-copy">
                 <h3>East Windsor</h3>
-                <address>370 US-130, East Windsor, NJ 08520, United States</address>
-                <!-- [CLIENT TO CONFIRM: East Windsor opening hours and phone number] -->
-                <div class="location-actions location-actions-single">
-                  <a class="button button-outline" href="https://www.google.com/maps/search/?api=1&amp;query=370%20US-130%2C%20East%20Windsor%2C%20NJ%2008520%2C%20United%20States" target="_blank" rel="noopener noreferrer" aria-label="Get directions to Wash Bar East Windsor in Google Maps (opens in a new tab)">Directions</a>
-                </div>
+                <span>370 US-130</span>
               </div>
-              <!-- [CLIENT TO CONFIRM: East Windsor opening hours, phone number, store photograph, and image permission] -->
-            </div>
+            </a>
           </div>
         </div>
       </section>
@@ -880,14 +768,14 @@
             <span class="eyebrow">Enquiries</span>
             <h2>Tell Wash Bar what you need.</h2>
             <p>
-              Use this form for wash-and-fold, commercial laundry, community
+              Use this form for service questions, commercial laundry, community
               collaboration, or franchise interest. This prototype captures the
               conversion path; a live website would connect it to email or a CRM.
             </p>
             <nav class="enquiry-options" aria-label="Common enquiry paths">
-              <a class="enquiry-option" href="#enquiry" data-enquiry-type="Wash and fold">
-                <strong>Wash &amp; fold</strong>
-                <span>Ask about 1-hour turnaround</span>
+              <a class="enquiry-option" href="#locations">
+                <strong>Wash &amp; Fold booking</strong>
+                <span>Choose a store and call ahead</span>
               </a>
               <a class="enquiry-option" href="#enquiry" data-enquiry-type="Commercial laundry">
                 <strong>Commercial</strong>
@@ -1000,7 +888,7 @@
           <h3 id="footer-company-title">Company</h3>
           <ul role="list">
             <li><a href="#locations">Locations</a></li>
-            <li><a href="#journey">Our Journey</a></li>
+            <li><a href="our-story/index.html">Our Story</a></li>
             <li><a href="#community">Community</a></li>
             <li><a href="#franchise">Franchise</a></li>
             <li><a href="#enquiry">Contact</a></li>
@@ -1035,9 +923,8 @@
             </li>
           </ul>
           <ul class="footer-contact-list" role="list">
-            <li><a href="tel:+61430455920">0430 455 920</a></li>
+            <li>Australian stores: <a href="tel:+61430455920">0430 455 920</a></li>
             <li><a href="mailto:mail@wash-bar.com.au">mail@wash-bar.com.au</a></li>
-            <li>Open 365 days</li>
           </ul>
         </div>
       </div>
@@ -1049,7 +936,7 @@
     <!-- Mobile sticky bar: highest-value actions reachable with one thumb on small screens.
          Call replaces Home because the user is already on the site — calling is the action. -->
     <nav class="mobile-cta-bar" aria-label="Quick contact actions">
-      <a href="tel:+61430455920" aria-label="Call Wash Bar">Call</a>
+      <a href="#enquiry">Contact</a>
       <a href="#services">Services</a>
       <a href="#locations">Locations</a>
       <a href="#enquiry">Enquiry</a>
@@ -1062,6 +949,6 @@
       lucide.createIcons() is called inside script.js after DOMContentLoaded.
     -->
     <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
-    <script src="script.js?v=14" defer></script>
+    <script src="script.js?v=15" defer></script>
   </body>
 </html>

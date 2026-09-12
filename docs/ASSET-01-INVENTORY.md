@@ -2,14 +2,16 @@
 
 Audit date: 12 August 2026
 
+East Windsor mapping updated: 13 September 2026
+
 This inventory records the client-supplied source archive, mapping evidence,
 publication readiness, and the representative photograph used by the Version 4
 homepage. File sizes are exact bytes. Source files remain preserved under
 `assets/Store photos/`.
 
 The preserved client archive contains 62 files: 52 confidently mapped Melbourne
-location photographs, seven USA photographs awaiting a specific store mapping,
-and three franchise-page files that do not identify a location. The organised
+location photographs, seven USA photographs now mapped to East Windsor by the
+project owner, and three franchise-page files that do not identify a location. The organised
 production folders also retain 22 WebP assets that pre-date this client archive;
 these are production media, not additional newly supplied originals.
 
@@ -33,7 +35,7 @@ these are production media, not additional newly supplied originals.
 | Spencer Street | `assets/locations/west-melbourne/west-melbourne-01.webp` | WebP | 1360×1020 | 229,946 B | `width="1360" height="1020"`, meaningful alt, `loading="lazy"`, `decoding="async"` | Resolves |
 | Brunswick Street | `assets/locations/fitzroy/fitzroy-01.webp` | WebP | 1360×765 | 156,606 B | `width="1360" height="765"`, meaningful alt, `loading="lazy"`, `decoding="async"` | Resolves |
 | Ascot Vale Road | `assets/locations/ascot-vale/ascot-vale-01.webp` | WebP | 1360×1020 | 257,896 B | `width="1360" height="1020"`, meaningful alt, `loading="lazy"`, `decoding="async"` | Resolves |
-| East Windsor | Existing non-image placeholder | — | — | — | Decorative placeholder is hidden from assistive technology | Awaiting store mapping confirmation |
+| East Windsor | `assets/East Windsor 3.webp` plus six gallery images | WebP | 1360×1020 | 225,546 B | `width="1360" height="1020"`, meaningful alt on the location page, decorative alt on the homepage card, `loading="lazy"` where appropriate, `decoding="async"` | Resolves |
 
 ## Broken legacy references repaired
 
@@ -56,7 +58,7 @@ normalised production structure and its only application reference was updated.
 | `Store photos/West Melbourne/` | Spencer Street | HIGH | Client folder identifies West Melbourne and storefront photography visibly shows street number 501. |
 | `Store photos/Ascot vale/` | Ascot Vale Road | HIGH | Client folder and storefront signage identify the Ascot Vale store. |
 | `Store photos/Fitzroy/` | Brunswick Street | HIGH | Client folder identifies Fitzroy and the current model has one Fitzroy store. |
-| `Store photos/USA/` | East Windsor candidate | MEDIUM | Images clearly depict a Wash Bar USA interior, but no visible address or source metadata ties them specifically to East Windsor. Do not publish yet. |
+| `Store photos/USA/` | East Windsor | HIGH | Project owner confirmed on 13 September 2026 that the seven images depict East Windsor. Root-level `East Windsor 1.webp` through `East Windsor 7.webp` are byte-for-byte duplicates used by the published page. |
 | `Store photos/franchise page/` | Not a location group | UNKNOWN | Folder describes future franchise-page use and does not identify a store. Out of scope for ASSET-01. |
 
 ## Client source inventory

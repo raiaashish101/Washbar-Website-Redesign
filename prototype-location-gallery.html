@@ -130,6 +130,35 @@
         line-height: var(--line-tight);
       }
 
+      .proto-location-select-wrap {
+        margin-top: var(--space-4);
+      }
+
+      .proto-location-select {
+        width: 100%;
+        min-height: var(--space-7);
+        padding-inline: var(--space-2);
+        color: var(--color-ink);
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: var(--radius-card);
+        font: inherit;
+        font-weight: var(--weight-bold);
+        cursor: pointer;
+      }
+
+      .proto-location-select:hover {
+        border-color: var(--color-blue);
+      }
+
+      .no-js .proto-location-select-wrap {
+        display: none;
+      }
+
+      .js .proto-tabs-wrap {
+        display: none;
+      }
+
       .proto-tabs-wrap {
         margin-top: var(--space-4);
         padding-bottom: var(--space-1);
@@ -508,6 +537,14 @@
           padding-block: var(--space-6) var(--space-10);
         }
 
+        .proto-location-select-wrap {
+          display: none;
+        }
+
+        .js .proto-tabs-wrap {
+          display: block;
+        }
+
         .proto-container,
         .proto-header-inner {
           width: min(var(--proto-page-max), calc(100% - var(--space-6)));
@@ -611,6 +648,18 @@
             <div class="proto-experience-heading">
               <span class="eyebrow">Locations</span>
               <h1 id="proto-experience-title">Choose a Wash Bar location</h1>
+            </div>
+
+            <div class="proto-location-select-wrap">
+              <label class="sr-only" for="proto-location-select">Choose a Wash Bar location</label>
+              <select class="proto-location-select" id="proto-location-select" aria-controls="proto-location-panel">
+                <option value="peel">Peel Street</option>
+                <option value="racecourse">Racecourse Road</option>
+                <option value="spencer">Spencer Street</option>
+                <option value="brunswick">Brunswick Street</option>
+                <option value="ascotVale">Ascot Vale Road</option>
+                <option value="eastWindsor">East Windsor, USA</option>
+              </select>
             </div>
 
             <div class="proto-tabs-wrap">
@@ -803,6 +852,7 @@
 
         const tabs = Array.from(document.querySelectorAll(".proto-tab"));
         const tabList = document.querySelector(".proto-tabs");
+        const locationSelect = document.querySelector("#proto-location-select");
         const panel = document.querySelector("#proto-location-panel");
         const pageShell = document.querySelector("#proto-page-shell");
         const backdrop = document.querySelector("#proto-lightbox-backdrop");
@@ -815,6 +865,7 @@
         const previousButton = document.querySelector("#proto-lightbox-previous");
         const nextButton = document.querySelector("#proto-lightbox-next");
         const desktopHover = window.matchMedia("(hover: hover) and (pointer: fine)");
+        const mobileLocationSelector = window.matchMedia("(max-width: 720px)");
 
         let activeLocationKey = "peel";
         let activeImageIndex = 0;
@@ -956,10 +1007,17 @@
           return actions;
         }
 
+        function updatePanelSemantics(location) {
+          const isMobileSelectorActive = mobileLocationSelector.matches;
+          panel.setAttribute("role", isMobileSelectorActive ? "region" : "tabpanel");
+          panel.setAttribute("aria-labelledby", isMobileSelectorActive ? "proto-location-title" : location.tabId);
+        }
+
         function renderLocation(locationKey) {
           const location = locations[locationKey];
           activeLocationKey = locationKey;
           activeImageIndex = 0;
+          locationSelect.value = locationKey;
 
           tabs.forEach((tab) => {
             const isActive = tab.dataset.location === locationKey;
@@ -968,7 +1026,6 @@
           });
 
           panel.replaceChildren();
-          panel.setAttribute("aria-labelledby", location.tabId);
 
           const mediaColumn = document.createElement("div");
           mediaColumn.className = "proto-media-column";
@@ -1024,6 +1081,7 @@
           area.textContent = location.area;
 
           const heading = document.createElement("h2");
+          heading.id = "proto-location-title";
           heading.textContent = location.store;
 
           const address = document.createElement("address");
@@ -1039,6 +1097,7 @@
           content.append(createActions(location));
 
           panel.append(mediaColumn, content);
+          updatePanelSemantics(location);
         }
 
         function renderLightbox() {
@@ -1108,6 +1167,14 @@
 
         tabs.forEach((tab) => {
           tab.addEventListener("click", () => renderLocation(tab.dataset.location));
+        });
+
+        locationSelect.addEventListener("change", () => {
+          renderLocation(locationSelect.value);
+        });
+
+        mobileLocationSelector.addEventListener("change", () => {
+          updatePanelSemantics(locations[activeLocationKey]);
         });
 
         tabList.addEventListener("keydown", (event) => {
