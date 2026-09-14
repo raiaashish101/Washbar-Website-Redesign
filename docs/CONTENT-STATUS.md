@@ -18,7 +18,7 @@
 | Web-ready franchise teaser copy | CONFIRMED | Approved for V4 homepage franchise section. Derived from client-supplied founder story email. |
 | Supporting Our Community source email | CLIENT CONFIRMED | Stored unedited in content/community.md. |
 | Creative collaborations copy | PROJECT APPROVED | Prototype only. Requires final client sign-off. |
-| Cancer Council copy | AWAITING | Client supplied wording. Verify the relationship and wording before publication. |
+| Cancer Council Victoria fundraising copy | CLIENT CONFIRMED | Public naming is approved. Wash Bar dedicates one fundraising day during summer and donates 100% of the money raised that day to Cancer Council Victoria for cancer research and development. No event date or recurrence schedule is confirmed. |
 | Six location addresses | CLIENT CONFIRMED | Confirmed correct 7 August 2026. |
 | Opening hours (6am–midnight all Melbourne stores) | CLIENT CONFIRMED | Confirmed correct 7 August 2026. |
 | Australian store phone number | CLIENT CONFIRMED | 0430 455 920 confirmed for the five Australian stores in the canonical location records on 7 August 2026. Do not apply this number to East Windsor. |

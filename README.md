@@ -114,11 +114,11 @@ with Version 4 content rules or lacks an approved source is not published.
 
 ### Commercial and community pathways
 
-Commercial content uses confirmed industry categories and safe category-level
-trust language while named organisations and logos await publication
-permission. Community collaboration links pre-select the relevant enquiry type.
-Unconfirmed partnership statements and social links remain unavailable until
-approved.
+Commercial content uses confirmed industry categories and approved text-only
+client names. The Community section leads with the confirmed Cancer Council
+Victoria summer fundraising-day arrangement, followed by the creative
+collaboration pathway. Community collaboration links pre-select the relevant
+enquiry type.
 
 ### Dedicated founder storytelling
 
@@ -133,6 +133,15 @@ story without reveal transitions.
 Calls to action can pre-select the appropriate enquiry type for Wash & Fold,
 commercial laundry, franchise interest, or community collaboration. This
 reduces repeated decisions and provides more relevant message guidance.
+Until a delivery backend is connected, the form preserves entered details and
+offers direct Call and Email actions without claiming that an enquiry was sent.
+
+### Responsive navigation
+
+Desktop navigation uses Services, Reviews, Commercial, Our Story, Franchise,
+Locations, and a text-only Contact action. The mobile dropdown omits Contact
+and ends with Locations; the sticky mobile bar provides equal-width Services,
+Locations, and Enquiry actions.
 
 ## Visual Direction
 
@@ -247,7 +256,7 @@ The current build is a working Version 4 prototype. Before production launch:
 
 1. Complete the design-validation gate for remaining or revised sections.
 2. Confirm East Windsor's phone number and opening schedule.
-3. Obtain approval for outstanding community, commercial, and social content.
+3. Obtain approval for any remaining content specifically marked as awaiting.
 4. Replace disabled development actions with confirmed destinations.
 5. Connect the enquiry form to an approved delivery service or backend.
 6. Complete the responsive, accessibility, no-JavaScript, and browser QA list.

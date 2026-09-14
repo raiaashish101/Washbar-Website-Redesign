@@ -14,6 +14,14 @@ Together, we can create meaningful experiences and help our communities grow.
 
 ## Edited version for web
 
+### Making a difference
+
+Wash Bar dedicates a fundraising day during summer to support Cancer Council
+Victoria. 100% of the money raised that day is donated to Cancer Council
+Victoria to support cancer research and development.
+
+**CTA label:** See fundraising updates
+
 ### Creative collaborations
 
 Wash Bar welcomes collaboration ideas from creative studios, artists, dancers,
@@ -22,11 +30,3 @@ planning a creative project or community initiative, the team would love to
 hear your idea.
 
 **CTA label:** Share a collaboration idea
-
-### Making a difference
-
-Wash Bar supports Cancer Council Victoria and Cancer Council Australia through
-free Wash & Dry fundraising events. Proceeds from these initiatives support
-cancer research, prevention and services for people affected by cancer.
-
-**CTA label:** Follow us on Instagram

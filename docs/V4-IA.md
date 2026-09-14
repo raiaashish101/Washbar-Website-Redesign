@@ -32,8 +32,10 @@
 The Version 4 order is Services, Reviews, Commercial, Our Story, Franchise,
 Locations, and Contact. Our Story routes to `/our-story/`; the other content
 links route to their homepage sections. Contact is the final primary action and
-routes to `#enquiry`. Community remains secondary navigation while its factual
-content is awaiting confirmation.
+routes to `#enquiry` on desktop. The mobile dropdown intentionally ends with
+Locations because Enquiry remains available in the sticky mobile action bar.
+That bar contains three equal actions: Services, Locations, and Enquiry.
+Community remains secondary navigation.
 
 ## Dedicated routes
 

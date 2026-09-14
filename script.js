@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const mainContent = document.querySelector("#main-content");
   const enquiryForm  = document.querySelector(".enquiry-form");
   const formMessage  = document.querySelector(".form-message");
+  const formCompletionActions = document.querySelector("[data-form-completion-actions]");
   const nativeEnquirySelect = document.querySelector("#enquiry-type-native");
   const enquiryTypeInput = document.querySelector("input[name='enquiryType']");
   const messageTextarea   = document.querySelector("textarea[name='message']");
@@ -570,6 +571,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     enquiryTypeInput.value = type || "";
     customSelectValue.textContent = type || "Choose one";
+    if (formCompletionActions) {
+      formCompletionActions.hidden = true;
+    }
     if (type) {
       customSelectButton?.setAttribute("aria-invalid", "false");
       if (formMessage) {
@@ -671,36 +675,31 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- Prototype form feedback ---
+  // --- Enquiry form feedback ---
 
-  // Shows a success message without sending real customer data anywhere.
-  // A live site would POST to an email service or CRM endpoint instead.
+  // Keep entered details available because no delivery endpoint is connected yet.
   if (enquiryForm && formMessage) {
     enquiryForm.addEventListener("submit", (event) => {
       event.preventDefault();
 
       if (!enquiryTypeInput?.value) {
         formMessage.textContent = "Please choose an enquiry type.";
+        if (formCompletionActions) {
+          formCompletionActions.hidden = true;
+        }
         customSelectButton?.setAttribute("aria-invalid", "true");
         customSelectButton?.focus();
         return;
       }
 
-      const formData    = new FormData(enquiryForm);
-      const enquiryType = formData.get("enquiryType");
-
-      formMessage.textContent = `Thanks. Your ${enquiryType || "Wash Bar"} enquiry is ready to be sent in the live site build.`;
-      enquiryForm.reset();
-      setEnquiryType("");
-
-      // Reset the placeholder back to the default after the form clears.
-      if (messageTextarea) {
-        messageTextarea.placeholder = "Your message";
+      formMessage.textContent = "Thanks — your details are ready. Please call or email Wash Bar to complete your enquiry.";
+      if (formCompletionActions) {
+        formCompletionActions.hidden = false;
       }
     });
 
-    // The static baseline exposes direct call/email actions. Reveal the form
-    // only after its non-submitting prototype handler is safely attached.
+    // The no-JavaScript baseline exposes direct call/email actions. Reveal the
+    // enhanced form only after its local feedback handler is safely attached.
     enquiryForm.hidden = false;
   }
 
