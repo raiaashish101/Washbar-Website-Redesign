@@ -1,9 +1,10 @@
 # Wash Bar Locations
 
 All displayed addresses and all listed Melbourne hours and phone numbers were
-confirmed as correct by the project owner on 8 August 2026. East Windsor hours,
-phone number, and store photograph remain `AWAITING` because their values have
-not been supplied.
+confirmed as correct by the project owner on 8 August 2026. East Windsor hours
+and phone number remain `AWAITING` because their values have not been supplied.
+The East Windsor store photographs were explicitly confirmed by the client on
+15 September 2026.
 
 This document is the canonical source for facts repeated on the homepage and
 the six static location pages. Wash & Fold is confirmed at every store: book
@@ -76,6 +77,6 @@ but must not show a booking action until its phone number is confirmed.
 - Address: 370 US-130, East Windsor, NJ 08520, United States — `CONFIRMED`
 - Hours: <!-- [CLIENT TO CONFIRM: East Windsor opening hours] -->
 - Phone: <!-- [CLIENT TO CONFIRM: East Windsor phone number] -->
-- Homepage photograph: `assets/East Windsor 3.webp` — `PROJECT APPROVED`, confirmed by the project owner as East Windsor photography on 13 September 2026
-- Additional photographs: `assets/East Windsor 1.webp` through `assets/East Windsor 7.webp` — `PROJECT APPROVED`; all seven are published in the East Windsor gallery
+- Homepage photograph: `assets/East Windsor 3.webp` — `CLIENT CONFIRMED`; mapped by the project owner on 13 September 2026 and explicitly confirmed by the client on 15 September 2026
+- Additional photographs: `assets/East Windsor 1.webp` through `assets/East Windsor 7.webp` — `CLIENT CONFIRMED`; all seven are published in the East Windsor gallery
 - Published actions: Directions only; no Call or Wash & Fold booking action until the phone is confirmed

@@ -98,8 +98,8 @@ is one ordinary link to a dedicated location page. Store pages provide:
 - Confirmed address, hours, payment, phone, Call, and Directions information.
 - A phone-booked Wash & Fold pathway where a store phone is confirmed.
 - A keyboard-accessible photo gallery over ordinary image-link fallbacks.
-- A truthful reduced-information East Windsor page while phone, hours, and
-  photography remain awaiting confirmation.
+- A truthful reduced-information East Windsor page with client-confirmed
+  photography while phone and hours remain awaiting confirmation.
 - Timezone-aware live status only where the required hours are available.
 
 Location details remain subject to the confirmation status recorded in

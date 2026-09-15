@@ -24,7 +24,7 @@
 | Australian store phone number | CLIENT CONFIRMED | 0430 455 920 confirmed for the five Australian stores in the canonical location records on 7 August 2026. Do not apply this number to East Windsor. |
 | East Windsor hours and phone | AWAITING | Not yet provided by client. |
 | Store photographs (Melbourne) | CLIENT CONFIRMED | Client-supplied, high-confidence store mappings. Normalised production assets are in assets/locations/. |
-| Store photographs (East Windsor) | PROJECT APPROVED | Project owner confirmed on 13 September 2026 that `assets/East Windsor 1.webp` through `East Windsor 7.webp` depict the East Windsor store. Published on the homepage and dedicated location page. |
+| Store photographs (East Windsor) | CLIENT CONFIRMED | Project owner mapped `assets/East Windsor 1.webp` through `East Windsor 7.webp` to the East Windsor store on 13 September 2026; the client explicitly confirmed the photographs on 15 September 2026. Published on the homepage and dedicated location page. |
 | Payment methods (coin, card, Apple Pay, Google Pay) | CLIENT CONFIRMED | Confirmed same across all locations 7 August 2026. |
 | Wash & Fold workflow | CLIENT CONFIRMED | Available at all stores. Customers book by phone, drop off and pay upfront, Wash Bar washes, dries and folds the load, and collection is at the agreed time. Turnaround depends on booking and load. |
 | All seven published reviews | CLIENT CONFIRMED | All confirmed as real reviews 7 August 2026 and attributed to the public Peel Street Google listing. |

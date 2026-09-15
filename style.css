@@ -2082,7 +2082,7 @@ body.gallery-open {
   background-image: radial-gradient(
     circle at center,
     var(--color-footer-border) 0,
-    transparent var(--space-08)
+    transparent var(--space-1)
   );
   background-size: var(--space-4) var(--space-4);
   color: var(--color-surface);

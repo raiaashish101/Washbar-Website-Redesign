@@ -3,6 +3,7 @@
 Audit date: 12 August 2026
 
 East Windsor mapping updated: 13 September 2026
+East Windsor client confirmation recorded: 15 September 2026
 
 This inventory records the client-supplied source archive, mapping evidence,
 publication readiness, and the representative photograph used by the Version 4
@@ -10,8 +11,8 @@ homepage. File sizes are exact bytes. Source files remain preserved under
 `assets/Store photos/`.
 
 The preserved client archive contains 62 files: 52 confidently mapped Melbourne
-location photographs, seven USA photographs now mapped to East Windsor by the
-project owner, and three franchise-page files that do not identify a location. The organised
+location photographs, seven USA photographs mapped to East Windsor by the
+project owner and explicitly confirmed by the client, and three franchise-page files that do not identify a location. The organised
 production folders also retain 22 WebP assets that pre-date this client archive;
 these are production media, not additional newly supplied originals.
 
@@ -35,7 +36,7 @@ these are production media, not additional newly supplied originals.
 | Spencer Street | `assets/locations/west-melbourne/west-melbourne-01.webp` | WebP | 1360×1020 | 229,946 B | `width="1360" height="1020"`, meaningful alt, `loading="lazy"`, `decoding="async"` | Resolves |
 | Brunswick Street | `assets/locations/fitzroy/fitzroy-01.webp` | WebP | 1360×765 | 156,606 B | `width="1360" height="765"`, meaningful alt, `loading="lazy"`, `decoding="async"` | Resolves |
 | Ascot Vale Road | `assets/locations/ascot-vale/ascot-vale-01.webp` | WebP | 1360×1020 | 257,896 B | `width="1360" height="1020"`, meaningful alt, `loading="lazy"`, `decoding="async"` | Resolves |
-| East Windsor | `assets/East Windsor 3.webp` plus six gallery images | WebP | 1360×1020 | 225,546 B | `width="1360" height="1020"`, meaningful alt on the location page, decorative alt on the homepage card, `loading="lazy"` where appropriate, `decoding="async"` | Resolves |
+| East Windsor | `assets/East Windsor 3.webp` plus six gallery images | WebP | 1360×1020 | 225,546 B | `width="1360" height="1020"`, meaningful alt on the location page, decorative alt on the homepage card, `loading="lazy"` where appropriate, `decoding="async"` | Client confirmed; resolves |
 
 ## Broken legacy references repaired
 
@@ -58,7 +59,7 @@ normalised production structure and its only application reference was updated.
 | `Store photos/West Melbourne/` | Spencer Street | HIGH | Client folder identifies West Melbourne and storefront photography visibly shows street number 501. |
 | `Store photos/Ascot vale/` | Ascot Vale Road | HIGH | Client folder and storefront signage identify the Ascot Vale store. |
 | `Store photos/Fitzroy/` | Brunswick Street | HIGH | Client folder identifies Fitzroy and the current model has one Fitzroy store. |
-| `Store photos/USA/` | East Windsor | HIGH | Project owner confirmed on 13 September 2026 that the seven images depict East Windsor. Root-level `East Windsor 1.webp` through `East Windsor 7.webp` are byte-for-byte duplicates used by the published page. |
+| `Store photos/East Windsor/` | East Windsor | HIGH | Project owner mapped the seven images to East Windsor on 13 September 2026, and the client explicitly confirmed them on 15 September 2026. Root-level `East Windsor 1.webp` through `East Windsor 7.webp` are byte-for-byte duplicates used by the published page. The files in `assets/locations/USA/` are additional unreferenced duplicates. |
 | `Store photos/franchise page/` | Not a location group | UNKNOWN | Folder describes future franchise-page use and does not identify a store. Out of scope for ASSET-01. |
 
 ## Client source inventory
@@ -145,20 +146,21 @@ production assets are retained separately in the organised production folders.
 | `Fitzroy 11.JPG` | JPG | 1470×828 | 276,084 B |
 | `Fitzroy 12.JPG` | JPG | 402×226 | 35,135 B |
 
-### USA / possible East Windsor — MEDIUM confidence
+### USA / East Windsor — CLIENT CONFIRMED
 
-**CLIENT MEETING — LOCATION CONFIRMATION REQUIRED:** these files clearly show
-a Wash Bar USA interior but contain no visible address proving East Windsor.
+These files show a Wash Bar USA interior. Although the individual photographs
+do not visibly prove the street address, the client explicitly confirmed on
+15 September 2026 that all seven depict the East Windsor store.
 
 | Filename | Format | Dimensions | Size |
 |---|---:|---:|---:|
-| `USA 1.webp` | WebP | 1360×1020 | 266,006 B |
-| `USA 2.webp` | WebP | 1360×1020 | 251,652 B |
-| `USA 3.webp` | WebP | 1360×1020 | 225,546 B |
-| `USA 4.webp` | WebP | 765×1020 | 134,964 B |
-| `USA 5.webp` | WebP | 574×1020 | 78,572 B |
-| `USA 6.webp` | WebP | 765×1020 | 152,360 B |
-| `USA 7.webp` | WebP | 765×1020 | 121,550 B |
+| `East Windsor 1.webp` | WebP | 1360×1020 | 266,006 B |
+| `East Windsor 2.webp` | WebP | 1360×1020 | 251,652 B |
+| `East Windsor 3.webp` | WebP | 1360×1020 | 225,546 B |
+| `East Windsor 4.webp` | WebP | 765×1020 | 134,964 B |
+| `East Windsor 5.webp` | WebP | 574×1020 | 78,572 B |
+| `East Windsor 6.webp` | WebP | 765×1020 | 152,360 B |
+| `East Windsor 7.webp` | WebP | 765×1020 | 121,550 B |
 
 ### Franchise-page source files — UNKNOWN location and out of scope
 
@@ -175,10 +177,12 @@ a Wash Bar USA interior but contain no visible address proving East Windsor.
 - `assets/locations/west-melbourne/`: 10 confirmed files
 - `assets/locations/ascot-vale/`: 12 confirmed files
 - `assets/locations/fitzroy/`: 17 confirmed files
-- `assets/locations/east-windsor/`: not created; mapping remains unconfirmed
+- `assets/locations/USA/`: seven unreferenced byte-for-byte copies named `USA 1.webp` through `USA 7.webp`
+- Root-level `assets/East Windsor 1.webp` through `assets/East Windsor 7.webp`: confirmed production assets referenced by Version 4
 
-Only each location's `-01.webp` file is rendered by Version 4. Additional
-confirmed files are organised for a future separately approved experience.
+Version 4 uses one representative photograph on each homepage location card
+and curated confirmed photo sets on the dedicated location pages. The East
+Windsor gallery uses its seven confirmed root-level production assets.
 
 ## Performance review
 
@@ -187,4 +191,4 @@ largest are `Fleminngton 6.jpg` (974,313 B), `Ascot vale 4.jpg` (844,809 B),
 and `Peel St 3.jpg` (804,398 B). No client location photograph exceeds 1 MB.
 No conversion, resizing, or recompression was performed in ASSET-01.
 
-The five published representative WebP files are all below 300 KB.
+The six published representative WebP files are all below 300 KB.
