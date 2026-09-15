@@ -11,7 +11,7 @@
     <meta name="theme-color" content="#062242" />
     <title>Wash Bar Laundromat</title>
     <link rel="icon" href="assets/logo.png" type="image/png" />
-    <link rel="stylesheet" href="style.css?v=45" />
+    <link rel="stylesheet" href="style.css?v=46" />
   </head>
   <body>
 
@@ -849,12 +849,13 @@
               Message
               <textarea name="message" rows="4" required></textarea>
             </label>
-            <button class="button" type="submit">Send enquiry</button>
+            <button class="button enquiry-submit-button" type="submit" data-enquiry-submit aria-live="polite">
+              <span class="enquiry-submit-check" aria-hidden="true">
+                <i data-lucide="check"></i>
+              </span>
+              <span data-enquiry-submit-label>Send enquiry</span>
+            </button>
             <p class="form-message" id="enquiry-form-message" role="status" aria-live="polite"></p>
-            <div class="form-completion-actions" data-form-completion-actions hidden>
-              <a class="button" href="tel:+61430455920" aria-label="Call Wash Bar at 0430 455 920">Call Wash Bar</a>
-              <a class="button button-outline" href="mailto:mail@wash-bar.com.au">Email Wash Bar</a>
-            </div>
           </form>
         </div>
       </section>
@@ -943,6 +944,6 @@
       lucide.createIcons() is called inside script.js after DOMContentLoaded.
     -->
     <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
-    <script src="script.js?v=16" defer></script>
+    <script src="script.js?v=17" defer></script>
   </body>
 </html>

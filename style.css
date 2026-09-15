@@ -17,6 +17,8 @@
   --color-success: #22c55e;
   --color-success-ink: #166534;
   --color-success-soft: #dcfce7;
+  --color-success-control: #08783e;
+  --color-success-control-hover: #065f36;
   --color-danger: #b91c1c;
   --color-danger-soft: #fee2e2;
   --color-star-light: #9c6200;
@@ -2498,10 +2500,53 @@ body.gallery-open {
   font-weight: var(--weight-semibold);
 }
 
-.form-completion-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
+/* The form prepares details locally; this state confirms readiness without claiming delivery. */
+.enquiry-submit-button {
+  transition:
+    color var(--motion-duration-fast) var(--motion-easing-standard),
+    background-color var(--motion-duration-fast) var(--motion-easing-standard),
+    border-color var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.enquiry-submit-check {
+  display: inline-flex;
+  width: 0;
+  align-items: center;
+  justify-content: center;
+  margin-inline-end: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.75);
+  transition:
+    width var(--motion-duration-fast) var(--motion-easing-standard),
+    margin-inline-end var(--motion-duration-fast) var(--motion-easing-standard),
+    opacity var(--motion-duration-fast) var(--motion-easing-standard),
+    transform var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.enquiry-submit-check svg {
+  width: var(--space-3);
+  height: var(--space-3);
+  stroke-width: 3;
+}
+
+.enquiry-submit-button.is-ready {
+  color: var(--color-surface);
+  background: var(--color-success-control);
+  border-color: var(--color-control-blue);
+}
+
+.enquiry-submit-button.is-ready:hover,
+.enquiry-submit-button.is-ready:focus-visible {
+  background: var(--color-success-control-hover);
+  border-color: var(--color-control-blue);
+}
+
+.enquiry-submit-button.is-ready .enquiry-submit-check {
+  width: var(--space-3);
+  margin-inline-end: var(--space-1);
+  opacity: 1;
+  transform: scale(1);
 }
 
 /* Final CTA repeats the highest-value actions after the user has seen the offer. */
@@ -2964,6 +3009,11 @@ body.gallery-open {
   }
 
   .custom-select-button svg {
+    transition: none;
+  }
+
+  .enquiry-submit-button,
+  .enquiry-submit-check {
     transition: none;
   }
 

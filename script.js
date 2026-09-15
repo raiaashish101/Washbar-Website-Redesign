@@ -27,7 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const mainContent = document.querySelector("#main-content");
   const enquiryForm  = document.querySelector(".enquiry-form");
   const formMessage  = document.querySelector(".form-message");
-  const formCompletionActions = document.querySelector("[data-form-completion-actions]");
+  const enquirySubmitButton = enquiryForm?.querySelector("[data-enquiry-submit]");
+  const enquirySubmitLabel = enquirySubmitButton?.querySelector("[data-enquiry-submit-label]");
   const nativeEnquirySelect = document.querySelector("#enquiry-type-native");
   const enquiryTypeInput = document.querySelector("input[name='enquiryType']");
   const messageTextarea   = document.querySelector("textarea[name='message']");
@@ -564,6 +565,24 @@ document.addEventListener("DOMContentLoaded", () => {
     customSelectMenu.hidden = false;
   }
 
+  function setEnquirySubmitState(isReady) {
+    if (!enquirySubmitButton || !enquirySubmitLabel) {
+      return;
+    }
+
+    enquirySubmitButton.classList.toggle("is-ready", isReady);
+    enquirySubmitLabel.textContent = isReady ? "Details ready" : "Send enquiry";
+  }
+
+  function resetEnquiryCompletion() {
+    const wasReady = enquirySubmitButton?.classList.contains("is-ready");
+    setEnquirySubmitState(false);
+
+    if (wasReady && formMessage) {
+      formMessage.textContent = "";
+    }
+  }
+
   function setEnquiryType(type) {
     if (!enquiryTypeInput || !customSelectValue) {
       return;
@@ -571,9 +590,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     enquiryTypeInput.value = type || "";
     customSelectValue.textContent = type || "Choose one";
-    if (formCompletionActions) {
-      formCompletionActions.hidden = true;
-    }
+    resetEnquiryCompletion();
     if (type) {
       customSelectButton?.setAttribute("aria-invalid", "false");
       if (formMessage) {
@@ -683,18 +700,20 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
 
       if (!enquiryTypeInput?.value) {
+        setEnquirySubmitState(false);
         formMessage.textContent = "Please choose an enquiry type.";
-        if (formCompletionActions) {
-          formCompletionActions.hidden = true;
-        }
         customSelectButton?.setAttribute("aria-invalid", "true");
         customSelectButton?.focus();
         return;
       }
 
-      formMessage.textContent = "Thanks — your details are ready. Please call or email Wash Bar to complete your enquiry.";
-      if (formCompletionActions) {
-        formCompletionActions.hidden = false;
+      formMessage.textContent = "";
+      setEnquirySubmitState(true);
+    });
+
+    enquiryForm.addEventListener("input", () => {
+      if (enquirySubmitButton?.classList.contains("is-ready")) {
+        resetEnquiryCompletion();
       }
     });
 

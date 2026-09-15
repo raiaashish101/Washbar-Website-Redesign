@@ -118,3 +118,30 @@ Blocker: no connected browser was available to capture a rendered desktop compar
 final result: blocked
 
 Blocker: no connected browser was available for a same-viewport rendered comparison against the supplied reference.
+
+---
+
+# Enquiry Confirmation Button Design QA
+
+## Evidence
+
+- Source visual truth: conversation-attached green confirmation button with a white checkmark and short status label.
+- Implementation screenshot: `/tmp/washbar-enquiry-ready-390.png`.
+- Compared state: valid enquiry prepared locally at 390px.
+
+## Comparison
+
+- The completed control uses the reference's green surface, white checkmark, white label, and blue edge language.
+- The existing form width, button height, radius, and typography remain consistent with the Wash Bar component system.
+- The label is `Details ready`, rather than `Sent`, because the current form has no delivery backend.
+- The previous long success message and completion-action row are absent.
+
+## Verification
+
+- Button and checkmark transition over 180ms in the default motion mode.
+- Both transitions resolve to 0s under `prefers-reduced-motion: reduce`.
+- No horizontal overflow at 320px, 390px, 768px, 1024px, or 1440px.
+- White text contrast is 5.576:1 on the confirmation green and 7.784:1 on hover/focus green.
+- Editing the form restores `Send enquiry`; missing enquiry type still shows and focuses the validation error.
+
+final result: passed
