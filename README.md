@@ -4,9 +4,32 @@ Version 4 is a client-informed redesign of the Wash Bar Laundromat website.
 It combines product thinking, responsive interface design, accessibility, and
 front-end development in a plain HTML, CSS, and JavaScript implementation.
 
-The website is currently a local prototype for client discussion and portfolio
-documentation. Business claims and content marked as awaiting confirmation are
-not ready for production publication.
+The website is a V4 prototype for local development and Netlify staging review.
+Business claims and content marked as awaiting confirmation are not ready for
+production publication.
+
+## Staging Search Protection (SEO-00)
+
+**REMOVE STAGING NOINDEX DURING SEO-05 DOMAIN MIGRATION.**
+
+All ten HTML files include `<meta name="robots" content="noindex,follow">`.
+Keep them crawlable so search engines can read the directive; do not replace it
+with a site-wide robots.txt crawl block. No production canonical is set yet.
+
+The source fix must be deployed and checked on Netlify before staging protection
+can be considered live. A runtime recheck on 23 September 2026 found no noindex
+protection on `washbarlaundromat.netlify.app` or its `main--` alias. Both mutable
+aliases still serve the earlier deployment rather than the current repository.
+This task does not deploy the worktree or migrate the domain.
+
+At SEO-05, remove noindex only from the eight approved production pages on
+`https://wash-bar.com.au/`. Keep staging/preview hosts protected separately.
+Exclude the two prototype pages from production or retain their noindex.
+Audit public documentation exposure before release: README and the founder
+source Markdown were accessible on staging during this audit.
+
+- [SEO baseline, evidence, risks and verification](docs/SEO-BASELINE.md)
+- [Future production URL map and redirect dependencies](docs/SEO-URL-MAP.md)
 
 ## Project Overview
 
@@ -225,8 +248,14 @@ behaviour and local asset loading are tested consistently.
 
 ## Content Governance
 
-`docs/CONTENT-STATUS.md` is the source of truth for publication readiness. Its
-statuses are:
+The current repository is authoritative for V4 business facts, routes, content
+decisions and implementation state. The Netlify deployment is runtime evidence,
+not a content authority; any difference is deployment drift to reconcile. The
+legacy `wash-bar.com.au` website may inform URL migration and redirect planning,
+but must not supply current business facts or service claims.
+
+Within the repository, `docs/CONTENT-STATUS.md` is the source of truth for
+publication readiness. Its statuses are:
 
 - `CONFIRMED`: approved for the stated use.
 - `AWAITING`: requires confirmation, a source, or permission.

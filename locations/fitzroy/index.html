@@ -2,12 +2,46 @@
 <html lang="en-AU" class="no-js">
   <head>
     <meta charset="UTF-8" />
+    <!-- REMOVE STAGING NOINDEX DURING SEO-05 DOMAIN MIGRATION. -->
+    <meta name="robots" content="noindex,follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no" />
-    <meta name="description" content="Visit Wash Bar Fitzroy at 461 Brunswick Street, Fitzroy. Self-service laundry and Wash &amp; Fold by advance booking." />
-    <title>Fitzroy laundry - Brunswick Street | Wash Bar</title>
+    <meta name="description" content="Wash and dry at Wash Bar on Brunswick Street in Fitzroy, open daily 6am-midnight. Pay by coin, card or mobile payment, or call ahead for Wash &amp; Fold." />
+    <title>Fitzroy Laundromat | Wash Bar Brunswick Street</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "DryCleaningOrLaundry",
+        "name": "Wash Bar Fitzroy",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "461 Brunswick Street",
+          "addressLocality": "Fitzroy",
+          "addressCountry": "AU"
+        },
+        "telephone": "+61430455920",
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "06:00",
+          "closes": "00:00"
+        },
+        "paymentAccepted": "Coin, card, Apple Pay, Google Pay"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "/" },
+          { "@type": "ListItem", "position": 2, "name": "Locations", "item": "/#locations" },
+          { "@type": "ListItem", "position": 3, "name": "Fitzroy" }
+        ]
+      }
+    </script>
     <link rel="icon" href="../../assets/logo.png" type="image/png" />
-    <link rel="stylesheet" href="../../style.css?v=45" />
+    <link rel="stylesheet" href="../../style.css?v=46" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -44,11 +78,18 @@
     <main id="main-content" tabindex="-1">
       <section class="section store-section" aria-labelledby="store-title">
         <div class="container">
-          <a class="store-back-link" href="../../index.html#locations">All Wash Bar locations</a>
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="../../index.html">Home</a></li>
+              <li><a href="../../index.html#locations">Locations</a></li>
+              <li aria-current="page">Fitzroy</li>
+            </ol>
+          </nav>
           <div class="store-heading">
             <span class="eyebrow">Melbourne</span>
             <h1 id="store-title">Fitzroy</h1>
             <p class="location-street-name">Brunswick Street</p>
+            <p class="store-intro">Located at 461 Brunswick Street, Wash Bar Fitzroy offers self-service laundry each day from 6:00 am to midnight. Pay with coin, card, Apple Pay or Google Pay. Wash &amp; Fold can be booked by phone when you want the team to wash, dry and fold your laundry for later collection.</p>
           </div>
           <div class="store-layout">
             <div class="store-gallery" data-store-gallery data-gallery-name="Fitzroy">
@@ -99,6 +140,28 @@
             <li><strong>Collect</strong><span>Return at the agreed collection time.</span></li>
           </ol>
           <a class="button" href="tel:+61430455920" aria-label="Call Wash Bar Brunswick Street to book Wash and Fold">Call to book Wash &amp; Fold</a>
+        </div>
+      </section>
+      <section class="section store-faq" aria-labelledby="store-faq-title">
+        <div class="container">
+          <div class="section-heading">
+            <span class="eyebrow">Before you visit</span>
+            <h2 id="store-faq-title">Fitzroy laundry questions</h2>
+          </div>
+          <div class="store-faq-list">
+            <article class="store-faq-item">
+              <h3>When can I use the Brunswick Street laundromat?</h3>
+              <p>Wash Bar Fitzroy is open daily from 6:00 am to midnight.</p>
+            </article>
+            <article class="store-faq-item">
+              <h3>Does the Fitzroy store accept card?</h3>
+              <p>Yes. You can pay by card, coin, Apple Pay or Google Pay.</p>
+            </article>
+            <article class="store-faq-item">
+              <h3>Do I need to book Wash &amp; Fold?</h3>
+              <p>Yes. Call the Brunswick Street store ahead. Turnaround depends on the booking and laundry load.</p>
+            </article>
+          </div>
         </div>
       </section>
     </main>

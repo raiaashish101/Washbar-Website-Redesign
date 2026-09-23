@@ -2,12 +2,41 @@
 <html lang="en-AU" class="no-js">
   <head>
     <meta charset="UTF-8" />
+    <!-- REMOVE STAGING NOINDEX DURING SEO-05 DOMAIN MIGRATION. -->
+    <meta name="robots" content="noindex,follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no" />
-    <meta name="description" content="Visit Wash Bar East Windsor at 370 US-130, East Windsor, NJ 08520, United States. Self-service laundry and Wash &amp; Fold by advance booking." />
-    <title>East Windsor laundry - 370 US-130 | Wash Bar</title>
+    <meta name="description" content="Visit Wash Bar at 370 US-130 in East Windsor, New Jersey, for everyday self-service laundry, flexible payment options and Wash &amp; Fold service." />
+    <title>East Windsor Laundromat | Wash Bar 370 US-130</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "DryCleaningOrLaundry",
+        "name": "Wash Bar East Windsor",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "370 US-130",
+          "addressLocality": "East Windsor",
+          "addressRegion": "NJ",
+          "postalCode": "08520",
+          "addressCountry": "US"
+        },
+        "paymentAccepted": "Coin, card, Apple Pay, Google Pay"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "/" },
+          { "@type": "ListItem", "position": 2, "name": "Locations", "item": "/#locations" },
+          { "@type": "ListItem", "position": 3, "name": "East Windsor" }
+        ]
+      }
+    </script>
     <link rel="icon" href="../../assets/logo.png" type="image/png" />
-    <link rel="stylesheet" href="../../style.css?v=45" />
+    <link rel="stylesheet" href="../../style.css?v=46" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -44,11 +73,18 @@
     <main id="main-content" tabindex="-1">
       <section class="section store-section" aria-labelledby="store-title">
         <div class="container">
-          <a class="store-back-link" href="../../index.html#locations">All Wash Bar locations</a>
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="../../index.html">Home</a></li>
+              <li><a href="../../index.html#locations">Locations</a></li>
+              <li aria-current="page">East Windsor</li>
+            </ol>
+          </nav>
           <div class="store-heading">
             <span class="eyebrow">New Jersey, USA</span>
             <h1 id="store-title">East Windsor</h1>
             <p class="location-street-name">370 US-130</p>
+            <p class="store-intro">Wash Bar East Windsor provides self-service laundry at 370 US-130 in East Windsor, New Jersey. Customers can pay by coin, card, Apple Pay or Google Pay. Wash &amp; Fold is also available at this location, with laundry dropped off, paid for upfront, washed, dried and folded, then collected at the agreed time.</p>
           </div>
           <div class="store-layout">
             <div class="store-gallery" data-store-gallery data-gallery-name="East Windsor">
@@ -91,15 +127,37 @@
           <div class="section-heading">
             <span class="eyebrow">Wash &amp; Fold</span>
             <h2 id="wash-fold-title">Available at this location.</h2>
-            <p>Book ahead by phone before dropping off your laundry. Turnaround depends on booking and load. Payment is made upfront.</p>
+            <p>Wash &amp; Fold is available at this location. Drop off your laundry, pay upfront and collect it at the agreed time. Turnaround depends on booking and load.</p>
           </div>
           <ol class="wash-fold-steps">
-            <li><strong>Call ahead</strong><span>Book with your chosen Wash Bar store. Turnaround depends on booking and load.</span></li>
+            <li><strong>Arrange your drop-off</strong><span>Confirm your booking before bringing laundry to the store. Turnaround depends on booking and load.</span></li>
             <li><strong>Drop off &amp; pay upfront</strong><span>Bring your laundry to the store and pay before the service.</span></li>
             <li><strong>We wash, dry &amp; fold</strong><span>Wash Bar takes care of your laundry.</span></li>
             <li><strong>Collect</strong><span>Return at the agreed collection time.</span></li>
           </ol>
           <!-- [CLIENT TO CONFIRM: East Windsor phone number before enabling a Wash & Fold booking action] -->
+        </div>
+      </section>
+      <section class="section store-faq" aria-labelledby="store-faq-title">
+        <div class="container">
+          <div class="section-heading">
+            <span class="eyebrow">Before you visit</span>
+            <h2 id="store-faq-title">East Windsor laundry questions</h2>
+          </div>
+          <div class="store-faq-list">
+            <article class="store-faq-item">
+              <h3>Where is Wash Bar East Windsor?</h3>
+              <p>The store is at 370 US-130, East Windsor, NJ 08520, United States.</p>
+            </article>
+            <article class="store-faq-item">
+              <h3>Which payment methods are accepted?</h3>
+              <p>You can pay by coin, card, Apple Pay or Google Pay.</p>
+            </article>
+            <article class="store-faq-item">
+              <h3>Is Wash &amp; Fold available here?</h3>
+              <p>Yes. Laundry is dropped off, paid for upfront, washed, dried and folded, then collected at the agreed time.</p>
+            </article>
+          </div>
         </div>
       </section>
     </main>
