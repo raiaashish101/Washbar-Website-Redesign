@@ -27,7 +27,7 @@
 | Store photographs (East Windsor) | CLIENT CONFIRMED | Project owner mapped `assets/East Windsor 1.webp` through `East Windsor 7.webp` to the East Windsor store on 13 September 2026; the client explicitly confirmed the photographs on 15 September 2026. Published on the homepage and dedicated location page. |
 | Payment methods (coin, card, Apple Pay, Google Pay) | CLIENT CONFIRMED | Confirmed same across all locations 7 August 2026. |
 | Wash & Fold workflow | CLIENT CONFIRMED | Available at all stores. Customers book by phone, drop off and pay upfront, Wash Bar washes, dries and folds the load, and collection is at the agreed time. Turnaround depends on booking and load. |
-| All seven published reviews | CLIENT CONFIRMED | All confirmed as real reviews 7 August 2026 and attributed to the public Peel Street Google listing. |
+| Seven approved review sources | CLIENT CONFIRMED | All confirmed as real reviews 7 August 2026 and attributed to the public Peel Street Google listing. Five are currently published. David and Ali remain preserved but unpublished because their timing and ironing wording conflicts with the confirmed Wash & Fold policy. |
 | Review source links for David, Ali, Rachel O. | CLIENT CONFIRMED | Project owner approved attribution to the Peel Street Google listing on 8 August 2026. |
 | Over 700 five-star Google reviews | CLIENT CONFIRMED | Confirmed accurate 7 August 2026. |
 | 400,000+ customers served | CLIENT CONFIRMED | Confirmed accurate 7 August 2026. |

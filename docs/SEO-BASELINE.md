@@ -31,6 +31,12 @@ Runtime recheck: 23 September 2026 at approximately 20:10 AEST.
   work. Repository decisions remain authoritative; Netlify requires a reviewed
   deployment and post-deploy reconciliation.
 
+SEO-01R deployment update: 24 September 2026. Both mutable Netlify aliases now
+serve the current SEO-01 location titles, `noindex,follow`, local introductions,
+`DryCleaningOrLaundry` and `BreadcrumbList` JSON-LD, visible breadcrumbs and
+FAQs. East Windsor continues to omit phone and hours. This resolves the
+deployment drift recorded in the 23 September snapshot below.
+
 The detailed route records below preserve the point-in-time SEO-00 snapshot.
 Where later work differs, inspect the current source and its current governance
 documents rather than treating the snapshot as current fact.
@@ -51,22 +57,22 @@ documents rather than treating the snapshot as current fact.
 | Check | SEO-00 starting state | Current repository / runtime status |
 | --- | --- | --- |
 | HTML inventory | 8 V4 pages + 2 public prototypes | Same 10 pages |
-| Robots meta | Absent on all 10 | Repository: `noindex,follow` on all 10. Mutable Netlify aliases: still absent |
-| Main Netlify indexing eligibility | Allowed by observed responses | NEEDS WORK: runtime recheck still finds mutable aliases eligible for indexing |
-| Titles/descriptions | One each, all 10 unique across distinct pages | Repository: six location pages updated by SEO-01. Netlify: earlier metadata remains deployed |
+| Robots meta | Absent on all 10 | Repository and mutable Netlify aliases: `noindex,follow` on all 10 |
+| Main Netlify indexing eligibility | Allowed by observed responses | PASS: current HTML responses provide `noindex,follow` |
+| Titles/descriptions | One each, all 10 unique across distinct pages | Repository and Netlify: current SEO-01 location metadata deployed |
 | H1 | Exactly one on every page | Preserved |
 | Canonicals | None | LAUNCH ONLY: intentionally not added |
 | robots.txt / sitemap.xml | Absent locally; live 404 | Not added |
-| Structured data | None on any page | Repository: six location pages now use `DryCleaningOrLaundry` and `BreadcrumbList`. Netlify: absent |
-| Visible breadcrumbs | None on location pages | Repository: present on all six location pages. Netlify: absent |
-| Open Graph / Twitter metadata | None on any page | NEEDS WORK: future scoped metadata |
+| Structured data | None on any page | Repository: homepage `Organization`, plus six location-page `DryCleaningOrLaundry` and `BreadcrumbList` entities. Netlify currently serves the SEO-01 location entities; deploy SEO-02 before expecting the Organization entity there |
+| Visible breadcrumbs | None on location pages | Repository and Netlify: present on all six location pages |
+| Open Graph / Twitter metadata | None on any page | Repository: Open Graph title, description, absolute staging image URL and type on all eight customer routes. Prototypes intentionally omit social metadata; replace the staging image origin during SEO-05 production migration |
 | Internal file/fragment references | 371 occurrences, zero broken | SEO-00 snapshot preserved; later scoped verification is recorded with its task |
 | Body/layout code | Existing V4 | SEO-00 was head-only; later SEO-01 location-page work is now in source |
-| Publication | Live deploy predates task | Runtime recheck confirms deployment drift remains |
+| Publication | Live deploy predates task | SEO-01 source is deployed; SEO-02 changes still require their own reviewed deployment |
 
-Titles are distinct but the homepage title is brand-only. Story H1 is evocative
-rather than descriptive. These are future content/SEO review opportunities,
-not missing-heading failures, and were not rewritten.
+SEO-02 replaces the brand-only homepage title with a concise service title and
+uses a descriptive `The Wash Bar story` H1 on the Story page. All route titles
+remain distinct.
 
 ## Hosting and Indexability Evidence
 
@@ -80,8 +86,8 @@ There is no site password/SSO configured in returned project metadata.
 
 | Public hostname discovered | Root response | Robots observation | Status |
 | --- | --- | --- | --- |
-| washbarlaundromat.netlify.app | 200 | No robots meta or X-Robots-Tag | NEEDS WORK: eligible for indexing |
-| main--washbarlaundromat.netlify.app | 200 | No robots meta or X-Robots-Tag | NEEDS WORK: eligible for indexing |
+| washbarlaundromat.netlify.app | 200 | HTML `noindex,follow`; no X-Robots-Tag | PASS: staging protected in current HTML response |
+| main--washbarlaundromat.netlify.app | 200 | HTML `noindex,follow`; no X-Robots-Tag | PASS: staging protected in current HTML response |
 | 6aa96456ba94c800082e1e4f--washbarlaundromat.netlify.app | 200 | X-Robots-Tag: noindex; no HTML robots meta | PASS: this immutable deployment root is protected by Netlify |
 
 These are all hostnames returned by the connected project/current-deployment
@@ -90,8 +96,9 @@ complete historical deploy/PR-preview inventory. Do not infer that older deploy
 hostnames do not exist or that they share these headers. Audit any remaining
 historical previews through Netlify before declaring complete host coverage.
 
-On the main hostname all eight V4 routes and both prototypes returned HTTP 200
-with no robots meta, no X-Robots-Tag and no canonical/Link header.
+On the main hostname all eight V4 routes and both prototypes returned HTTP 200.
+The current HTML responses include `noindex,follow`; no X-Robots-Tag or
+canonical/Link header is present.
 `/index.html` and `/our-story/index.html` also return 200 without redirecting,
 alongside their directory routes. These are confirmed duplicate URL variants.
 The other six explicit index.html files exist and are linked internally; their
@@ -298,11 +305,11 @@ unrestricted indexing. Noindex is not access control or confidentiality.
 | Franchise | CLIENT INPUT | Confirm details/support and required publication review; do not expand claims |
 | Cancer Council Victoria copy | PASS | Current register confirms naming and fundraising wording; do not treat older blanket Community hold as current |
 | Commercial client names | PASS | Text naming permitted; logo permissions are separate |
-| Reviews | NEEDS WORK | Register describes seven published reviews, rendered carousel has six; reconcile inventory later without inventing/removing quotes here |
+| Reviews | PASS | Seven approved source reviews are preserved. Five policy-compatible reviews are currently rendered; David and Ali are withheld for timing/ironing wording, and the separate Portia source review remains withheld for price wording. |
 | Enquiry form | NEEDS WORK | Current JS prevents actual sending and shows Details ready; delivery integration is a separate launch dependency |
 | Existing domain/legacy URLs | CLIENT INPUT | Domain access and authoritative legacy route inventory needed before redirects |
 | Production canonicals/sitemap | LAUNCH ONLY | No wash-bar.com.au canonicals or submission sitemap added now |
-| Staging deployment | NEEDS WORK | Deploy the reviewed source change, then re-fetch all routes and mutable staging aliases |
+| Staging deployment | PASS | SEO-01 source is live on both mutable aliases; deploy and recheck SEO-02 separately after review |
 
 Canonical factual references: [CONTENT-STATUS.md](CONTENT-STATUS.md),
 [location records](../content/locations.md), [V4 IA](V4-IA.md).
@@ -350,8 +357,9 @@ verification record.
 - **PASS**: one H1, one title and one description remain on each page. All ten
   titles and all ten descriptions remain unique across distinct documents.
 - **PASS**: `git diff --check` completed with no whitespace errors.
-- **PASS (runtime recheck)**: on 23 September 2026, both mutable Netlify aliases
-  returned HTTP 200 for all ten audited routes with the earlier deployed titles.
-- **NEEDS WORK**: the mutable Netlify aliases still expose no HTML robots meta,
-  no `X-Robots-Tag`, and none of the SEO-01 location schema or breadcrumbs.
-  Deploy the reviewed repository, then repeat the raw-response audit.
+- **HISTORICAL (23 September 2026)**: both mutable Netlify aliases returned the
+  earlier location implementation without HTML robots meta or SEO-01 schema.
+- **PASS (24 September 2026)**: both mutable aliases now return the current
+  SEO-01 location pages with HTML `noindex,follow`, local-business schema,
+  breadcrumb schema and visible breadcrumbs. No X-Robots-Tag is present or
+  required while the HTML directive remains available to crawlers.
