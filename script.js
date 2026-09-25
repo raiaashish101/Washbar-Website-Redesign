@@ -606,6 +606,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Preserve enquiry context when a dedicated content page sends someone home.
+  const requestedEnquiryType = new URLSearchParams(window.location.search).get("enquiry");
+  const requestedEnquiryOption = customSelectOptions.find(
+    (option) => option.dataset.value === requestedEnquiryType
+  );
+  if (requestedEnquiryOption) {
+    setEnquiryType(requestedEnquiryType);
+  }
+
   function focusSelectedOption() {
     const selectedOption = customSelectOptions.find((option) => option.getAttribute("aria-selected") === "true");
     (selectedOption || customSelectOptions[0])?.focus();

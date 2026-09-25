@@ -44,3 +44,4 @@
 | "Primus machines" brand claim | AWAITING | Requires client confirmation before publishing the brand name. |
 | "Bulk wash discounts for 6+ properties" | AWAITING | Pricing-adjacent claim. Conflicts with no-price rule. Requires explicit client direction before use. |
 | Dedicated Our Story page | PROJECT APPROVED | Included in Version 4. No founder-story teaser is published on the homepage. |
+| Four SEO-03 Blog source drafts and editorial direction | CLIENT CONFIRMED | Published as one connected Blog system on 25 September 2026. Editorial corrections remove unsupported timing, pricing, WiFi, hygiene-superiority, discount, medical and specialist stain-treatment claims. External guidance is recorded in content/blog-sources.md. |
