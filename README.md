@@ -96,7 +96,7 @@ The approved Version 4 homepage order is:
 8. Supporting Our Community
 9. Franchise teaser
 10. Location discovery
-11. Enquiry form
+11. Direct contact
 12. Footer
 
 The sequence intentionally moves from immediate customer utility to service
@@ -140,8 +140,8 @@ with Version 4 content rules or lacks an approved source is not published.
 Commercial content uses confirmed industry categories and approved text-only
 client names. The Community section leads with the confirmed Cancer Council
 Victoria summer fundraising-day arrangement, followed by the creative
-collaboration pathway. Community collaboration links pre-select the relevant
-enquiry type.
+collaboration pathway. Community collaboration links reach the matching
+direct-contact option.
 
 ### Dedicated founder storytelling
 
@@ -151,13 +151,19 @@ confirmed store imagery, and restrained scroll reveals. The homepage does not
 duplicate the founder-story teaser, and reduced-motion users receive the full
 story without reveal transitions.
 
-### Context-aware enquiry form
+### Launch contact experience
 
-Calls to action can pre-select the appropriate enquiry type for Wash & Fold,
-commercial laundry, franchise interest, or community collaboration. This
-reduces repeated decisions and provides more relevant message guidance.
-Until a delivery backend is connected, the form preserves entered details and
-offers direct Call and Email actions without claiming that an enquiry was sent.
+The owner has chosen to launch without the unfinished enquiry backend.
+`#enquiry` now provides direct contact with the confirmed Australian number.
+Commercial, franchise and community CTAs reach matching contact options;
+Wash & Fold continues through store selection and phone booking.
+There is no customer-data form, custom select, submission handler or success
+state. Contact works without JavaScript.
+
+The earlier public address `mail@wash-bar.com.au` has no explicit client approval
+in the current register, so launch-candidate email links and Organization email
+are held pending confirmation. The intended future backend recipient is not
+approved for public display. See [contact launch audit](docs/CONTACT-LAUNCH.md).
 
 ### Responsive navigation
 
@@ -188,7 +194,7 @@ Version 4 targets WCAG 2.1 AA and includes:
 - Visible `:focus-visible` states.
 - Native controls and ARIA only where needed.
 - Keyboard-operable location cards, store galleries, and review controls.
-- Properly labelled form fields and enquiry options.
+- Descriptive direct-contact links and topic options.
 - Meaningful image alternatives and explicit image dimensions.
 - Safe external links with descriptive accessible names.
 - Reduced-motion support.
@@ -272,10 +278,11 @@ future measures include:
 
 - Location-card engagement and store-page directions clicks.
 - Phone-call clicks.
-- Wash & Fold enquiry starts and submissions.
-- Commercial and franchise enquiry submissions.
+- Wash & Fold store and call engagement.
+- Contact email/phone clicks if measurement is activated later.
+- Commercial and franchise submissions after a delivery backend is verified.
 - Completion of primary mobile tasks.
-- Form validation errors and abandonment.
+- Form validation errors and abandonment after backend implementation.
 
 These are proposed measures, not claims of achieved results.
 
@@ -284,10 +291,11 @@ These are proposed measures, not claims of achieved results.
 The current build is a working Version 4 prototype. Before production launch:
 
 1. Complete the design-validation gate for remaining or revised sections.
-2. Confirm East Windsor's phone number and opening schedule.
+2. Continue omitting East Windsor's phone, hours and booking action until confirmed.
 3. Obtain approval for any remaining content specifically marked as awaiting.
 4. Replace disabled development actions with confirmed destinations.
-5. Connect the enquiry form to an approved delivery service or backend.
+5. Confirm any public email before enabling email contact. Secure enquiry
+   delivery is post-launch work and is not required for the direct-call release.
 6. Complete the responsive, accessibility, no-JavaScript, and browser QA list.
 7. Recheck all public claims and permissions immediately before deployment.
 

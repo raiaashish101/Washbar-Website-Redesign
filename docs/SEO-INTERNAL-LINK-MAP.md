@@ -1,6 +1,6 @@
 # SEO-02 Internal Link Map
 
-Last reviewed: 25 September 2026
+Last reviewed: 10 October 2026 (direct-contact routes)
 
 The current V4 repository is authoritative. This map records crawlable page
 relationships without creating links to routes that do not exist yet. Staging
@@ -38,7 +38,10 @@ production search destinations.
 | Homepage hero | `/#locations` | Find a store | `Find a location` | Live |
 | Homepage hero / Wash & Fold | `/#locations` | Choose the store that handles the booking | `Choose a store for Wash & Fold` | Live |
 | Homepage Wash & Fold section | `/#locations` | Continue from service explanation to store choice | `Find a location to book` | Live |
-| Homepage Commercial section | `/#enquiry` | Start a commercial enquiry with context preselected | `Enquire about commercial laundry` | Live |
+| Homepage Commercial section | `/#contact-commercial` | Reach the commercial contact option | `Enquire about commercial laundry` | Launch candidate |
+| Homepage Community section | `/#contact-community` | Reach the community contact option | `Share a collaboration idea` | Launch candidate |
+| Homepage Franchise section | `/#contact-franchise` | Reach the franchise contact option | `Franchise enquiry` | Launch candidate |
+| Header / footer / mobile Enquiry | `/#enquiry` | Reach general direct contact | `Contact` / `Enquiry` | Launch candidate |
 | Homepage franchise section | `/our-story/` | Understand the business story before enquiring | `Read the Wash Bar story` | Live |
 | Our Story | `/#franchise` | Continue from founder narrative to franchise information | `Explore the franchise pathway` | Live |
 | Homepage Locations | Six store routes | View practical store information | Area and street name on each card | Live |
@@ -59,7 +62,7 @@ production search destinations.
 | Stain guide | `/blog/how-often-to-wash-sheets-towels-gym-clothes/` | Continue practical laundry learning | `See the practical washing schedule` | Live |
 | Service comparison | `/#locations` | Choose a store | `Choose your nearest Wash Bar` | Live |
 | Service comparison | `/#services` | Review the confirmed booking workflow | `How Wash & Fold works` | Live |
-| Airbnb guide | `/?enquiry=Commercial%20laundry#enquiry-form` | Start a preselected commercial enquiry | `Enquire about commercial laundry` | Live |
+| Airbnb guide | `/#contact-commercial` | Reach the commercial contact option | `Enquire about commercial laundry` | Launch candidate |
 | Airbnb guide | `/#commercial` | Review supported commercial audiences | `Wash Bar's commercial laundry support` | Live |
 | Airbnb guide | `/#locations` | Find a nearby store as a secondary path | `Find a Wash Bar location` | Live |
 | Washing-frequency guide | `/#locations` | Find a store after planning a load | `Find a Wash Bar location` | Live |
@@ -72,7 +75,10 @@ production search destinations.
 - Keep Blog in the footer rather than the primary navigation unless the owner
   separately approves a primary-navigation change.
 - Keep location-card links as one whole-card link with area and street context.
-- Keep Commercial calls to action routed to the preselected commercial enquiry.
+- Keep Commercial calls to action routed to `#contact-commercial`.
+- Keep the former `#enquiry-form` fragment as an alias on the direct-contact
+  panel for already-shared links; it is not a form and ignores the former
+  enquiry query parameter. New links use the section or topic anchors above.
 - Keep Wash & Fold booking routed through store selection because booking is by
   phone with the chosen store.
 - Do not create thin service pages solely to add keyword destinations.

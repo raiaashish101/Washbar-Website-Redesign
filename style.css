@@ -17,8 +17,6 @@
   --color-success: #22c55e;
   --color-success-ink: #166534;
   --color-success-soft: #dcfce7;
-  --color-success-control: #08783e;
-  --color-success-control-hover: #065f36;
   --color-danger: #b91c1c;
   --color-danger-soft: #fee2e2;
   --color-star-light: #9c6200;
@@ -2662,14 +2660,14 @@ body.gallery-open {
   font-weight: var(--weight-semibold);
 }
 
-/* Enquiry form: gathers details locally until a delivery backend is connected. */
+/* Direct contact: native email and phone links work without JavaScript. */
 .enquiry-section {
   background: var(--color-soft);
 }
 
-.enquiry-form {
+.contact-panel {
   display: grid;
-  gap: var(--space-2);
+  gap: var(--space-3);
   padding: var(--space-3);
   background: var(--color-surface);
   border: 1px solid var(--color-line);
@@ -2730,202 +2728,54 @@ body.gallery-open {
   line-height: var(--md-sys-typescale-body-small-line-height);
 }
 
-.enquiry-form label,
-.form-field {
+.contact-panel h3 {
+  margin: 0;
+  font-size: var(--type-h3);
+  line-height: var(--line-snug);
+}
+
+.contact-panel p {
+  margin: 0;
+}
+
+.contact-details {
   display: grid;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.contact-details dt {
+  font-size: var(--type-label);
+  font-weight: var(--weight-bold);
+}
+
+.contact-details dd {
+  margin: 0;
+}
+
+.contact-details a {
+  display: inline-flex;
+  min-height: var(--space-6);
+  align-items: center;
+  color: var(--color-blue-dark);
+  overflow-wrap: anywhere;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.contact-actions .button {
+  flex: 1 1 auto;
   gap: var(--space-1);
 }
 
-.enquiry-form label,
-.form-field > label {
-  color: var(--color-ink);
-  font-size: var(--type-label);
-  font-weight: var(--weight-bold);
-  line-height: var(--md-sys-typescale-label-large-line-height);
-}
-
-.enquiry-form input,
-.enquiry-form textarea,
-.enquiry-select-native,
-.custom-select-button {
-  width: 100%;
-  padding: var(--space-2);
-  color: var(--color-ink);
-  background: #ffffff;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-card);
-  font: inherit;
-}
-
-.enquiry-form input:focus-visible,
-.enquiry-form textarea:focus-visible,
-.enquiry-select-native:focus-visible,
-.custom-select-button:focus {
-  outline: 3px solid var(--color-blue);
-  outline-offset: 0;
-  border-color: var(--color-blue);
-}
-
-.custom-select {
-  position: relative;
-}
-
-/* The native select is the no-JavaScript fallback; enhancement swaps in the custom control. */
-.enquiry-select-native {
-  display: block;
-}
-
-[data-custom-select] {
-  display: none;
-}
-
-.js .enquiry-select-native {
-  display: none;
-}
-
-.js [data-custom-select] {
-  display: block;
-}
-
-.custom-select-button {
-  display: flex;
-  min-height: 56px;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-2);
-  font-weight: var(--weight-semibold);
-  text-align: left;
-  cursor: pointer;
-}
-
-.custom-select-button svg {
-  width: 20px;
-  height: 20px;
-  flex: 0 0 auto;
-  transition: transform 180ms ease;
-}
-
-.custom-select.is-open .custom-select-button svg {
-  transform: rotate(180deg);
-}
-
-.custom-select-menu {
-  position: absolute;
-  top: calc(100% + var(--space-1));
-  left: 0;
-  right: 0;
-  z-index: 30;
-  max-height: 240px;
-  padding: var(--space-1);
-  margin: 0;
-  overflow: auto;
-  list-style: none;
-  background: #ffffff;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow);
-}
-
-.custom-select-menu[hidden] {
-  display: none;
-}
-
-.custom-select-menu [role="option"] {
-  padding: 12px 14px;
-  color: var(--color-ink);
-  border-radius: calc(var(--radius-card) - 4px);
-  font-size: var(--type-label);
-  font-weight: var(--weight-semibold);
-  line-height: var(--md-sys-typescale-label-large-line-height);
-  cursor: pointer;
-}
-
-.custom-select-menu [role="option"]:hover {
-  color: var(--color-blue-dark);
-  background: var(--color-sky);
-  outline: 0;
-}
-
-.custom-select-menu [role="option"]:focus-visible {
-  color: var(--color-surface);
-  background: var(--color-blue-dark);
-  outline: 0;
-}
-
-.custom-select-menu [role="option"][aria-selected="true"] {
-  color: var(--color-surface);
-  background: var(--color-blue-dark);
-}
-
-.custom-select-menu [role="option"][aria-selected="true"]:hover {
-  color: var(--color-surface);
-  background: var(--color-navy-soft);
-}
-
-.custom-select-menu [role="option"][aria-selected="true"]:focus-visible {
-  color: var(--color-blue-dark);
-  background: var(--color-sky);
-}
-
-.optional-label {
-  color: var(--color-muted);
-  font-weight: var(--weight-regular);
-}
-
-.form-message {
-  margin: 0;
-  color: var(--color-blue-dark);
-  font-size: var(--type-sm);
-  font-weight: var(--weight-semibold);
-}
-
-/* The form prepares details locally; this state confirms readiness without claiming delivery. */
-.enquiry-submit-button {
-  transition:
-    color var(--motion-duration-fast) var(--motion-easing-standard),
-    background-color var(--motion-duration-fast) var(--motion-easing-standard),
-    border-color var(--motion-duration-fast) var(--motion-easing-standard);
-}
-
-.enquiry-submit-check {
-  display: inline-flex;
-  width: 0;
-  align-items: center;
-  justify-content: center;
-  margin-inline-end: 0;
-  overflow: hidden;
-  opacity: 0;
-  transform: scale(0.75);
-  transition:
-    width var(--motion-duration-fast) var(--motion-easing-standard),
-    margin-inline-end var(--motion-duration-fast) var(--motion-easing-standard),
-    opacity var(--motion-duration-fast) var(--motion-easing-standard),
-    transform var(--motion-duration-fast) var(--motion-easing-standard);
-}
-
-.enquiry-submit-check svg {
+.contact-actions svg {
   width: var(--space-3);
   height: var(--space-3);
-  stroke-width: 3;
-}
-
-.enquiry-submit-button.is-ready {
-  color: var(--color-surface);
-  background: var(--color-success-control);
-  border-color: var(--color-control-blue);
-}
-
-.enquiry-submit-button.is-ready:hover,
-.enquiry-submit-button.is-ready:focus-visible {
-  background: var(--color-success-control-hover);
-  border-color: var(--color-control-blue);
-}
-
-.enquiry-submit-button.is-ready .enquiry-submit-check {
-  width: var(--space-3);
-  margin-inline-end: var(--space-1);
-  opacity: 1;
-  transform: scale(1);
+  flex: 0 0 auto;
 }
 
 /* Final CTA repeats the highest-value actions after the user has seen the offer. */
@@ -3418,12 +3268,7 @@ body.gallery-open {
     transition: none;
   }
 
-  .custom-select-button svg {
-    transition: none;
-  }
-
-  .enquiry-submit-button,
-  .enquiry-submit-check {
+  .enquiry-option {
     transition: none;
   }
 
@@ -3438,6 +3283,7 @@ body.gallery-open {
   }
 
   .task-card:hover,
+  .enquiry-option:hover,
   .blog-card:hover {
     transform: none;
   }

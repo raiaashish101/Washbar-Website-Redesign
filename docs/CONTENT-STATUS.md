@@ -22,6 +22,8 @@
 | Six location addresses | CLIENT CONFIRMED | Confirmed correct 7 August 2026. |
 | Opening hours (6am–midnight all Melbourne stores) | CLIENT CONFIRMED | Confirmed correct 7 August 2026. |
 | Australian store phone number | CLIENT CONFIRMED | 0430 455 920 confirmed for the five Australian stores in the canonical location records on 7 August 2026. Do not apply this number to East Windsor. |
+| Public contact email and enquiry coverage | AWAITING | `mail@wash-bar.com.au` was displayed in earlier V4 HTML, but no explicit client approval for public use or general/commercial/franchise/community coverage was found in the current register or source content. Omitted from launch-candidate HTML and Organization schema pending approval. `devald84@gmail.com` is an intended future backend recipient, not an approved public contact address. |
+| Launch contact experience without a form | PROJECT APPROVED | Owner-directed on 10 October 2026: use direct contact, remove the non-sending form, preserve Australian calls and store-specific booking, and implement a secure backend after launch. Email actions remain held pending public-address approval. No production deployment is authorised by this task. |
 | East Windsor hours and phone | AWAITING | Not yet provided by client. |
 | Store photographs (Melbourne) | CLIENT CONFIRMED | Client-supplied, high-confidence store mappings. Normalised production assets are in assets/locations/. |
 | Store photographs (East Windsor) | CLIENT CONFIRMED | Project owner mapped `assets/East Windsor 1.webp` through `East Windsor 7.webp` to the East Windsor store on 13 September 2026; the client explicitly confirmed the photographs on 15 September 2026. Published on the homepage and dedicated location page. |
@@ -45,3 +47,25 @@
 | "Bulk wash discounts for 6+ properties" | AWAITING | Pricing-adjacent claim. Conflicts with no-price rule. Requires explicit client direction before use. |
 | Dedicated Our Story page | PROJECT APPROVED | Included in Version 4. No founder-story teaser is published on the homepage. |
 | Four SEO-03 Blog source drafts and editorial direction | CLIENT CONFIRMED | Published as one connected Blog system on 25 September 2026. Editorial corrections remove unsupported timing, pricing, WiFi, hygiene-superiority, discount, medical and specialist stain-treatment claims. External guidance is recorded in content/blog-sources.md. |
+
+## LAUNCH-01C Approval Reconciliation
+
+Reviewed 13 October 2026 against the source emails, published pages and Git
+history. No Story or Community content was changed by the contact task.
+
+- The dedicated Our Story page approval was recorded in commit `d76f824`.
+  Its published milestones, values and franchise narrative agree with the
+  client-confirmed founder email. The `AWAITING` note in
+  `content/founder-story.md` belongs to an older condensed homepage draft,
+  not the current standalone page. The prohibited nearly-one-million figure
+  is absent from the published Story.
+- Current creative-collaboration copy restates the client-confirmed Community
+  email without adding outcomes, commitments or other factual claims.
+- Cancer Council Victoria naming and the summer fundraising-day arrangement
+  remain explicitly `CLIENT CONFIRMED`; no date or annual schedule is published.
+
+The existing `PROJECT APPROVED` entries are preserved, not downgraded or silently
+promoted to new client sign-off. No contradictory published fact was found, so
+LAUNCH-01C does not raise a new Story/Community factual blocker. Historical
+editorial sign-off notes are distinct from the public-email approval still
+missing for direct contact.

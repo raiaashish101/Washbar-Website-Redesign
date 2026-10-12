@@ -24,8 +24,8 @@
       motion.
 - [ ] Confirm that essential content and actions remain usable with JavaScript
       disabled.
-- [ ] Test required fields, input types, useful errors, and successful form
-      validation.
+- [ ] Confirm no non-sending form, custom select, submission button or local
+      success state is exposed in the launch contact section.
 - [ ] Test every Australian store phone link on a supported mobile device.
 - [ ] Test every map link and confirm the destination matches its location.
 - [ ] Confirm East Windsor omits phone, hours, Call, and booking controls while
@@ -35,9 +35,13 @@
       and focus restoration.
 - [ ] Confirm galleries degrade to ordinary image links without JavaScript.
 - [ ] Test every internal anchor and confirm it lands at the intended heading.
-- [ ] Confirm that enquiry links pre-select the correct enquiry type.
-- [ ] Confirm the unconnected enquiry form preserves entered content, does not
-      claim delivery, and reveals direct Call and Email completion actions.
+- [ ] Confirm Commercial, Franchise, Community and the Airbnb guide reach the
+      matching direct-contact option; navigation and mobile Enquiry reach
+      `#enquiry`, and Wash & Fold reaches store selection.
+- [ ] Confirm contact actions work without JavaScript and show visible focus.
+- [ ] Publish email actions only after public-address approval; check general,
+      commercial, franchise and community subjects if email is enabled.
+- [ ] Confirm no `generate_lead` event fires for direct-contact intent.
 - [ ] Confirm Community names only Cancer Council Victoria and accurately states
       the dedicated summer fundraising-day arrangement.
 - [ ] Test open/closed status for Australian stores against confirmed hours and

@@ -22,8 +22,12 @@
    Routes qualified franchise prospects without making unverified promises.
 10. **Locations (visual discovery cards)**
     Uses six whole-card links to route visitors to practical dedicated store pages.
-11. **Enquiry form**
-    Captures all lead types with context-aware field behaviour.
+11. **Direct contact**
+    Keeps `#enquiry` as the general Contact and mobile Enquiry destination.
+    Commercial, community and franchise paths lead to their matching contact
+    options. Wash & Fold leads to store selection. The launch candidate uses
+    confirmed Australian calls; email actions await public-address approval.
+    There is no customer-data form or frontend submission state.
 12. **Footer**
     Provides secondary navigation, contact details, social links, and legal information.
 

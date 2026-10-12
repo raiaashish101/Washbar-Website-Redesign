@@ -25,18 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinks   = document.querySelector(".nav-links");
   const skipLink = document.querySelector(".skip-link");
   const mainContent = document.querySelector("#main-content");
-  const enquiryForm  = document.querySelector(".enquiry-form");
-  const formMessage  = document.querySelector(".form-message");
-  const enquirySubmitButton = enquiryForm?.querySelector("[data-enquiry-submit]");
-  const enquirySubmitLabel = enquirySubmitButton?.querySelector("[data-enquiry-submit-label]");
-  const nativeEnquirySelect = document.querySelector("#enquiry-type-native");
-  const enquiryTypeInput = document.querySelector("input[name='enquiryType']");
-  const messageTextarea   = document.querySelector("textarea[name='message']");
-  const customSelect = document.querySelector("[data-custom-select]");
-  const customSelectButton = customSelect?.querySelector(".custom-select-button");
-  const customSelectMenu = customSelect?.querySelector(".custom-select-menu");
-  const customSelectValue = customSelect?.querySelector("#custom-select-value");
-  const customSelectOptions = Array.from(customSelect?.querySelectorAll('[role="option"]') || []);
   const locationStatusBadges = Array.from(document.querySelectorAll(".status-live"));
   const reviewCarousel = document.querySelector("[data-review-carousel]");
   const reviewViewport = reviewCarousel?.querySelector("[data-review-viewport]");
@@ -68,13 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }, { threshold: 0.12 });
       storyReveals.forEach((section) => storyObserver.observe(section));
     }
-  }
-
-  // Only one enquiry-type field participates in submission at a time.
-  // The native select remains active when JavaScript is unavailable.
-  if (nativeEnquirySelect && enquiryTypeInput) {
-    nativeEnquirySelect.disabled = true;
-    enquiryTypeInput.disabled = false;
   }
 
   // Set dynamic copyright year so it never needs a manual update.
@@ -515,11 +496,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       event.preventDefault();
-      const enquiryType = link.getAttribute("data-enquiry-type");
-      if (enquiryType) {
-        setEnquiryType(enquiryType);
+      const target = document.querySelector(href);
+      if (target?.matches("a[href]")) {
+        target.focus({ preventScroll: true });
       }
-      scrollToSection(enquiryType ? "#enquiry-form" : href);
+      scrollToSection(href);
     });
   });
 
@@ -531,204 +512,5 @@ document.addEventListener("DOMContentLoaded", () => {
       menuToggle.focus();
     }
   });
-
-  // --- Enquiry form: context-aware placeholder text ---
-
-  // When the user selects an enquiry type, update the message textarea
-  // placeholder so they know what information is useful to include.
-  // This removes the friction of arriving at a blank message box with no guidance.
-  const placeholders = {
-    "Wash and fold":         "Ask a Wash & Fold question. To book, call your chosen store before dropping off your laundry.",
-    "Commercial laundry":    "Tell us your business type, estimated weekly load, and preferred location.",
-    "Community collaboration": "Tell us about your collaboration idea.",
-    "Franchise opportunity": "Tell us your preferred city or country and your investment timeline.",
-    "General question":      "Ask us anything about our services or locations.",
-  };
-
-  function closeCustomSelect() {
-    if (!customSelect || !customSelectButton || !customSelectMenu) {
-      return;
-    }
-
-    customSelect.classList.remove("is-open");
-    customSelectButton.setAttribute("aria-expanded", "false");
-    customSelectMenu.hidden = true;
-  }
-
-  function openCustomSelect() {
-    if (!customSelect || !customSelectButton || !customSelectMenu) {
-      return;
-    }
-
-    customSelect.classList.add("is-open");
-    customSelectButton.setAttribute("aria-expanded", "true");
-    customSelectMenu.hidden = false;
-  }
-
-  function setEnquirySubmitState(isReady) {
-    if (!enquirySubmitButton || !enquirySubmitLabel) {
-      return;
-    }
-
-    enquirySubmitButton.classList.toggle("is-ready", isReady);
-    enquirySubmitLabel.textContent = isReady ? "Details ready" : "Send enquiry";
-  }
-
-  function resetEnquiryCompletion() {
-    const wasReady = enquirySubmitButton?.classList.contains("is-ready");
-    setEnquirySubmitState(false);
-
-    if (wasReady && formMessage) {
-      formMessage.textContent = "";
-    }
-  }
-
-  function setEnquiryType(type) {
-    if (!enquiryTypeInput || !customSelectValue) {
-      return;
-    }
-
-    enquiryTypeInput.value = type || "";
-    customSelectValue.textContent = type || "Choose one";
-    resetEnquiryCompletion();
-    if (type) {
-      customSelectButton?.setAttribute("aria-invalid", "false");
-      if (formMessage) {
-        formMessage.textContent = "";
-      }
-    }
-    if (messageTextarea) {
-      messageTextarea.placeholder = placeholders[type] || "Your message";
-    }
-
-    customSelectOptions.forEach((option) => {
-      option.setAttribute("aria-selected", String(option.dataset.value === (type || "")));
-    });
-  }
-
-  // Preserve enquiry context when a dedicated content page sends someone home.
-  const requestedEnquiryType = new URLSearchParams(window.location.search).get("enquiry");
-  const requestedEnquiryOption = customSelectOptions.find(
-    (option) => option.dataset.value === requestedEnquiryType
-  );
-  if (requestedEnquiryOption) {
-    setEnquiryType(requestedEnquiryType);
-  }
-
-  function focusSelectedOption() {
-    const selectedOption = customSelectOptions.find((option) => option.getAttribute("aria-selected") === "true");
-    (selectedOption || customSelectOptions[0])?.focus();
-  }
-
-  function focusOptionByOffset(offset) {
-    const currentIndex = customSelectOptions.indexOf(document.activeElement);
-    const safeIndex = currentIndex === -1 ? 0 : currentIndex;
-    const nextIndex = (safeIndex + offset + customSelectOptions.length) % customSelectOptions.length;
-    customSelectOptions[nextIndex]?.focus();
-  }
-
-  if (customSelectButton && customSelectMenu) {
-    customSelectButton.addEventListener("click", () => {
-      if (customSelectButton.getAttribute("aria-expanded") === "true") {
-        closeCustomSelect();
-      } else {
-        openCustomSelect();
-      }
-    });
-
-    customSelectOptions.forEach((option) => {
-      option.addEventListener("click", () => {
-        const selectedType = option.dataset.value || "";
-        setEnquiryType(selectedType);
-        closeCustomSelect();
-        customSelectButton.focus();
-      });
-    });
-
-    customSelectButton.addEventListener("keydown", (event) => {
-      if (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        openCustomSelect();
-        focusSelectedOption();
-      }
-
-      if (event.key === "ArrowUp") {
-        event.preventDefault();
-        openCustomSelect();
-        customSelectOptions[customSelectOptions.length - 1]?.focus();
-      }
-    });
-
-    customSelectMenu.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        closeCustomSelect();
-        customSelectButton.focus();
-      }
-
-      if (event.key === "ArrowDown") {
-        event.preventDefault();
-        focusOptionByOffset(1);
-      }
-
-      if (event.key === "ArrowUp") {
-        event.preventDefault();
-        focusOptionByOffset(-1);
-      }
-
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        document.activeElement?.click();
-      }
-    });
-
-    customSelect.addEventListener("focusout", (event) => {
-      if (!customSelect.contains(event.relatedTarget)) {
-        closeCustomSelect();
-      }
-    });
-
-    document.addEventListener("click", (event) => {
-      if (!customSelect?.contains(event.target)) {
-        closeCustomSelect();
-      }
-    });
-
-    window.addEventListener("keyup", (event) => {
-      if (event.key === "Escape") {
-        closeCustomSelect();
-      }
-    });
-  }
-
-  // --- Enquiry form feedback ---
-
-  // Keep entered details available because no delivery endpoint is connected yet.
-  if (enquiryForm && formMessage) {
-    enquiryForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      if (!enquiryTypeInput?.value) {
-        setEnquirySubmitState(false);
-        formMessage.textContent = "Please choose an enquiry type.";
-        customSelectButton?.setAttribute("aria-invalid", "true");
-        customSelectButton?.focus();
-        return;
-      }
-
-      formMessage.textContent = "";
-      setEnquirySubmitState(true);
-    });
-
-    enquiryForm.addEventListener("input", () => {
-      if (enquirySubmitButton?.classList.contains("is-ready")) {
-        resetEnquiryCompletion();
-      }
-    });
-
-    // The no-JavaScript baseline exposes direct call/email actions. Reveal the
-    // enhanced form only after its local feedback handler is safely attached.
-    enquiryForm.hidden = false;
-  }
 
 }); // end DOMContentLoaded

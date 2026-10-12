@@ -23,7 +23,6 @@
         "name": "Wash Bar Laundromat",
         "alternateName": "Wash Bar Coin Laundrette",
         "logo": "https://washbarlaundromat.netlify.app/assets/logo.png",
-        "email": "mail@wash-bar.com.au",
         "sameAs": [
           "https://www.instagram.com/washbar_coin_laundry/",
           "https://www.facebook.com/WashBarLaunderette/"
@@ -31,7 +30,7 @@
       }
     </script>
     <link rel="icon" href="assets/logo.png" type="image/png" />
-    <link rel="stylesheet" href="style.css?v=50" />
+    <link rel="stylesheet" href="style.css?v=52" />
   </head>
   <body>
 
@@ -606,7 +605,7 @@
                   </ul>
                 </div>
               </div>
-              <a class="button" href="#enquiry" data-enquiry-type="Commercial laundry">Enquire about commercial laundry</a>
+              <a class="button" href="#contact-commercial">Enquire about commercial laundry</a>
             </div>
           </div>
         </div>
@@ -658,7 +657,7 @@
                   the team would love to hear your idea.
                 </p>
               </div>
-              <a class="button" href="#enquiry" data-enquiry-type="Community collaboration">Share a collaboration idea</a>
+              <a class="button" href="#contact-community">Share a collaboration idea</a>
             </article>
           </div>
         </div>
@@ -692,7 +691,7 @@
               to help others take the first step towards building something of their own.
             </p>
             <div class="franchise-actions">
-              <a class="button franchise-primary-cta" href="#enquiry" data-enquiry-type="Franchise opportunity">Franchise enquiry</a>
+              <a class="button franchise-primary-cta" href="#contact-franchise">Franchise enquiry</a>
               <a class="button button-outline" href="our-story/index.html">Read the Wash Bar story</a>
             </div>
           </div>
@@ -755,110 +754,51 @@
       </section>
 
 
-      <!-- Enquiry form: context-aware routing for general, commercial, community, and franchise enquiries. -->
-      <section class="section enquiry-section" id="enquiry">
+      <!-- Direct contact. Keep #enquiry and the legacy #enquiry-form destination useful. -->
+      <section class="section enquiry-section" id="enquiry" aria-labelledby="contact-title">
         <div class="container enquiry-grid">
           <div>
             <span class="eyebrow">Enquiries</span>
-            <h2>Tell Wash Bar what you need.</h2>
+            <h2 id="contact-title">Get in touch with Wash Bar</h2>
             <p>
-              For general questions, commercial laundry, community collaborations or
-              franchise enquiries, tell us what you need below. For Wash &amp; Fold
-              bookings, choose a location and call the store directly.
+              Have a question about our services, commercial laundry, community
+              collaborations or franchising? Contact our Australian team directly.
+              For Wash &amp; Fold bookings, choose a location and call the store.
             </p>
-            <nav class="enquiry-options" aria-label="Common enquiry paths">
-              <a class="enquiry-option" href="#enquiry" data-enquiry-type="Wash and fold">
+            <nav class="enquiry-options" aria-label="Contact options">
+              <a class="enquiry-option" href="#locations">
                 <strong>Wash &amp; Fold booking</strong>
                 <span>Choose a store and call ahead</span>
               </a>
-              <a class="enquiry-option" href="#enquiry" data-enquiry-type="Commercial laundry">
+              <a class="enquiry-option" id="contact-commercial" href="tel:+61430455920" aria-label="Call Wash Bar's Australian team about commercial laundry at 0430 455 920">
                 <strong>Commercial</strong>
-                <span>Request regular laundry support</span>
+                <span>Call about regular laundry support</span>
               </a>
-              <a class="enquiry-option" href="#enquiry" data-enquiry-type="Community collaboration">
+              <a class="enquiry-option" id="contact-community" href="tel:+61430455920" aria-label="Call Wash Bar's Australian team about a community partnership at 0430 455 920">
                 <strong>Community</strong>
-                <span>Share a collaboration idea</span>
+                <span>Call to share a collaboration idea</span>
               </a>
-              <a class="enquiry-option" href="#enquiry" data-enquiry-type="Franchise opportunity">
+              <a class="enquiry-option" id="contact-franchise" href="tel:+61430455920" aria-label="Call Wash Bar's Australian team about a franchise enquiry at 0430 455 920">
                 <strong>Franchise</strong>
-                <span>Discuss Melbourne or USA growth</span>
+                <span>Call to discuss your franchise enquiry</span>
               </a>
             </nav>
           </div>
-          <noscript>
-            <div class="enquiry-form">
-              <h3>Contact Wash Bar</h3>
-              <p>Online enquiry is unavailable without JavaScript. Please call or email Wash Bar.</p>
-              <a class="button" href="tel:+61430455920" aria-label="Call Wash Bar at 0430 455 920">Call Wash Bar</a>
-              <a class="button button-outline" href="mailto:mail@wash-bar.com.au">Email Wash Bar</a>
-            </div>
-          </noscript>
-          <form class="enquiry-form" id="enquiry-form" aria-label="Wash Bar enquiry form" data-js-enquiry-form hidden>
-            <div class="form-field">
-              <label id="enquiry-type-label" for="enquiry-type-trigger">Enquiry type</label>
-              <label for="enquiry-type-native" class="sr-only">Enquiry type</label>
-              <select
-                id="enquiry-type-native"
-                name="enquiryType"
-                class="enquiry-select-native"
-                required
-                aria-required="true"
-              >
-                <option value="">Choose one</option>
-                <option value="Wash and fold">Wash and fold</option>
-                <option value="Commercial laundry">Commercial laundry</option>
-                <option value="Community collaboration">Community collaboration</option>
-                <option value="Franchise opportunity">Franchise opportunity</option>
-                <option value="General question">General question</option>
-              </select>
-              <input type="hidden" name="enquiryType" id="enquiry-type" value="" disabled />
-              <div class="custom-select" data-custom-select>
-                <button
-                  id="enquiry-type-trigger"
-                  class="custom-select-button"
-                  type="button"
-                  aria-haspopup="listbox"
-                  aria-expanded="false"
-                  aria-labelledby="enquiry-type-label custom-select-value"
-                  aria-describedby="enquiry-form-message"
-                >
-                  <span id="custom-select-value">Choose one</span>
-                  <i data-lucide="chevron-down" aria-hidden="true"></i>
-                </button>
-                <ul class="custom-select-menu" role="listbox" aria-labelledby="enquiry-type-label" tabindex="-1" hidden>
-                  <li role="option" data-value="" aria-selected="true" tabindex="-1">Choose one</li>
-                  <li role="option" data-value="Wash and fold" aria-selected="false" tabindex="-1">Wash and fold</li>
-                  <li role="option" data-value="Commercial laundry" aria-selected="false" tabindex="-1">Commercial laundry</li>
-                  <li role="option" data-value="Community collaboration" aria-selected="false" tabindex="-1">Community collaboration</li>
-                  <li role="option" data-value="Franchise opportunity" aria-selected="false" tabindex="-1">Franchise opportunity</li>
-                  <li role="option" data-value="General question" aria-selected="false" tabindex="-1">General question</li>
-                </ul>
+          <aside class="contact-panel" id="enquiry-form" aria-labelledby="contact-panel-title">
+            <h3 id="contact-panel-title">Contact our team</h3>
+            <p>Speak to our Australian team about your question or enquiry.</p>
+            <!-- [CLIENT TO CONFIRM: approved public contact email and its enquiry coverage] -->
+            <dl class="contact-details">
+              <div>
+                <dt>Australian stores</dt>
+                <dd><a href="tel:+61430455920">0430 455 920</a></dd>
               </div>
+            </dl>
+            <div class="contact-actions">
+              <a class="button" href="tel:+61430455920" aria-label="Call Wash Bar's Australian team at 0430 455 920"><i data-lucide="phone" aria-hidden="true"></i>Call Wash Bar</a>
+              <a class="button button-outline" href="#locations">Find a store</a>
             </div>
-            <label>
-              Name
-              <input type="text" name="name" autocomplete="name" required />
-            </label>
-            <label>
-              Phone
-              <input type="tel" name="phone" autocomplete="tel" required placeholder="e.g. 0430 455 920" />
-            </label>
-            <label>
-              Email <span class="optional-label">(optional)</span>
-              <input type="email" name="email" autocomplete="email" placeholder="e.g. you@example.com" />
-            </label>
-            <label>
-              Message
-              <textarea name="message" rows="4" required></textarea>
-            </label>
-            <button class="button enquiry-submit-button" type="submit" data-enquiry-submit aria-live="polite">
-              <span class="enquiry-submit-check" aria-hidden="true">
-                <i data-lucide="check"></i>
-              </span>
-              <span data-enquiry-submit-label>Send enquiry</span>
-            </button>
-            <p class="form-message" id="enquiry-form-message" role="status" aria-live="polite"></p>
-          </form>
+          </aside>
         </div>
       </section>
 
@@ -934,7 +874,6 @@
           </ul>
           <ul class="footer-contact-list" role="list">
             <li>Australian stores: <a href="tel:+61430455920">0430 455 920</a></li>
-            <li><a href="mailto:mail@wash-bar.com.au">mail@wash-bar.com.au</a></li>
           </ul>
         </div>
       </div>
@@ -957,6 +896,6 @@
       lucide.createIcons() is called inside script.js after DOMContentLoaded.
     -->
     <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
-    <script src="script.js?v=17" defer></script>
+    <script src="script.js?v=18" defer></script>
   </body>
 </html>

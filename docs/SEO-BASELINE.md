@@ -306,7 +306,7 @@ unrestricted indexing. Noindex is not access control or confidentiality.
 | Cancer Council Victoria copy | PASS | Current register confirms naming and fundraising wording; do not treat older blanket Community hold as current |
 | Commercial client names | PASS | Text naming permitted; logo permissions are separate |
 | Reviews | PASS | Seven approved source reviews are preserved. Five policy-compatible reviews are currently rendered; David and Ali are withheld for timing/ironing wording, and the separate Portia source review remains withheld for price wording. |
-| Enquiry form | NEEDS WORK | Current JS prevents actual sending and shows Details ready; delivery integration is a separate launch dependency |
+| Enquiry experience | DIRECT CONTACT IMPLEMENTED / EMAIL APPROVAL PENDING | 10 October 2026: owner chose launch without a form. Direct Australian calls replace local Details ready feedback; email awaits explicit public-address approval. Secure backend delivery is post-launch work. LAUNCH-01C verifies the GitHub/Netlify release separately; this entry does not assert a production deployment. |
 | Existing domain/legacy URLs | CLIENT INPUT | Domain access and authoritative legacy route inventory needed before redirects |
 | Production canonicals/sitemap | LAUNCH ONLY | No wash-bar.com.au canonicals or submission sitemap added now |
 | Staging deployment | PASS | SEO-01 source is live on both mutable aliases; deploy and recheck SEO-02 separately after review |
