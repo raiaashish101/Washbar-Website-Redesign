@@ -4,6 +4,14 @@ Updated 25 September 2026. Target domain: `https://wash-bar.com.au/`.
 This is an inventory, not a declaration that these routes are already deployed
 on that domain.
 
+LAUNCH-02 preparation, 29 October: the production packager now generates these
+13 canonical routes, final-domain social/entity URLs and sitemap without changing
+staging noindex source. Live legacy URLs verified today: /index.php redirects to
+/, /story.php serves the old Story and /tips.php serves old laundry tips. The
+proposed Apache block maps them to /, /our-story/ and /blog/ respectively. It is
+not deployed. Current root-file/rewrite audit and new-mailbox delivery remain
+cutover gates; see [LAUNCH-02.md](LAUNCH-02.md).
+
 > **REMOVE STAGING NOINDEX DURING SEO-05 DOMAIN MIGRATION.**
 > Only approved production pages should become indexable. Staging and retained
 > prototypes must remain protected.

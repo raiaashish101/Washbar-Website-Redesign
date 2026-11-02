@@ -45,6 +45,12 @@ documents rather than treating the snapshot as current fact.
 > Remove only from approved production pages. Retain staging protection and keep
 > prototypes excluded/noindexed. Local source protection is NOT proof of live protection.
 
+LAUNCH-02 preparation (29 October): production index control is now generated
+deterministically by scripts/prepare_release.py, not by manually changing these
+staging source pages. Generated production adds canonical/social/entity URLs,
+robots.txt and the 13-route sitemap. Netlify publishes the separate static
+noindex output. No production deploy occurred; historical records below remain.
+
 ## Status Legend
 
 - **PASS**: verified within the explicitly stated scope.
@@ -306,7 +312,7 @@ unrestricted indexing. Noindex is not access control or confidentiality.
 | Cancer Council Victoria copy | PASS | Current register confirms naming and fundraising wording; do not treat older blanket Community hold as current |
 | Commercial client names | PASS | Text naming permitted; logo permissions are separate |
 | Reviews | PASS | Seven approved source reviews are preserved. Five policy-compatible reviews are currently rendered; David and Ali are withheld for timing/ironing wording, and the separate Portia source review remains withheld for price wording. |
-| Enquiry experience | DIRECT CONTACT IMPLEMENTED / EMAIL APPROVAL PENDING | 10 October 2026: owner chose launch without a form. Direct Australian calls replace local Details ready feedback; email awaits explicit public-address approval. Secure backend delivery is post-launch work. LAUNCH-01C verifies the GitHub/Netlify release separately; this entry does not assert a production deployment. |
+| Enquiry experience | BACKEND CANDIDATE / CONFIGURATION AND INTEGRATION TESTS PENDING | Historical 10 October phone-only decision superseded by LAUNCH-01B on 13 October 2026. Native form + secure PHP candidate prepared locally; Resend, verified sender, Turnstile and protected-host delivery tests remain outstanding. Recipient confirmed for backend only. Public email remains held. Staging noindex retained; no production deployment authorised. See ENQUIRY-BACKEND.md. |
 | Existing domain/legacy URLs | CLIENT INPUT | Domain access and authoritative legacy route inventory needed before redirects |
 | Production canonicals/sitemap | LAUNCH ONLY | No wash-bar.com.au canonicals or submission sitemap added now |
 | Staging deployment | PASS | SEO-01 source is live on both mutable aliases; deploy and recheck SEO-02 separately after review |

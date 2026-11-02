@@ -1,0 +1,17 @@
+{
+  "commit": "REPLACE_WITH_REVIEWED_GITHUB_MAIN_COMMIT",
+  "source_digest": "",
+  "smtp_identity": "info@wash-bar.com.au",
+  "cc": "devald84@gmail.com",
+  "smtp_to_received": false,
+  "smtp_cc_received": false,
+  "reply_to_verified": false,
+  "php_runtime_verified": false,
+  "legacy_files_reviewed": false,
+  "legacy_backup_verified": false,
+  "production_indexability_reviewed": false,
+  "legacy_backup_path": "",
+  "legacy_backup_sha256": "",
+  "existing_root_htaccess_sha256": "",
+  "approved_root_htaccess_sha256": ""
+}

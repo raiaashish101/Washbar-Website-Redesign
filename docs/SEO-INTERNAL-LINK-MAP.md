@@ -1,6 +1,6 @@
 # SEO-02 Internal Link Map
 
-Last reviewed: 10 October 2026 (direct-contact routes)
+Last reviewed: 13 October 2026 (LAUNCH-01B enquiry integration)
 
 The current V4 repository is authoritative. This map records crawlable page
 relationships without creating links to routes that do not exist yet. Staging
@@ -76,9 +76,11 @@ production search destinations.
   separately approves a primary-navigation change.
 - Keep location-card links as one whole-card link with area and street context.
 - Keep Commercial calls to action routed to `#contact-commercial`.
-- Keep the former `#enquiry-form` fragment as an alias on the direct-contact
-  panel for already-shared links; it is not a form and ignores the former
-  enquiry query parameter. New links use the section or topic anchors above.
+- Keep `#enquiry-form` on the setup-ready PHP form. Topic anchors above now
+  preselect the matching editable enquiry type. General `#enquiry` selects
+  General enquiry. Query preselection accepts only the four approved types.
+  No-JavaScript users retain the Australian phone alternative; the form stays
+  disabled until secure configuration is ready.
 - Keep Wash & Fold booking routed through store selection because booking is by
   phone with the chosen store.
 - Do not create thin service pages solely to add keyword destinations.

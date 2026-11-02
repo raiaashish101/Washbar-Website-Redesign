@@ -102,6 +102,245 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // --- Secure enquiries: the PHP response, never a timer, owns success. ---
+  const enquiryForm = document.querySelector("[data-enquiry-form]");
+  let selectEnquiryIntent = () => false;
+  if (enquiryForm) {
+    const types = ["General enquiry", "Commercial laundry", "Franchise enquiry", "Community partnership"];
+    const contexts = {
+      "#enquiry": types[0],
+      "#enquiry-form": types[0],
+      "#contact-commercial": types[1],
+      "#contact-franchise": types[2],
+      "#contact-community": types[3],
+    };
+    const fields = Object.fromEntries(
+      ["enquiryType", "name", "email", "phone", "message"].map((name) => [name, enquiryForm.elements.namedItem(name)]),
+    );
+    const button = enquiryForm.querySelector("[data-enquiry-submit]");
+    const buttonLabel = enquiryForm.querySelector("[data-enquiry-submit-label]");
+    const status = enquiryForm.querySelector(".enquiry-status");
+    const summary = enquiryForm.querySelector(".enquiry-error-summary");
+    const availability = enquiryForm.querySelector("[data-enquiry-availability]");
+    const retry = enquiryForm.querySelector("[data-enquiry-retry]");
+    let ready = false;
+    let checking = false;
+    let busy = false;
+    let reference = null;
+    let previousContent = null;
+    let uncertain = false;
+    let accepted = false;
+    enquiryForm.noValidate = true;
+
+    function announce(message, isError = false) {
+      status.textContent = message;
+      status.classList.toggle("is-error", isError);
+    }
+
+    function clearErrors() {
+      summary.hidden = true;
+      summary.querySelector("ul").replaceChildren();
+      enquiryForm.querySelectorAll(".enquiry-field-error").forEach((error) => {
+        error.hidden = true;
+        error.textContent = "";
+      });
+      Object.values(fields).forEach((field) => field.removeAttribute("aria-invalid"));
+    }
+
+    function showErrors(errors) {
+      clearErrors();
+      Object.entries(errors).forEach(([name, message]) => {
+        const field = fields[name];
+        const error = field && document.getElementById(field.getAttribute("aria-describedby"));
+        if (!error || typeof message !== "string") return;
+        error.textContent = message;
+        error.hidden = false;
+        field?.setAttribute("aria-invalid", "true");
+        const item = document.createElement("li");
+        if (field) {
+          const link = document.createElement("a");
+          link.href = `#${field.id}`;
+          link.textContent = message;
+          link.addEventListener("click", (event) => {
+            event.preventDefault();
+            field.focus();
+          });
+          item.append(link);
+        } else {
+          item.textContent = message;
+        }
+        summary.querySelector("ul").append(item);
+      });
+      if (summary.querySelector("li")) {
+        summary.hidden = false;
+        summary.focus();
+      }
+    }
+
+    function setBusy(isBusy) {
+      busy = isBusy;
+      enquiryForm.setAttribute("aria-busy", String(isBusy || checking));
+      Object.values(fields).forEach((field) => { field.disabled = isBusy; });
+      button.disabled = isBusy || checking || !ready || accepted;
+      buttonLabel.textContent = isBusy ? "Sending..." : accepted ? "Enquiry submitted" : "Send enquiry";
+    }
+
+    selectEnquiryIntent = (hash, requested, moveFocus = true) => {
+      const type = requested || contexts[hash];
+      if (!types.includes(type)) return false;
+      if (!busy && fields.enquiryType.value !== type) {
+        fields.enquiryType.value = type;
+        fields.enquiryType.dispatchEvent(new Event("input", { bubbles: true }));
+      }
+      if (moveFocus) fields.enquiryType.focus({ preventScroll: true });
+      return true;
+    };
+
+    const queryType = new URLSearchParams(window.location.search).get("enquiry");
+    const initialType = types.includes(queryType) ? queryType : contexts[window.location.hash];
+    if (initialType) {
+      selectEnquiryIntent(window.location.hash, initialType, false);
+      requestAnimationFrame(() => enquiryForm.scrollIntoView({ block: "start", behavior: "auto" }));
+    }
+    window.addEventListener("hashchange", () => {
+      if (selectEnquiryIntent(window.location.hash)) scrollToSection("#enquiry-form");
+    });
+
+    enquiryForm.addEventListener("input", () => {
+      if (busy) return;
+      if (accepted) {
+        accepted = false;
+        button.classList.remove("is-accepted");
+        announce("");
+      }
+      if (!uncertain) {
+        reference = null;
+        previousContent = null;
+      }
+      setBusy(false);
+    });
+
+    async function requestJSON(url, options = {}, timeout = 45000) {
+      const controller = new AbortController();
+      const timer = window.setTimeout(() => controller.abort(), timeout);
+      try {
+        const response = await fetch(url, { ...options, credentials: "same-origin", signal: controller.signal });
+        const data = await response.json();
+        return { response, data };
+      } finally {
+        window.clearTimeout(timer);
+      }
+    }
+
+    enquiryForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (busy || checking || !ready || accepted) return;
+      clearErrors();
+      const content = Object.fromEntries(Object.entries(fields).map(([name, field]) => [name, field.value.trim()]));
+      const errors = {};
+      if (!types.includes(content.enquiryType)) errors.enquiryType = "Choose an enquiry type.";
+      if (!content.name) errors.name = "Enter your name.";
+      if (!content.email || fields.email.validity.typeMismatch) errors.email = "Enter a valid email address.";
+      const phoneDigits = content.phone.replace(/[^0-9]/g, "");
+      if (content.phone && (phoneDigits.length < 6 || !/^\+?[0-9 ()-]{6,32}$/.test(content.phone))) {
+        errors.phone = "Enter a phone number, or leave this field blank.";
+      }
+      if (!content.message) errors.message = "Enter your message.";
+      const limits = { enquiryType: 40, name: 100, email: 254, phone: 32, message: 4000 };
+      Object.entries(content).forEach(([name, value]) => {
+        if (new TextEncoder().encode(value).length > limits[name]) errors[name] = "Please shorten this field.";
+        const pattern = name === "message" ? /[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/ : /[\x00-\x1F\x7F]/;
+        if (pattern.test(fields[name].value)) errors[name] = "Please remove unsupported characters.";
+      });
+      if (Object.keys(errors).length) {
+        showErrors(errors);
+        announce("Please check the highlighted fields.", true);
+        return;
+      }
+      const serialized = JSON.stringify(content);
+      if (uncertain && previousContent !== serialized) {
+        announce("Submission is not yet confirmed. Restore the original details to retry, or call Wash Bar before sending a changed enquiry.", true);
+        return;
+      }
+      let submissionStarted = false;
+      setBusy(true);
+      announce("Sending your enquiry...");
+      try {
+        // Recheck on each attempt so a temporary outage does not lock the form.
+        if (!await refreshEnquiryAvailability()) throw new Error("Unavailable");
+        reference ||= window.crypto.randomUUID();
+        previousContent = serialized;
+        const payload = { ...content, website: enquiryForm.elements.namedItem("website").value, reference };
+        submissionStarted = true;
+        const { response, data } = await requestJSON(enquiryForm.action, {
+          method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(payload),
+        });
+        if (response.ok && data.ok === true && data.status === "accepted" &&
+            /^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/.test(data.reference)) {
+          accepted = true;
+          uncertain = false;
+          button.classList.add("is-accepted");
+          announce("Thanks for reaching out. Your enquiry has been submitted to Wash Bar. Our team will get back to you.");
+        } else {
+          // A rejected retry cannot rule out acceptance of an earlier uncertain attempt.
+          const explicitRejection = !response.ok && ["validation", "invalid_request", "origin", "method",
+            "request_size", "content_type", "rate_limit", "smtp_failure"].includes(data.code);
+          uncertain = uncertain || !explicitRejection;
+          if (data.errors && typeof data.errors === "object") showErrors(data.errors);
+          announce(typeof data.message === "string" ? data.message :
+            "We could not confirm submission. Please call Wash Bar on 0430 455 920 before sending again.", true);
+        }
+      } catch {
+        uncertain = uncertain || submissionStarted;
+        announce(uncertain ?
+          "We could not confirm submission. Please call Wash Bar on 0430 455 920 before sending again." :
+          "We couldn't send your enquiry. Please try again or call Wash Bar on 0430 455 920.", true);
+      } finally {
+        setBusy(false);
+      }
+    });
+
+    async function checkEnquiryAvailability() {
+      if (window.location.hostname.endsWith(".netlify.app") ||
+          !window.isSecureContext || typeof window.crypto?.randomUUID !== "function") {
+        return false;
+      }
+      // Resolve beside this page: /v4-enquiry-test/api/ in the protected copy.
+      const url = new URL(enquiryForm.dataset.config, document.baseURI);
+      const { response, data } = await requestJSON(url, { cache: "no-store" }, 8000);
+      return response.ok && data.available === true;
+    }
+
+    async function refreshEnquiryAvailability() {
+      if (checking) return false;
+      checking = true;
+      ready = false;
+      availability.hidden = false;
+      availability.textContent = "Checking online enquiry availability...";
+      retry.hidden = true;
+      setBusy(busy);
+      try {
+        ready = await checkEnquiryAvailability();
+      } catch {
+        ready = false;
+      } finally {
+        checking = false;
+        availability.hidden = ready;
+        availability.textContent = ready ? "" : "Online enquiries are unavailable. Please call our Australian team.";
+        retry.hidden = ready;
+        setBusy(busy);
+      }
+      return ready;
+    }
+
+    retry.addEventListener("click", async () => {
+      const restoreFocus = document.activeElement === retry;
+      if (await refreshEnquiryAvailability() && restoreFocus) button.focus();
+    });
+    refreshEnquiryAvailability();
+  }
+
   // --- Mobile Who We Serve accordion ---
 
   // Native buttons provide Enter and Space behaviour. This controller only
@@ -496,6 +735,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       event.preventDefault();
+      if (selectEnquiryIntent(href, link.dataset.enquiryType)) {
+        scrollToSection("#enquiry-form");
+        return;
+      }
       const target = document.querySelector(href);
       if (target?.matches("a[href]")) {
         target.focus({ preventScroll: true });

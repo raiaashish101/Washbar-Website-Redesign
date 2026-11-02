@@ -1,5 +1,12 @@
 # V4 Fast-Track Launch Contact Experience
 
+Historical LAUNCH-01/01C record. The owner superseded the phone-only release
+decision with LAUNCH-01B on 13 October 2026. Current setup-ready form/backend
+status is documented in [ENQUIRY-BACKEND.md](ENQUIRY-BACKEND.md). The recorded
+checks below describe the earlier commit, not the new backend candidate.
+LAUNCH-01C on 15 October simplifies that candidate to authenticated SMTP;
+its fixed From/To and CC decision does not rewrite this historical audit.
+
 Implemented locally: 10 October 2026. LAUNCH-01C review: 13 October 2026.
 Delivery scope: GitHub main and its Netlify staging deployment only. No cPanel
 production deployment, DNS change or staging-index-control removal is authorised.

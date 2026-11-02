@@ -1,0 +1,4 @@
+---
+deployment:
+  tasks:
+    - /bin/bash /home1/washbarc/repositories/WashbarV2/scripts/deploy-production.sh

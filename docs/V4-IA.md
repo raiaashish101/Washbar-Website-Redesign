@@ -22,19 +22,23 @@
    Routes qualified franchise prospects without making unverified promises.
 10. **Locations (visual discovery cards)**
     Uses six whole-card links to route visitors to practical dedicated store pages.
-11. **Direct contact**
+11. **Enquiry and phone contact**
     Keeps `#enquiry` as the general Contact and mobile Enquiry destination.
     Commercial, community and franchise paths lead to their matching contact
-    options. Wash & Fold leads to store selection. The launch candidate uses
-    confirmed Australian calls; email actions await public-address approval.
-    There is no customer-data form or frontend submission state.
+    options, which preselect an editable native form type. Wash & Fold leads to
+    store selection. The setup-ready PHP form requires private authenticated SMTP,
+    PHPMailer and file-based rate protection before submission is enabled. Confirmed Australian phone
+    contact remains usable without JavaScript; public email actions stay held.
 12. **Footer**
     Provides secondary navigation, contact details, social links, and legal information.
 
 ## Primary navigation
 
-The Version 4 order is Services, Reviews, Commercial, Our Story, Franchise,
-Locations, and Contact. Our Story routes to `/our-story/`; the other content
+The current approved implementation is Services, Reviews, Commercial, Our Story,
+Blog, Franchise, Locations, and Contact. Blog after Our Story was explicitly
+requested by the project owner and added in commit `37efce2` (3 October 2026).
+LAUNCH-02 preserves that recorded decision rather than reverting it from the
+shorter historical navigation list. Our Story routes to `/our-story/`; the other content
 links route to their homepage sections. Contact is the final primary action and
 routes to `#enquiry` on desktop. The mobile dropdown intentionally ends with
 Locations because Enquiry remains available in the sticky mobile action bar.

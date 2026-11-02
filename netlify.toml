@@ -1,0 +1,9 @@
+[build]
+  command = "python3 scripts/prepare_release.py --environment staging --output .netlify-site"
+  publish = ".netlify-site/public"
+
+[build.environment]
+  PYTHON_VERSION = "3.11"
+
+# Netlify is staging, even when Netlify calls the deploy context "production".
+# Only the generated static allowlist is published; PHP and internal documents are excluded.

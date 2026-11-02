@@ -30,7 +30,7 @@
       }
     </script>
     <link rel="icon" href="assets/logo.png" type="image/png" />
-    <link rel="stylesheet" href="style.css?v=52" />
+    <link rel="stylesheet" href="style.css?v=55" />
   </head>
   <body>
 
@@ -754,15 +754,15 @@
       </section>
 
 
-      <!-- Direct contact. Keep #enquiry and the legacy #enquiry-form destination useful. -->
+      <!-- Enquiry delivery is enabled only by the configured PHP backend. -->
       <section class="section enquiry-section" id="enquiry" aria-labelledby="contact-title">
         <div class="container enquiry-grid">
           <div>
-            <span class="eyebrow">Enquiries</span>
-            <h2 id="contact-title">Get in touch with Wash Bar</h2>
+            <span class="eyebrow">Get in touch</span>
+            <h2 id="contact-title">Let's talk laundry.</h2>
             <p>
-              Have a question about our services, commercial laundry, community
-              collaborations or franchising? Contact our Australian team directly.
+              Questions about our services, commercial laundry, community
+              partnerships or franchising? Send us a message.
               For Wash &amp; Fold bookings, choose a location and call the store.
             </p>
             <nav class="enquiry-options" aria-label="Contact options">
@@ -770,35 +770,74 @@
                 <strong>Wash &amp; Fold booking</strong>
                 <span>Choose a store and call ahead</span>
               </a>
-              <a class="enquiry-option" id="contact-commercial" href="tel:+61430455920" aria-label="Call Wash Bar's Australian team about commercial laundry at 0430 455 920">
+              <a class="enquiry-option" id="contact-commercial" href="#enquiry-form" data-enquiry-type="Commercial laundry">
                 <strong>Commercial</strong>
-                <span>Call about regular laundry support</span>
+                <span>Ask about regular laundry support</span>
               </a>
-              <a class="enquiry-option" id="contact-community" href="tel:+61430455920" aria-label="Call Wash Bar's Australian team about a community partnership at 0430 455 920">
+              <a class="enquiry-option" id="contact-community" href="#enquiry-form" data-enquiry-type="Community partnership">
                 <strong>Community</strong>
-                <span>Call to share a collaboration idea</span>
+                <span>Share a collaboration idea</span>
               </a>
-              <a class="enquiry-option" id="contact-franchise" href="tel:+61430455920" aria-label="Call Wash Bar's Australian team about a franchise enquiry at 0430 455 920">
+              <a class="enquiry-option" id="contact-franchise" href="#enquiry-form" data-enquiry-type="Franchise enquiry">
                 <strong>Franchise</strong>
-                <span>Call to discuss your franchise enquiry</span>
+                <span>Discuss your franchise enquiry</span>
               </a>
             </nav>
+            <p class="enquiry-call-alternative">Prefer to call? Australian stores:
+              <a href="tel:+61430455920">0430 455 920</a>
+            </p>
           </div>
-          <aside class="contact-panel" id="enquiry-form" aria-labelledby="contact-panel-title">
-            <h3 id="contact-panel-title">Contact our team</h3>
-            <p>Speak to our Australian team about your question or enquiry.</p>
-            <!-- [CLIENT TO CONFIRM: approved public contact email and its enquiry coverage] -->
-            <dl class="contact-details">
-              <div>
-                <dt>Australian stores</dt>
-                <dd><a href="tel:+61430455920">0430 455 920</a></dd>
-              </div>
-            </dl>
-            <div class="contact-actions">
-              <a class="button" href="tel:+61430455920" aria-label="Call Wash Bar's Australian team at 0430 455 920"><i data-lucide="phone" aria-hidden="true"></i>Call Wash Bar</a>
-              <a class="button button-outline" href="#locations">Find a store</a>
+          <form class="enquiry-form contact-panel" id="enquiry-form" action="api/enquiry.php" method="post"
+            aria-label="Wash Bar enquiry" data-enquiry-form data-config="api/enquiry-config.php">
+            <div class="enquiry-error-summary" role="alert" tabindex="-1" hidden>
+              <p>Please check the following fields:</p>
+              <ul></ul>
             </div>
-          </aside>
+            <div class="enquiry-field">
+              <label for="enquiry-type">Enquiry type</label>
+              <select id="enquiry-type" name="enquiryType" required aria-describedby="enquiry-type-error">
+                <option>General enquiry</option>
+                <option>Commercial laundry</option>
+                <option>Franchise enquiry</option>
+                <option>Community partnership</option>
+              </select>
+              <p class="enquiry-field-error" id="enquiry-type-error" hidden></p>
+            </div>
+            <div class="enquiry-field">
+              <label for="enquiry-name">Name</label>
+              <input id="enquiry-name" name="name" autocomplete="name" maxlength="100" required aria-describedby="enquiry-name-error" />
+              <p class="enquiry-field-error" id="enquiry-name-error" hidden></p>
+            </div>
+            <div class="enquiry-field">
+              <label for="enquiry-email">Email</label>
+              <input id="enquiry-email" name="email" type="email" autocomplete="email" maxlength="254" required aria-describedby="enquiry-email-error" />
+              <p class="enquiry-field-error" id="enquiry-email-error" hidden></p>
+            </div>
+            <div class="enquiry-field">
+              <label for="enquiry-phone">Phone <span class="optional-label">(optional)</span></label>
+              <input id="enquiry-phone" name="phone" type="tel" autocomplete="tel" maxlength="32" aria-describedby="enquiry-phone-error" />
+              <p class="enquiry-field-error" id="enquiry-phone-error" hidden></p>
+            </div>
+            <div class="enquiry-field">
+              <label for="enquiry-message">Message</label>
+              <textarea id="enquiry-message" name="message" rows="4" maxlength="4000" required aria-describedby="enquiry-message-error"></textarea>
+              <p class="enquiry-field-error" id="enquiry-message-error" hidden></p>
+            </div>
+            <div class="enquiry-honeypot sr-only" aria-hidden="true">
+              <label for="enquiry-website">Leave this field empty</label>
+              <input id="enquiry-website" name="website" tabindex="-1" autocomplete="off" maxlength="200" />
+            </div>
+            <p class="enquiry-availability" id="enquiry-availability" data-enquiry-availability role="status" aria-live="polite" aria-atomic="true" hidden></p>
+            <button class="enquiry-retry" type="button" data-enquiry-retry hidden>Check availability again</button>
+            <noscript><p>Online enquiries require JavaScript. Please call our Australian team using the phone link.</p></noscript>
+            <button class="button enquiry-submit" type="submit" disabled aria-describedby="enquiry-availability enquiry-status" data-enquiry-submit>
+              <i data-lucide="check" class="enquiry-submit-check" aria-hidden="true"></i>
+              <span data-enquiry-submit-label>Send enquiry</span>
+              <i data-lucide="arrow-right" class="enquiry-submit-arrow" aria-hidden="true"></i>
+            </button>
+            <p class="enquiry-status" id="enquiry-status" role="status" aria-live="polite" aria-atomic="true"></p>
+            <p class="enquiry-fallback">Australian team: <a href="tel:+61430455920">0430 455 920</a></p>
+          </form>
         </div>
       </section>
 
@@ -896,6 +935,6 @@
       lucide.createIcons() is called inside script.js after DOMContentLoaded.
     -->
     <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
-    <script src="script.js?v=18" defer></script>
+    <script src="script.js?v=22" defer></script>
   </body>
 </html>

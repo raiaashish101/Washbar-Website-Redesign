@@ -96,7 +96,7 @@ The approved Version 4 homepage order is:
 8. Supporting Our Community
 9. Franchise teaser
 10. Location discovery
-11. Direct contact
+11. Enquiry and phone contact
 12. Footer
 
 The sequence intentionally moves from immediate customer utility to service
@@ -153,17 +153,46 @@ story without reveal transitions.
 
 ### Launch contact experience
 
-The owner has chosen to launch without the unfinished enquiry backend.
-`#enquiry` now provides direct contact with the confirmed Australian number.
-Commercial, franchise and community CTAs reach matching contact options;
+LAUNCH-01C (15 October) simplifies the LAUNCH-01B candidate into a setup-ready
+PHP enquiry form and the confirmed Australian phone alternative. Commercial,
+franchise and community links preselect the editable native enquiry type;
 Wash & Fold continues through store selection and phone booking.
-There is no customer-data form, custom select, submission handler or success
-state. Contact works without JavaScript.
+The Send enquiry button stays disabled until the PHP readiness endpoint verifies
+private configuration, PHPMailer and file-based protection. An unavailable
+backend shows the phone alternative and a readiness retry; the warning hides
+only after readiness passes. Every valid submission checks again before posting
+customer details. Netlify remains a frontend preview with submission disabled.
+The owner reconfirmed lowercase `/home1/washbarc/private/washbar-enquiry/`
+on 29 October 2026; bootstrap, config template and setup documentation use it.
+See [protected test activation](docs/ENQUIRY-SMTP-TEST.md) for exact paths and
+re-upload instructions. No real form/PHPMailer delivery test has passed yet.
 
-The earlier public address `mail@wash-bar.com.au` has no explicit client approval
-in the current register, so launch-candidate email links and Organization email
-are held pending confirmation. The intended future backend recipient is not
-approved for public display. See [contact launch audit](docs/CONTACT-LAUNCH.md).
+LAUNCH-02 (29 October) specifies `info@wash-bar.com.au` as SMTP username and fixed From/To, with
+`devald84@gmail.com` as CC, with the validated customer email as Reply-To.
+Owner evidence on 15 October confirms PHP 8.3 (inherited ea-php83),
+mail.wash-bar.com.au:465 with implicit TLS/authentication, and manual Webmail
+send/receive using the former mailbox. The owner also reports a successful old-mailbox
+SMTP submission; that does not verify the new info@ identity. Fresh authentication,
+both inbox receipts and Reply-To remain required. cPanel shows SPF/DKIM/PTR valid and a DMARC problem; DNS is
+authoritative at Digital Pacific. PHP extensions, SMTP certificate/authentication
+from PHPMailer, and form receipt in both inboxes remain untested. No public
+Gmail address or new email links are added. See the
+[backend setup and test guide](docs/ENQUIRY-BACKEND.md) and the historical
+[contact launch audit](docs/CONTACT-LAUNCH.md).
+
+LAUNCH-02 release preparation is documented in [LAUNCH-02.md](docs/LAUNCH-02.md).
+The dependency-free Python packaging script creates separate allowlisted staging
+and production copies without changing the static website architecture. Netlify
+publishes only generated static staging files; production HTML receives final
+canonical/social/schema URLs, sitemap and robots rules in its generated copy.
+The cPanel recipe refuses deployment without private commit-specific approval,
+fresh new-mailbox delivery evidence, a reviewed root .htaccess and a verified,
+checksum-matched current-webroot snapshot outside public_html. The owner-downloaded
+9 October cPanel backup passed local gzip/archive checks; it is a historical
+disaster-recovery copy, not the fresh pre-cutover snapshot. Exact snapshot and
+selective rollback steps are in the release runbook. No live snapshot or restore
+has been performed by Codex.
+No production deployment is authorised by preparing or testing these files.
 
 ### Responsive navigation
 
@@ -294,8 +323,9 @@ The current build is a working Version 4 prototype. Before production launch:
 2. Continue omitting East Windsor's phone, hours and booking action until confirmed.
 3. Obtain approval for any remaining content specifically marked as awaiting.
 4. Replace disabled development actions with confirmed destinations.
-5. Confirm any public email before enabling email contact. Secure enquiry
-   delivery is post-launch work and is not required for the direct-call release.
+5. Complete private backend/provider setup and protected-host integration tests
+   in `docs/ENQUIRY-BACKEND.md` before enabling submission. Public email links
+   remain held pending approval. This supersedes the phone-only release plan.
 6. Complete the responsive, accessibility, no-JavaScript, and browser QA list.
 7. Recheck all public claims and permissions immediately before deployment.
 

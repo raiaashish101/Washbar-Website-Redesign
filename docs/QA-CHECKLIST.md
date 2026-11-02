@@ -24,8 +24,33 @@
       motion.
 - [ ] Confirm that essential content and actions remain usable with JavaScript
       disabled.
-- [ ] Confirm no non-sending form, custom select, submission button or local
-      success state is exposed in the launch contact section.
+- [ ] Confirm Send enquiry starts disabled and enables only after an actual
+      successful PHP readiness response. Failed readiness/Netlify keeps the
+      warning and phone fallback visible; input must not enable submission.
+- [ ] Confirm Check availability again recovers after configuration is fixed,
+      hides the warning only when ready and restores focus to Send enquiry.
+- [ ] Verify root and protected-folder API URLs: /v4-enquiry-test/ must request
+      only /v4-enquiry-test/api/; no customer details reach production-root /api/.
+- [ ] Confirm one pending attempt disables the button, recovery rechecks
+      readiness, and an uncertain earlier POST remains protected against duplicates.
+- [ ] Test required fields, invalid email, optional phone, field length limits,
+      error-summary focus and retained values after errors.
+- [ ] On inherited ea-php83, verify OpenSSL/json/hash, TLS trust, filesystem
+      locking/sync permissions, execution limits and private PHPMailer setup;
+      PHP 8.3 selection alone does not establish extension/runtime readiness.
+- [ ] Connect to mail.wash-bar.com.au:465 using implicit TLS and validate its
+      certificate hostname/chain. Keep SMTP authentication and peer checks on.
+- [ ] Treat the confirmed manual Webmail send/receive as mailbox evidence,
+      not proof of authenticated SMTP from the enquiry backend.
+- [ ] Verify honeypot, locked file-based rate limits, corrupt-state rejection
+      and concurrent duplicate protection on the protected PHP host.
+- [ ] Confirm SMTP accepts both recipients and final DATA before success;
+      uncertain attempts must not be automatically re-sent. Obtain confirmed
+      receipt in both mail@wash-bar.com.au and the private CC inbox.
+- [ ] Recheck message authentication/alignment on real test mail. SPF/DKIM/PTR
+      are valid in the supplied cPanel evidence, but the Digital Pacific DMARC
+      warning remains a separate final deliverability sign-off gate; no DNS
+      changes are authorised in this implementation task.
 - [ ] Test every Australian store phone link on a supported mobile device.
 - [ ] Test every map link and confirm the destination matches its location.
 - [ ] Confirm East Windsor omits phone, hours, Call, and booking controls while
@@ -36,8 +61,8 @@
 - [ ] Confirm galleries degrade to ordinary image links without JavaScript.
 - [ ] Test every internal anchor and confirm it lands at the intended heading.
 - [ ] Confirm Commercial, Franchise, Community and the Airbnb guide reach the
-      matching direct-contact option; navigation and mobile Enquiry reach
-      `#enquiry`, and Wash & Fold reaches store selection.
+      matching editable form type; navigation and mobile Enquiry select General
+      enquiry at `#enquiry`, and Wash & Fold reaches store selection.
 - [ ] Confirm contact actions work without JavaScript and show visible focus.
 - [ ] Publish email actions only after public-address approval; check general,
       commercial, franchise and community subjects if email is enabled.

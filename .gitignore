@@ -1,3 +1,21 @@
 .DS_Store
 Thumbs.db
 AGENTS.md
+
+# Private enquiry configuration and runtime storage must never be committed.
+.env
+.env.*
+!.env.example
+enquiry-config.local.php
+*.sqlite
+*.sqlite-*
+enquiry-state.json
+enquiry.lock
+.enquiry-*
+/private/
+
+# Generated release packages are never public source or Git deployment inputs.
+/release-output/
+/.netlify-site/
+__pycache__/
+*.pyc

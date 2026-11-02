@@ -2660,7 +2660,7 @@ body.gallery-open {
   font-weight: var(--weight-semibold);
 }
 
-/* Direct contact: native email and phone links work without JavaScript. */
+/* Enquiries progressively enhance a native form; phone contact is always available. */
 .enquiry-section {
   background: var(--color-soft);
 }
@@ -2728,54 +2728,138 @@ body.gallery-open {
   line-height: var(--md-sys-typescale-body-small-line-height);
 }
 
-.contact-panel h3 {
-  margin: 0;
-  font-size: var(--type-h3);
-  line-height: var(--line-snug);
-}
-
 .contact-panel p {
   margin: 0;
 }
 
-.contact-details {
+.enquiry-field {
   display: grid;
-  gap: var(--space-3);
-  margin: 0;
+  gap: var(--space-1);
+  min-width: 0;
 }
 
-.contact-details dt {
-  font-size: var(--type-label);
+.enquiry-field label {
+  color: var(--color-ink);
   font-weight: var(--weight-bold);
 }
 
-.contact-details dd {
-  margin: 0;
+.optional-label {
+  color: var(--color-muted);
+  font-weight: var(--weight-regular);
 }
 
-.contact-details a {
+.enquiry-field :is(input, select, textarea) {
+  width: 100%;
+  min-width: 0;
+  min-height: var(--space-6);
+  padding: var(--space-2);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font: inherit;
+  font-size: var(--type-body);
+  line-height: var(--line-normal);
+}
+
+.enquiry-field textarea {
+  resize: vertical;
+}
+
+.enquiry-field [aria-invalid="true"] {
+  border-color: var(--color-danger);
+}
+
+.enquiry-form .enquiry-field-error,
+.enquiry-error-summary p,
+.enquiry-error-summary {
+  color: var(--color-danger);
+  font-size: var(--type-sm);
+  line-height: var(--line-normal);
+}
+
+.enquiry-error-summary {
+  padding: var(--space-2);
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius-card);
+  background: var(--color-danger-soft);
+}
+
+.enquiry-error-summary ul {
+  margin-block: var(--space-1) 0;
+  padding-inline-start: var(--space-3);
+}
+
+.enquiry-availability,
+.enquiry-status,
+.enquiry-fallback {
+  font-size: var(--type-sm);
+  line-height: var(--line-normal);
+  overflow-wrap: anywhere;
+}
+
+.enquiry-status:empty {
+  position: absolute;
+}
+
+.enquiry-status.is-error {
+  color: var(--color-danger);
+}
+
+.enquiry-retry {
+  min-height: var(--space-6);
+  justify-self: start;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-blue-dark);
+  font: inherit;
+  font-size: var(--type-sm);
+  text-decoration: underline;
+  text-underline-offset: var(--space-05);
+  cursor: pointer;
+}
+
+.enquiry-call-alternative a,
+.enquiry-fallback a {
   display: inline-flex;
   min-height: var(--space-6);
   align-items: center;
   color: var(--color-blue-dark);
-  overflow-wrap: anywhere;
 }
 
-.contact-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-}
-
-.contact-actions .button {
-  flex: 1 1 auto;
+.enquiry-submit {
+  min-height: var(--space-6);
   gap: var(--space-1);
+  transition: background-color var(--motion-duration-fast) var(--motion-easing-standard);
 }
 
-.contact-actions svg {
+.enquiry-submit:disabled {
+  cursor: not-allowed;
+  background: var(--color-muted);
+  transform: none;
+}
+
+.enquiry-submit svg {
   width: var(--space-3);
   height: var(--space-3);
   flex: 0 0 auto;
+}
+
+.enquiry-submit .enquiry-submit-check {
+  display: none;
+}
+
+.enquiry-submit.is-accepted {
+  background: var(--color-success-ink);
+}
+
+.enquiry-submit.is-accepted .enquiry-submit-check {
+  display: block;
+}
+
+.enquiry-submit.is-accepted .enquiry-submit-arrow {
+  display: none;
 }
 
 /* Final CTA repeats the highest-value actions after the user has seen the offer. */
@@ -3268,7 +3352,8 @@ body.gallery-open {
     transition: none;
   }
 
-  .enquiry-option {
+  .enquiry-option,
+  .enquiry-submit {
     transition: none;
   }
 
